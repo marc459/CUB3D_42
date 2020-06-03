@@ -38,7 +38,8 @@ int deal_key(int key, t_cub3d *f)
 		system("killall a.out && clear"); //system("kill -9 | ps -ef | pgrep a.out");
 
 	ft_putstr(ft_itoa(f->x_position));
-	mlx_string_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00, "*");
+	//mlx_string_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00, "*");
+	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00);
 	return (0);
 }
 
