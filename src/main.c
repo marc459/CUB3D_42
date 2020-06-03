@@ -23,7 +23,6 @@ int deal_key(int key, t_cub3d *f)
 {
 	system("clear");
 	
-	
 	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
 	
@@ -47,8 +46,6 @@ int		main(void)
 {
 	t_cub3d		*f;
 	int x;
-	int deltaDistX;
-	int deltaDistY;
 
 	f = malloc(sizeof(t_cub3d));
 	f->x_position = 200;
@@ -56,7 +53,6 @@ int		main(void)
 	
 	f->mlx_ptr = mlx_init();
 	f->win_ptr = mlx_new_window(f->mlx_ptr, 800, 800, "mx 42");
-
 		
 	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, 200, 0xFFD2C8);
 	mlx_key_hook(f->win_ptr, deal_key, &(*f));
