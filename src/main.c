@@ -49,6 +49,7 @@ int		main(void)
 	int x;
 
 	f = malloc(sizeof(t_cub3d));
+	
 	f->x_position = 200;
 	f->y_position = 200;
 	
