@@ -28,8 +28,8 @@ typedef struct	s_cub3d
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		x_position;
-	int		y_position;
+	int		posX;
+	int		posY;
 	double	posX;
 	double	posY;	  //x and y start position
 	

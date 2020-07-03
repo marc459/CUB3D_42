@@ -21,23 +21,19 @@
 
 int deal_key(int key, t_cub3d *f)
 {
-	system("clear");
-	
 	ft_putstr(ft_itoa(key));
-	ft_putstr("\n");
 	
 	if (key == 123)
-		f->x_position = f->x_position - 14;
+		f->posX = f->posX - 14;
 	else if (key == 124)
-		f->x_position = f->x_position + 14;
+		f->posX = f->posX + 14;
 	else if (key == 126)
-		f->y_position = f->y_position - 14;
+		f->posY = f->posY - 14;
 	else if (key == 125)
-		f->y_position = f->y_position + 14;
+		f->posY = f->posY + 14;
 	else if (key == 53)
 		system("killall a.out && clear"); //system("kill -9 | ps -ef | pgrep a.out");
 
-	ft_putstr(ft_itoa(f->x_position));
 	mlx_string_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00, "*");
 	//mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00);
 	return (0);
@@ -50,14 +46,29 @@ int		main(void)
 
 	f = malloc(sizeof(t_cub3d));
 
-	f->x_position = 200;
-	f->y_position = 200;
+	//x and y start position
+	f->posX = 22;
+	f->posY = 12;  
+
+	//initial direction vector
+	f->dirX = -1;
+	f->dirY = 0;
+
+	 //the 2d raycaster version of camera plane
+  	f->planeX = 0;
+	f->planeY = 0.66;
+
+  	f->time = 0; //time of current frame
+	f->oldTime = 0; //time of previous frame
+
 	
 	f->mlx_ptr = mlx_init();
 	f->win_ptr = mlx_new_window(f->mlx_ptr, 800, 800, "mx 42");
 		
 	//mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, 200, 0xFFD2C8);
 	mlx_key_hook(f->win_ptr, deal_key, &(*f));
-
-	mlx_loop(f->mlx_ptr);
+	while (!done())
+	{
+		mlx_loop(f->mlx_ptr);
+	}
 }
