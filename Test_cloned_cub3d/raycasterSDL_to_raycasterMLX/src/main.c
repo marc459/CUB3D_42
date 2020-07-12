@@ -39,9 +39,9 @@ int           init(t_raycaster *rc)
   }*/
   return (0);
 }
-int deal_key(int key, t_raycaster *rc)
-{
-	ft_putstr(ft_itoa(key));
+int           handle_events(t_raycaster *rc){
+
+ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
 	
 	if (key == 123)
@@ -61,12 +61,15 @@ int deal_key(int key, t_raycaster *rc)
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x27FF00);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y + 1, 0x27FF00);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x27FF00);
-	return (0);
+	return(0);
+
 }
 
-void raycasting (t_raycaster *rc)
+//principal loop
+int raycasting(int key, t_raycaster *rc)
 {
-	ft_putstr("hola");
+	handle_events(&rc);
+	return (0);
 }
 
 int		main(void)
@@ -74,10 +77,13 @@ int		main(void)
 	t_raycaster		*rc;
 
 	rc = malloc(sizeof(t_raycaster));
+
 	if (init(&(*rc)) != 0)
 		return (-1);
-	
-	mlx_key_hook(rc->win_ptr, deal_key, &(*rc));
-	
+
+	raycasting(&(*rc));
+
+	return(0);
+	mlx_key_hook(rc->win_ptr, loop_manager, &(*rc));
 	mlx_loop(rc->mlx_ptr);
 }
