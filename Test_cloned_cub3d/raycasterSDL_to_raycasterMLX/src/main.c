@@ -104,10 +104,10 @@ int		main(void)
 
 	rc = malloc(sizeof(t_raycaster));
 
-	if (init(&(*rc)) != 0)
+	if (init(rc) != 0)
 		return (-1);
 	
-	mlx_key_hook(rc->win_ptr, raycasting, &(*rc));
+	mlx_key_hook(rc->win_ptr, raycasting, rc);
 	mlx_loop(rc->mlx_ptr);
 
 	return(0);
