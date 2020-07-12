@@ -85,8 +85,16 @@ int		handle_events(int key,t_raycaster *rc){
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
-	refresh_screen(&(*rc));
-	handle_events(key,&(*rc));
+	/*for(int x = 0; x < WIN_X; x++)
+    {
+      initial_calc(&(*rc), x);
+      perform_dda(&(*rc));
+      calc_wall_height(&(*rc));
+      draw_vert_line(sdl, &(*rc), x);
+    }*/
+
+	refresh_screen(rc);
+	handle_events(key,rc);
 	return (0);
 }
 
