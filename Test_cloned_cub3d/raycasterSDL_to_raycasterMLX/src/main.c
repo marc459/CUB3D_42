@@ -80,8 +80,9 @@ int		main(void)
 
 	if (init(&(*rc)) != 0)
 		return (-1);
-
-	return(0);
+	
 	mlx_key_hook(rc->win_ptr, raycasting, &(*rc));
 	mlx_loop(rc->mlx_ptr);
+	
+	return(0);
 }
