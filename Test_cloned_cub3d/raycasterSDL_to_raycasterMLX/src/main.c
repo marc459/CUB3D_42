@@ -23,7 +23,9 @@ int           init(t_sdl *sdl, t_raycaster *rc)
   rc->player_plane_x = INIT_P_PLANE_X;
   rc->player_plane_y = INIT_P_PLANE_Y;
 
-  if((rc->mlx_ptr = mlx_init()) != 0)
+  rc->mlx_ptr = mlx_init();
+  rc->win_ptr = mlx_new_window(rc->mlx_ptr, WIN_X, WIN_Y, "mx 42");
+  /*if((rc->mlx_ptr = mlx_init()) != 0)
   {
 	fprintf(stderr,"SDL initialization failed\n");
     return (-1);
@@ -32,7 +34,7 @@ int           init(t_sdl *sdl, t_raycaster *rc)
   {
     fprintf(stderr,"Window creation failed\n");
     return (-1);
-  }
+  }*/
   return (0);
 }
 int deal_key(int key, t_cub3d *rc)

@@ -21,7 +21,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../minilibx_opengl/mlx.h"
 #include "../minilibx/mlx.h"
 #include "../libft/libft.h"
 #include "map1.h"
