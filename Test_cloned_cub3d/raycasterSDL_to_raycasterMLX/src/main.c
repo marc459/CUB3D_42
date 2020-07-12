@@ -41,7 +41,7 @@ int           init(t_raycaster *rc)
 }
 int           handle_events(int key,t_raycaster *rc){
 
-ft_putstr(ft_itoa(key));
+	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
 	
 	if (key == 123)
@@ -55,7 +55,6 @@ ft_putstr(ft_itoa(key));
 	else if (key == 53)
 		system("killall a.out && clear");
 
-	ft_putstr(ft_itoa(rc->player_pos_x));
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x, rc->player_pos_y, 0x27FF00);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y + 1, 0x27FF00);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x27FF00);
@@ -83,6 +82,6 @@ int		main(void)
 	
 	mlx_key_hook(rc->win_ptr, raycasting, &(*rc));
 	mlx_loop(rc->mlx_ptr);
-	
+
 	return(0);
 }
