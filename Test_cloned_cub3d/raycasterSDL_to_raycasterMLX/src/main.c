@@ -14,7 +14,7 @@
 
 int           init(t_raycaster *rc)
 {
-  rc = malloc(sizeof(t_raycaster));
+  
 
   rc->mlx_ptr = NULL;
   rc->win_ptr = NULL;
@@ -73,6 +73,7 @@ int		main(void)
 {
 	t_raycaster		*rc;
 
+	rc = malloc(sizeof(t_raycaster));
 	if (init(&(*rc)) != 0)
 		return (-1);
 	
