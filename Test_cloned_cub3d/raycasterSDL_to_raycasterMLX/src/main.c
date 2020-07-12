@@ -43,22 +43,22 @@ int deal_key(int key, t_raycaster *rc)
 	ft_putstr("\n");
 	
 	if (key == 123)
-		rc->x_position = rc->x_position - 15;
+		rc->player_pos_x = rc->player_pos_x - 15;
 	else if (key == 124)
-		rc->x_position = rc->x_position + 15;
+		rc->player_pos_x = rc->player_pos_x + 15;
 	else if (key == 126)
-		rc->y_position = rc->y_position - 15;
+		rc->player_pos_y = rc->player_pos_y - 15;
 	else if (key == 125)
-		rc->y_position = rc->y_position + 15;
+		rc->player_pos_y = rc->player_pos_y + 15;
 	else if (key == 53)
 		system("killall a.out && clear");
 
-	ft_putstr(ft_itoa(rc->x_position));
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position, rc->y_position, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position + 1, rc->y_position + 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position - 1, rc->y_position - 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position - 1, rc->y_position + 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position + 1, rc->y_position - 1, 0x27FF00);
+	ft_putstr(ft_itoa(rc->player_pos_x));
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x, rc->player_pos_y, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y + 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y + 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x27FF00);
 	return (0);
 }
 
