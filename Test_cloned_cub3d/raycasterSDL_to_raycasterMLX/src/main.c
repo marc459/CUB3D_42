@@ -43,11 +43,13 @@ void	refresh_screen(t_raycaster *rc){
 	int x;
 	int y;
 
+	x = 0;
+	y = 0;
 	while(x < 1280)
 	{
 		while(y < 720)
 		{
-			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, 0x000000);
+			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, 0x27FF00);
 			y++;
 		}
 		y=0;
