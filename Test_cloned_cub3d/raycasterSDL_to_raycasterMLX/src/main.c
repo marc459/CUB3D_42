@@ -83,7 +83,7 @@ int		handle_events(int key,t_raycaster *rc){
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
-	refresh_screen(t_raycaster *rc));
+	refresh_screen(&(*rc));
 	handle_events(key,&(*rc));
 	return (0);
 }
