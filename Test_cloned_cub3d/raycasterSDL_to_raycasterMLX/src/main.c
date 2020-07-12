@@ -37,9 +37,8 @@ int           init(t_sdl *sdl, t_raycaster *rc)
   }*/
   return (0);
 }
-int deal_key(int key, t_cub3d *rc)
+int deal_key(int key, t_raycaster *rc)
 {
-	raycasting(&(*f));
 	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
 	
@@ -63,7 +62,7 @@ int deal_key(int key, t_cub3d *rc)
 	return (0);
 }
 
-void raycasting (t_cub3d *rc)
+void raycasting (t_raycaster *rc)
 {
 	ft_putstr("hola");
 }
@@ -72,11 +71,11 @@ int		main(void)
 {
 	t_raycaster		*rc;
 
-	if (init(&sdl) != 0)
+	if (init(&rc) != 0)
 		return (-1);
 	raycaster(&rc);
 	
-	mlx_key_hook(rc->win_ptr, deal_key, &(*f));
+	mlx_key_hook(rc->win_ptr, deal_key, &(*rc));
 	
 	mlx_loop(rc->mlx_ptr);
 }
