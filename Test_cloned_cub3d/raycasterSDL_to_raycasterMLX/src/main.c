@@ -75,7 +75,6 @@ int		main(void)
 
 	if (init(&(*rc)) != 0)
 		return (-1);
-	raycaster(&(*rc));
 	
 	mlx_key_hook(rc->win_ptr, deal_key, &(*rc));
 	
