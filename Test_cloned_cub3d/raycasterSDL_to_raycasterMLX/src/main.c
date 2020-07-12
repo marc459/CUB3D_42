@@ -57,7 +57,7 @@ void	refresh_screen(t_raycaster *rc){
 	}
 }
 
-int		handle_events(int key,t_raycaster *rc){
+int		old_handle_events(int key,t_raycaster *rc){
 
 	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
@@ -156,6 +156,24 @@ void          calc_wall_height(t_raycaster *rc)
     rc->draw_end = WIN_Y - 1;
 }
 
+void          draw_vert_line(t_sdl *sdl, t_raycaster *rc, int x)
+{
+  /*SDL_Color   color;
+  
+  color = apply_night_effect(select_wall_color(rc->map_x, rc->map_y), rc->perp_wall_dist);
+
+  if (rc->side == 1)
+  {
+    color.r /= 2;
+    color.g /= 2;
+    color.b /= 2;
+  }
+  SDL_SetRenderDrawColor(sdl->renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
+  SDL_RenderDrawLine(sdl->renderer, x, rc->draw_start, x, rc->draw_end);*/
+
+}
+
+
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
@@ -172,7 +190,7 @@ int raycasting(int key, t_raycaster *rc)
     }
 
 	refresh_screen(rc);
-	handle_events(key,rc);
+	old_handle_events(key,rc);
 	return (0);
 }
 
