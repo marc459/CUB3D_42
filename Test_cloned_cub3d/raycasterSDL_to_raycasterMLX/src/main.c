@@ -156,7 +156,7 @@ void          calc_wall_height(t_raycaster *rc)
     rc->draw_end = WIN_Y - 1;
 }
 
-void          draw_vert_line(t_sdl *sdl, t_raycaster *rc, int x)
+void          draw_vert_line(t_raycaster *rc, int x)
 {
   /*SDL_Color   color;
   
@@ -185,7 +185,7 @@ int raycasting(int key, t_raycaster *rc)
 		initial_calc(rc, x);
 		perform_dda(rc);
     	calc_wall_height(rc);
-      	draw_vert_line(sdl, rc, x);
+      	draw_vert_line(rc, x);
 	  	x++;
     }
 
