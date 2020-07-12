@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int           init(t_sdl *sdl, t_raycaster *rc)
+int           init(t_raycaster *rc)
 {
   rc->mlx_ptr = NULL;
   rc->win_ptr = NULL;
@@ -73,7 +73,7 @@ int		main(void)
 
 	if (init(&rc) != 0)
 		return (-1);
-	raycaster(&rc);
+	raycaster(&(*rc));
 	
 	mlx_key_hook(rc->win_ptr, deal_key, &(*rc));
 	
