@@ -39,7 +39,7 @@ int           init(t_raycaster *rc)
   }*/
   return (0);
 }
-int           handle_events(t_raycaster *rc){
+int           handle_events(int key,t_raycaster *rc){
 
 ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
@@ -68,7 +68,7 @@ ft_putstr(ft_itoa(key));
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
-	handle_events(&rc);
+	handle_events(key,&(*rc));
 	return (0);
 }
 
@@ -81,9 +81,7 @@ int		main(void)
 	if (init(&(*rc)) != 0)
 		return (-1);
 
-	raycasting(&(*rc));
-
 	return(0);
-	mlx_key_hook(rc->win_ptr, loop_manager, &(*rc));
+	mlx_key_hook(rc->win_ptr, raycasting, &(*rc));
 	mlx_loop(rc->mlx_ptr);
 }
