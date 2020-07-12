@@ -39,7 +39,23 @@ int           init(t_raycaster *rc)
   }*/
   return (0);
 }
-int           handle_events(int key,t_raycaster *rc){
+void	refresh_screen(t_raycaster *rc){
+	int x;
+	int y;
+
+	while(x < 1280)
+	{
+		while(y < 720)
+		{
+			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, 0x000000);
+			y++;
+		}
+		y=0;
+		x++;
+	}
+}
+
+int		handle_events(int key,t_raycaster *rc){
 
 	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
@@ -67,6 +83,7 @@ int           handle_events(int key,t_raycaster *rc){
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
+	refresh_screen(t_raycaster *rc));
 	handle_events(key,&(*rc));
 	return (0);
 }
