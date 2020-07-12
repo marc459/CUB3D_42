@@ -10,110 +10,71 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../minilibx_opengl/mlx.h"
 #include "cub3d.h"
-#include "map1.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-#include <strings.h>
 
-int deal_key(int key, t_cub3d *f)
+int           init(t_sdl *sdl, t_raycaster *rc)
 {
-	/*system("clear");*/
-	
+  rc->mlx_ptr = NULL;
+  rc->win_ptr = NULL;
+  rc->player_pos_x = INIT_P_POS_X;
+  rc->player_pos_y = INIT_P_POS_Y;
+  rc->player_dir_x = INIT_P_DIR_X;
+  rc->player_dir_y = INIT_P_DIR_Y;
+  rc->player_plane_x = INIT_P_PLANE_X;
+  rc->player_plane_y = INIT_P_PLANE_Y;
+
+  if((rc->mlx_ptr = mlx_init()) != 0)
+  {
+	fprintf(stderr,"SDL initialization failed\n");
+    return (-1);
+  }
+  if ((rc->win_ptr = mlx_new_window(rc->mlx_ptr, WIN_X, WIN_Y, "mx 42")) != 0)
+  {
+    fprintf(stderr,"Window creation failed\n");
+    return (-1);
+  }
+  return (0);
+}
+int deal_key(int key, t_cub3d *rc)
+{
+	raycasting(&(*f));
 	ft_putstr(ft_itoa(key));
 	ft_putstr("\n");
 	
 	if (key == 123)
-		f->x_position = f->x_position - 15;
+		rc->x_position = rc->x_position - 15;
 	else if (key == 124)
-		f->x_position = f->x_position + 15;
+		rc->x_position = rc->x_position + 15;
 	else if (key == 126)
-		f->y_position = f->y_position - 15;
+		rc->y_position = rc->y_position - 15;
 	else if (key == 125)
-		f->y_position = f->y_position + 15;
+		rc->y_position = rc->y_position + 15;
 	else if (key == 53)
-		system("killall a.out && clear"); //system("kill -9 | ps -ef | pgrep a.out");
+		system("killall a.out && clear");
 
-	ft_putstr(ft_itoa(f->x_position));
-	//mlx_string_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00, "*");
-	//mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00);
-	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, f->y_position, 0x27FF00);
-	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position + 1, f->y_position + 1, 0x27FF00);
-	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position - 1, f->y_position - 1, 0x27FF00);
-	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position - 1, f->y_position + 1, 0x27FF00);
-	mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position + 1, f->y_position - 1, 0x27FF00);
+	ft_putstr(ft_itoa(rc->x_position));
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position, rc->y_position, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position + 1, rc->y_position + 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position - 1, rc->y_position - 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position - 1, rc->y_position + 1, 0x27FF00);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->x_position + 1, rc->y_position - 1, 0x27FF00);
 	return (0);
 }
 
-void drawMap(t_cub3d *f)
+void raycasting (t_cub3d *rc)
 {
-	int y;
-	int x;
-
-	int x_wall;
-	int y_wall;
-	
-	x = 0;
-	y = 0;
-
-	x_wall = 15;
-	y_wall = 15;
-
-	while (y < mapHeight)
-	{
-		
-		while (x < mapWidth)
-		{
-			/*printf("Casillas: %i",x);*/
-			if (worldMap[x][y] == 1 || worldMap[x][y] == 2 || worldMap[x][y] == 3 || worldMap[x][y] == 4 || worldMap[x][y] == 5)
-			{
-				/*mlx_string_put(f->mlx_ptr, f->win_ptr, x_wall, y_wall, 0xFA2C00, "*");*/
-				
-				mlx_pixel_put(f->mlx_ptr, f->win_ptr, x_wall, y_wall, 0xFA2C00);
-				mlx_pixel_put(f->mlx_ptr, f->win_ptr, x_wall+1, y_wall+1, 0xFA2C00);
-				mlx_pixel_put(f->mlx_ptr, f->win_ptr, x_wall-1, y_wall-1, 0xFA2C00);
-				mlx_pixel_put(f->mlx_ptr, f->win_ptr, x_wall - 1, y_wall + 1, 0xFA2C00);
-				mlx_pixel_put(f->mlx_ptr, f->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);
-			}
-			x++;
-			x_wall += 15;
-		}
-		x = 0;
-		x_wall = 15;
-		
-		y++;
-		y_wall += 15;
-	}
-}
-
-void raycasting (t_cub3d *f)
-{
-
-
 	ft_putstr("hola");
 }
 
 int		main(void)
 {
-	t_cub3d		*f;
-	int x;
+	t_raycaster		*rc;
 
-	f = malloc(sizeof(t_cub3d));
-
-	f->x_position = 30;
-	f->y_position = 30;
+	if (init(&sdl) != 0)
+		return (-1);
+	raycaster(&rc);
 	
-	f->mlx_ptr = mlx_init();
-	f->win_ptr = mlx_new_window(f->mlx_ptr, screenWidth, screenHeight, "mx 42");
-
-	//mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, 200, 0xFFD2C8);
-	drawMap(&(*f));
-	raycasting(&(*f));
-	mlx_key_hook(f->win_ptr, deal_key, &(*f));
+	mlx_key_hook(rc->win_ptr, deal_key, &(*f));
 	
-	mlx_loop(f->mlx_ptr);
+	mlx_loop(rc->mlx_ptr);
 }
