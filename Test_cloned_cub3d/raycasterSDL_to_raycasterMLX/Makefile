@@ -58,7 +58,7 @@ clean:
 	@rm -rf $(OBJ) $(OBJLIB)
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) a.out
 	@rm -rf $(OBJ_PATH)
 
 re: fclean all

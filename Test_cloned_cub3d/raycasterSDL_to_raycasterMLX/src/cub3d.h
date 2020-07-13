@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 14:05:26 by msantos-          #+#    #+#             */
-/*   Updated: 2020/05/26 21:42:04 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/13 12:59:56 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 #include "map1.h"
 
 // Initial values
-#define WIN_X           1280
-#define WIN_Y           720
+//1280*620
+#define WIN_X           640
+#define WIN_Y           480
 #define INIT_P_POS_X    22
 #define INIT_P_POS_Y    12
 #define INIT_P_DIR_X    -1

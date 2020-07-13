@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/02 12:41:55 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/13 13:10:13 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ int           init(t_raycaster *rc)
   rc->player_plane_x = INIT_P_PLANE_X;
   rc->player_plane_y = INIT_P_PLANE_Y;
 
-  rc->mlx_ptr = mlx_init();
-  rc->win_ptr = mlx_new_window(rc->mlx_ptr, WIN_X, WIN_Y, "mx 42");
-  /*if((rc->mlx_ptr = mlx_init()) != 0)
+  if(!(rc->mlx_ptr = mlx_init()))
   {
 	fprintf(stderr,"SDL initialization failed\n");
     return (-1);
   }
-  if ((rc->win_ptr = mlx_new_window(rc->mlx_ptr, WIN_X, WIN_Y, "mx 42")) != 0)
+  if (!(rc->win_ptr = mlx_new_window(rc->mlx_ptr, WIN_X, WIN_Y, "mx 42")))
   {
     fprintf(stderr,"Window creation failed\n");
     return (-1);
-  }*/
+  }
   return (0);
 }
 void	refresh_screen(t_raycaster *rc){
@@ -45,9 +43,9 @@ void	refresh_screen(t_raycaster *rc){
 
 	x = 0;
 	y = 0;
-	while(x < 1280)
+	while (x < WIN_X)
 	{
-		while(y < 720)
+		while (y < WIN_Y)
 		{
 			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, 0x000000);
 			y++;
@@ -170,27 +168,90 @@ void          draw_vert_line(t_raycaster *rc, int x)
   }
   SDL_SetRenderDrawColor(sdl->renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
   SDL_RenderDrawLine(sdl->renderer, x, rc->draw_start, x, rc->draw_end);*/
+	int color;
+	int y;
 
+	if (rc->side == 1)
+		color = BLUE;
+	else
+		color = GREEN;
+	
+	y = rc->draw_start;
+	while (y < rc->draw_end)
+	{
+		mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, color);
+		y++;
+	}
 }
-
+	
+int handle_events(int key, t_raycaster *rc)
+{
+	double oldDirX;
+	double oldPlaneX;
+		if (key == 53)
+		{
+			system("killall a.out && clear");
+			return (-1);
+		}
+		if (key == 125 || key == 126 || key == 124 || key == 123)
+		{
+			if (key == 126)
+			{
+				if (worldMap[(int)(rc->player_pos_x + rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
+					rc->player_pos_x += rc->player_dir_x * MV_SPEED;
+				if (worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->player_dir_y * MV_SPEED)] == 0)
+					rc->player_pos_y += rc->player_dir_y * MV_SPEED;
+			}
+			if (key == 125)
+			{
+				if (worldMap[(int)(rc->player_pos_x - rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
+					rc->player_pos_x -= rc->player_dir_x * MV_SPEED;
+				if (worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->player_dir_y * MV_SPEED)] == 0)
+					rc->player_pos_y -= rc->player_dir_y * MV_SPEED;
+			}
+			if (key == 124)
+			{
+				oldDirX = rc->player_dir_x;
+				rc->player_dir_x = rc->player_dir_x * cos(-ROT_SPEED) - rc->player_dir_y * sin(-ROT_SPEED);
+				rc->player_dir_y = oldDirX * sin(-ROT_SPEED) + rc->player_dir_y * cos(-ROT_SPEED);
+				oldPlaneX = rc->player_plane_x;
+				rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
+				rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
+			}
+			if (key == 123)
+			{
+				oldDirX = rc->player_dir_x;
+				rc->player_dir_x = rc->player_dir_x * cos(ROT_SPEED) - rc->player_dir_y * sin(ROT_SPEED);
+				rc->player_dir_y = oldDirX * sin(ROT_SPEED) + rc->player_dir_y * cos(ROT_SPEED);
+				oldPlaneX = rc->player_plane_x;
+				rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED) - rc->player_plane_y * sin(ROT_SPEED);
+				rc->player_plane_y = oldPlaneX * sin(ROT_SPEED) + rc->player_plane_y * cos(ROT_SPEED);
+			}
+		}
+	return (0);
+}
 
 //principal loop
 int raycasting(int key, t_raycaster *rc)
 {
+	
 	int x;
-
+	
 	x = 0;
+	refresh_screen(rc);
 	while(x < WIN_X)
     {
 		initial_calc(rc, x);
 		perform_dda(rc);
     	calc_wall_height(rc);
-      	draw_vert_line(rc, x);
+		draw_vert_line(rc, x);
 	  	x++;
     }
-
-	refresh_screen(rc);
-	old_handle_events(key,rc);
+	//old_handle_events(key,rc);
+	//render_frame(sdl)
+	
+	if (handle_events(key,rc) != 0)
+		return (-1);
 	return (0);
 }
 
