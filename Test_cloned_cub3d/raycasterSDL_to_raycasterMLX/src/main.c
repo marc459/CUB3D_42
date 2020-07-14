@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/13 13:10:13 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/14 11:01:41 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,6 @@ void	refresh_screen(t_raycaster *rc){
 		y=0;
 		x++;
 	}
-}
-
-int		old_handle_events(int key,t_raycaster *rc){
-
-	ft_putstr(ft_itoa(key));
-	ft_putstr("\n");
-	
-	if (key == 123)
-		rc->player_pos_x = rc->player_pos_x - 15;
-	else if (key == 124)
-		rc->player_pos_x = rc->player_pos_x + 15;
-	else if (key == 126)
-		rc->player_pos_y = rc->player_pos_y - 15;
-	else if (key == 125)
-		rc->player_pos_y = rc->player_pos_y + 15;
-	else if (key == 53)
-		system("killall a.out && clear");
-
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x, rc->player_pos_y, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y + 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y + 1, 0x27FF00);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x27FF00);
-	return(0);
-
 }
 
 void          initial_calc(t_raycaster *rc, int x)
@@ -156,18 +131,6 @@ void          calc_wall_height(t_raycaster *rc)
 
 void          draw_vert_line(t_raycaster *rc, int x)
 {
-  /*SDL_Color   color;
-  
-  color = apply_night_effect(select_wall_color(rc->map_x, rc->map_y), rc->perp_wall_dist);
-
-  if (rc->side == 1)
-  {
-    color.r /= 2;
-    color.g /= 2;
-    color.b /= 2;
-  }
-  SDL_SetRenderDrawColor(sdl->renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
-  SDL_RenderDrawLine(sdl->renderer, x, rc->draw_start, x, rc->draw_end);*/
 	int color;
 	int y;
 
@@ -231,10 +194,9 @@ int handle_events(int key, t_raycaster *rc)
 	return (0);
 }
 
-//principal loop
+// Principal loop
 int raycasting(int key, t_raycaster *rc)
 {
-	
 	int x;
 	
 	x = 0;
@@ -246,10 +208,7 @@ int raycasting(int key, t_raycaster *rc)
     	calc_wall_height(rc);
 		draw_vert_line(rc, x);
 	  	x++;
-    }
-	//old_handle_events(key,rc);
-	//render_frame(sdl)
-	
+    }	
 	if (handle_events(key,rc) != 0)
 		return (-1);
 	return (0);
