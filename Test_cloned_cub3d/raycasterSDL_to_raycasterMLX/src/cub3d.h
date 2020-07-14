@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 14:05:26 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/13 12:59:56 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:17:51 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 #define INIT_P_DIR_Y    0
 #define INIT_P_PLANE_X  0
 #define INIT_P_PLANE_Y  0.66
-#define MV_SPEED        0.199
-#define ROT_SPEED       0.1745
+#define MV_SPEED 		0.199		//0.199
+#define ROT_SPEED		0.1745		//0.1745
 #define AMB_LIGHT       7
 
 // Colors

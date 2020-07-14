@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/14 11:01:41 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/14 12:24:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,8 +221,10 @@ int		main(void)
 	rc = malloc(sizeof(t_raycaster));
 	if (init(rc) != 0)
 		return (-1);
-	
-	mlx_key_hook(rc->win_ptr, raycasting, rc);
+
+	mlx_hook(rc->win_ptr, 2, 1L << 0, &raycasting, rc);
+	mlx_hook(rc->win_ptr, 3, 1L << 1, &raycasting, rc);
+	//mlx_key_hook(rc->win_ptr, raycasting, rc);
 	mlx_loop(rc->mlx_ptr);
 
 	return(0);
