@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/15 09:47:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/15 10:19:44 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,10 @@ int		main(void)
 	rc = malloc(sizeof(t_raycaster));
 	if (init(rc) != 0)
 		return (-1);
+		
+	int texture[8];
+	for (int i = 0; i < 8; i++)
+		texture[i].resize(texWidth * texHeight);
 
 	mlx_hook(rc->win_ptr, 2, 1L << 0, &raycasting, rc);
 	mlx_hook(rc->win_ptr, 3, 1L << 1, &raycasting, rc);

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 19:04:15 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/29 19:04:18 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/15 10:15:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define mapHeight 24
 #define screenWidth 640
 #define screenHeight 480
+#define texWidth 64
+#define texHeight 64
 
 int worldMap[mapWidth][mapHeight] =
 	{
