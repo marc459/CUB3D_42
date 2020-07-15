@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/07/15 08:51:40 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/07/15 09:47:20 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,23 @@ void          draw_vert_line(t_raycaster *rc, int x)
 	int color;
 	int y;
 
-	if (rc->side == 1)
-		color = BLUE;
-	else
+	color = BLUE;
+	if (worldMap[rc->map_x][rc->map_y] == 1)
+		color = WHITE;
+	if (worldMap[rc->map_x][rc->map_y] == 2)
 		color = GREEN;
-	
+	if (worldMap[rc->map_x][rc->map_y] == 3)
+		color = GREEN;
+	if(worldMap[rc->map_x][rc->map_y] == 4)
+		color = RED;
+	if (worldMap[rc->map_x][rc->map_y] == 5)
+		color = BLACK;
+		
+	if (rc->side == 1)
+		color = color + 3000;
+	else
+		color = color;
+
 	y = rc->draw_start;
 	while (y < rc->draw_end)
 	{
@@ -201,7 +213,8 @@ int raycasting(int key, t_raycaster *rc)
 	
 	x = 0;
 	refresh_screen(rc);
-	while(x < WIN_X)
+	//for
+	while (x < WIN_X)
     {
 		initial_calc(rc, x);
 		perform_dda(rc);
