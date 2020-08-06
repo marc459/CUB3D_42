@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = cub3d.a
 
-SRC_PATH = ./
+SRC_PATH = ./src
 GNL_PATH = ./get_next_line
 LIB_PATH = ./libft
 OBJ_PATH = ./objs
@@ -28,7 +28,7 @@ ft_putstr.c
 GNL_NAME = get_next_line.c
 
 
-SRC_NAME = 
+SRC_NAME = valid_map.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
