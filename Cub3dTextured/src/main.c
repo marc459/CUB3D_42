@@ -14,8 +14,6 @@
 
 int           init(t_raycaster *rc)
 {
-  
-
   rc->mlx_ptr = NULL;
   rc->win_ptr = NULL;
   rc->player_pos_x = INIT_P_POS_X;

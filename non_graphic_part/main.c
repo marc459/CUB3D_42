@@ -12,10 +12,20 @@
 
 #include "src/includes.h"
 
-void	initialiteflags(archparams_t *arch)
+void	init_arch_params(archparams_t *arch)
 {
 	arch->win_x = 0;
 	arch->win_y = 0;
+}
+
+void	init_map_checking_params(validmap_t	*map)
+{
+	map->m_top = 0;
+	map->m_down = 0;
+	map->line_start = 0;
+	map->line_width = 0;
+	map->player_letter = ' ';
+
 }
 
 int		identifyresolution(char *line, archparams_t *arch)
@@ -171,8 +181,10 @@ int		parameter_management(int count_params, char **params)
 int		main(int argc, char **argv)
 {
 	archparams_t arch;
+	validmap_t	map;
 
-	initialiteflags(&arch);
+	init_arch_params(&arch);
+	init_map_checking_params(&map);
 	if (!parameter_management(argc, argv) || !arch_checker(argv[1], &arch))
 		return (0);
 	ft_putstr("Entra al programa\n");

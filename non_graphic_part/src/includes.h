@@ -48,6 +48,7 @@ typedef	struct	validmap_s
 	int		m_top;
 	int		m_down;
 	int		line_start;
+	int		line_width;
 	char	player_letter;
 }				validmap_t;
 
