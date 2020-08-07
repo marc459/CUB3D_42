@@ -47,11 +47,12 @@ typedef	struct	validmap_s
 {
 	int		m_top;
 	int		m_down;
-	int		line_start;
+	int		*colum_spaces;
+	int		*colum_nums;
 	int		line_width;
 	char	player_letter;
 }				validmap_t;
 
-int		valid_map(char *line, archparams_t *map);
+int		valid_map(char *line, validmap_t *map);
 
 #endif

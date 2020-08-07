@@ -20,11 +20,21 @@ void	init_arch_params(archparams_t *arch)
 
 void	init_map_checking_params(validmap_t	*map)
 {
+	int i;
+
+	i = 0;
 	map->m_top = 0;
 	map->m_down = 0;
-	map->line_start = 0;
 	map->line_width = 0;
 	map->player_letter = ' ';
+	map->colum_spaces = malloc(sizeof(int) * 255);
+	map->colum_nums = malloc(sizeof(int) * 255);
+	while(i < 255)
+	{
+		map->colum_spaces[i] = 0;
+		map->colum_nums[i] = 0;
+		i++;
+	}
 
 }
 
@@ -108,7 +118,7 @@ int		ft_puterror(char *str)
 	return (0);
 }
 
-int		arch_checker(char *mapfile, archparams_t *arch)
+int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 {
 	int		fd;
 	char	*line;
@@ -137,7 +147,7 @@ int		arch_checker(char *mapfile, archparams_t *arch)
 		}
 		else if (line[i] == '1')
 		{
-			if (!valid_map(line, arch))
+			if (!valid_map(line, map))
 				return (ft_puterror("El mapa es invalido"));
 		}
 		else if(!ft_strchr("NSWESFC1", line[i]))
@@ -185,8 +195,8 @@ int		main(int argc, char **argv)
 
 	init_arch_params(&arch);
 	init_map_checking_params(&map);
-	if (!parameter_management(argc, argv) || !arch_checker(argv[1], &arch))
+	if (!parameter_management(argc, argv) || !arch_checker(argv[1], &arch, &map))
 		return (0);
-	ft_putstr("Entra al programa\n");
+	printf("Entra al programa\n");
 	return (0);
 }
