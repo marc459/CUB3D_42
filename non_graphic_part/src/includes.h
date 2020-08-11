@@ -54,5 +54,6 @@ typedef	struct	validmap_s
 }				validmap_t;
 
 int		valid_map(char *line, validmap_t *map);
+void	init_map_checking_params(validmap_t	*map);
 
 #endif

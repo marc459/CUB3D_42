@@ -23,7 +23,6 @@ void	init_map_checking_params(validmap_t	*map)
 	int i;
 
 	i = 0;
-	map->m_top = 0;
 	map->m_down = 0;
 	map->line_width = 0;
 	map->player_letter = ' ';
@@ -130,6 +129,7 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		return (ft_puterror("Archivo corrupto"));
 	while ((retorno = get_next_line(fd, &line)) == 1)
 	{
+		printf("line -> <%s> ",line);
 		while (line[i] == ' ' && line[i] != '\0')
 			i++;
 		if (line[0] == '\0' || retorno == 0)
@@ -190,11 +190,13 @@ int		parameter_management(int count_params, char **params)
 
 int		main(int argc, char **argv)
 {
+	//mapa vacio,faltan elementos
 	archparams_t arch;
 	validmap_t	map;
 
-	init_arch_params(&arch);
+	map.m_top = 0;
 	init_map_checking_params(&map);
+	init_arch_params(&arch);
 	if (!parameter_management(argc, argv) || !arch_checker(argv[1], &arch, &map))
 		return (0);
 	printf("Entra al programa\n");
