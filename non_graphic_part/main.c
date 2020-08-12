@@ -129,7 +129,7 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		return (ft_puterror("Archivo corrupto"));
 	while ((retorno = get_next_line(fd, &line)) == 1)
 	{
-		printf("line -> <%s> ",line);
+		//printf("line -> <%s> ",line);
 		while (line[i] == ' ' && line[i] != '\0')
 			i++;
 		if (line[0] == '\0' || retorno == 0)
@@ -190,7 +190,7 @@ int		parameter_management(int count_params, char **params)
 
 int		main(int argc, char **argv)
 {
-	//mapa vacio,faltan elementos
+	//mapa vacio,faltan elementos, tabuladores
 	archparams_t arch;
 	validmap_t	map;
 
