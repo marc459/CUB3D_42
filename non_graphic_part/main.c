@@ -14,8 +14,16 @@
 
 void	init_arch_params(archparams_t *arch)
 {
+	arch->parameters_count = 0;
 	arch->win_x = 0;
 	arch->win_y = 0;
+	arch->no_texture = "";
+	arch->so_texture = "";
+	arch->we_texture = "";
+	arch->ea_texture = "";
+	arch->s_texture = "";
+	arch->f_color = "";
+	arch->c_color = "";
 }
 
 void	init_map_checking_params(validmap_t	*map)
@@ -25,7 +33,7 @@ void	init_map_checking_params(validmap_t	*map)
 	i = 0;
 	map->m_down = 0;
 	map->line_width = 0;
-	map->player_letter = ' ';
+	map->player_letter = '\0';
 	map->colum_spaces = malloc(sizeof(int) * 255);
 	map->colum_nums = malloc(sizeof(int) * 255);
 	while(i < 255)
@@ -59,6 +67,7 @@ int		identifyresolution(char *line, archparams_t *arch)
 		arch->win_y = arch->win_y * 10 + line[i] - '0';
 		i++;
 	}
+	arch->parameters_count++;
 	if (arch->win_y > 0 && arch->win_x > 0)
 		return (1);
 	else
@@ -91,22 +100,30 @@ char	*identifytexture(char *line)
 	return (ft_strdup(dest));
 }
 
-void	texture_checker(char *line, archparams_t *arch)
+int		texture_checker(char *line, archparams_t *arch)
 {
-	if (!(ft_strncmp(line, "NO ", 3)))
+	arch->parameters_count++;
+	if (!(ft_strncmp(line, "NO ", 3)) && arch->no_texture == "")
 		arch->no_texture = identifytexture(line);
-	else if (!(ft_strncmp(line, "SO ", 3)))
+	else if (!(ft_strncmp(line, "SO ", 3)) && arch->so_texture == "")
 		arch->so_texture = identifytexture(line);
-	else if (!(ft_strncmp(line, "WE ", 3)))
+	else if (!(ft_strncmp(line, "WE ", 3)) && arch->we_texture == "")
 		arch->we_texture = identifytexture(line);
-	else if (!(ft_strncmp(line, "EA ", 3)))
+	else if (!(ft_strncmp(line, "EA ", 3)) && arch->ea_texture == "")
 		arch->ea_texture = identifytexture(line);
-	else if (line[0] == 'S')
+	else if (line[0] == 'S' && arch->s_texture == "")
 		arch->s_texture = identifytexture(line);
-	else if (line[0] == 'F')
+	else if (line[0] == 'F' && arch->f_color == "")
 		arch->f_color = identifytexture(line);
-	else if (line[0] == 'C')
+	else if (line[0] == 'C' && arch->c_color == "")
 		arch->c_color = identifytexture(line);
+	else
+	{
+		printf("line->%s\n",line);
+		return (0);
+	}
+		
+	return (1);
 }
 
 int		ft_puterror(char *str)
@@ -136,7 +153,8 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 			i = 0;
 		else if (ft_strchr("NSWESFC", line[i]))
 		{
-			texture_checker(line + i, arch);
+			if(texture_checker(line + i, arch) == 0)
+				return (ft_puterror("Algun parametro ha sido duplicado"));
 			if (identifytexture(line)[0] == '\0')
 				return (ft_puterror("El path de texturas es incorrecto"));
 		}
@@ -147,6 +165,8 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		}
 		else if (line[i] == '1')
 		{
+			if(arch->parameters_count != 7)
+				return (ft_puterror("Faltan parametros antes de recorrer el mapa"));
 			if (!valid_map(line, map))
 				return (ft_puterror("El mapa es invalido"));
 		}
@@ -155,6 +175,8 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		i = 0;
 		free(line);
 	}
+	if(arch->parameters_count != 7)
+			return (ft_puterror("Faltan parametros en el archivo"));
 	close(fd);
 	return (1);
 }

@@ -41,6 +41,7 @@ typedef	struct	archparams_s
 	char		*s_texture;
 	char		*f_color;
 	char		*c_color;
+	int			parameters_count;
 }				archparams_t;
 
 typedef	struct	validmap_s
