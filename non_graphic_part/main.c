@@ -33,7 +33,6 @@ void	init_map_checking_params(validmap_t	*map)
 	i = 0;
 	map->m_down = 0;
 	map->line_width = 0;
-	map->player_letter = '\0';
 	map->colum_spaces = malloc(sizeof(int) * 255);
 	map->colum_nums = malloc(sizeof(int) * 255);
 	while(i < 255)
@@ -118,10 +117,7 @@ int		texture_checker(char *line, archparams_t *arch)
 	else if (line[0] == 'C' && arch->c_color == "")
 		arch->c_color = identifytexture(line);
 	else
-	{
-		printf("line->%s\n",line);
 		return (0);
-	}
 		
 	return (1);
 }
@@ -146,9 +142,10 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		return (ft_puterror("Archivo corrupto"));
 	while ((retorno = get_next_line(fd, &line)) == 1)
 	{
-		//printf("line -> <%s> ",line);
 		while (line[i] == ' ' && line[i] != '\0')
 			i++;
+		if(map->m_top == 1 && line[0] == '\0')
+			return (ft_puterror("El mapa es invalido"));
 		if (line[0] == '\0' || retorno == 0)
 			i = 0;
 		else if (ft_strchr("NSWESFC", line[i]))
@@ -177,6 +174,8 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 	}
 	if(arch->parameters_count != 7)
 			return (ft_puterror("Faltan parametros en el archivo"));
+	if (!map->player_letter)
+			return (ft_puterror("Mapa invalidoo"));
 	close(fd);
 	return (1);
 }
@@ -217,6 +216,7 @@ int		main(int argc, char **argv)
 	validmap_t	map;
 
 	map.m_top = 0;
+	map.player_letter = '\0';
 	init_map_checking_params(&map);
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv) || !arch_checker(argv[1], &arch, &map))

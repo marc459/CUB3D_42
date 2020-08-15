@@ -94,7 +94,7 @@ int		valid_map(char *line, validmap_t *map)
 				while (((line[i] >= '0' && line[i] <= '2')
 				|| ft_strchr("NSEW", line[i])) && line[i] != '\0')
 				{
-					if (ft_strchr("NSEW", line[i]) && !map->player_letter)
+					if (ft_strchr("NSEW", line[i]) && map->player_letter == '\0')
 						map->player_letter = line[i];
 					else if (ft_strchr("NSEW", line[i]) && map->player_letter)
 						return (0);
