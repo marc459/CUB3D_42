@@ -146,7 +146,7 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 			i++;
 		if(map->m_top == 1 && line[0] == '\0')
 			return (ft_puterror("El mapa es invalido"));
-		if (line[0] == '\0' || retorno == 0)
+		if (line[i] == '\0' || retorno == 0)
 			i = 0;
 		else if (ft_strchr("NSWESFC", line[i]))
 		{
@@ -162,7 +162,7 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		}
 		else if (line[i] == '1')
 		{
-			if(arch->parameters_count != 7)
+			if(arch->parameters_count != 8)
 				return (ft_puterror("Faltan parametros antes de recorrer el mapa"));
 			if (!valid_map(line, map))
 				return (ft_puterror("El mapa es invalido"));
@@ -170,12 +170,13 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 		else if(!ft_strchr("NSWESFC1", line[i]))
 			return (ft_puterror("Caracter incorrecto en el archivo"));
 		i = 0;
+		
 		free(line);
 	}
-	if(arch->parameters_count != 7)
+	if(arch->parameters_count != 8)
 			return (ft_puterror("Faltan parametros en el archivo"));
 	if (!map->player_letter)
-			return (ft_puterror("Mapa invalidoo"));
+			return (ft_puterror("Mapa invalido,falta la posicion del jugador"));
 	close(fd);
 	return (1);
 }

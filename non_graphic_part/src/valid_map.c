@@ -42,6 +42,7 @@ int		valid_map(char *line, validmap_t *map)
 			}
 			else
 				return (0);
+				
 		}
 		map->m_top = 1;
 	}
