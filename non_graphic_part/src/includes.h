@@ -51,10 +51,22 @@ typedef	struct	validmap_s
 	int		*colum_spaces;
 	int		*colum_nums;
 	int		line_width;
-	char	player_letter;
+	char	player_dir;
 }				validmap_t;
 
+int		ft_puterror(char *str);
 int		valid_map(char *line, validmap_t *map);
 void	init_map_checking_params(validmap_t	*map);
+void	init_arch_params(archparams_t *arch);
+void	init_map_checking_params(validmap_t *map);
+int		identifyresolution(char *line, archparams_t *arch);
+char	*identifytexture(char *line);
+int		texture_checker(char *line, archparams_t *arch);
+int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i);
+int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map);
+int		check_top_map(char *line, validmap_t *map, int i, int count);
+int		sourrounding_walls(char *line, validmap_t *map, int i, int count);
+int		check_map_bowels(char *line, validmap_t *map, int i, int count);
+int		numsearch(char *line, validmap_t *map, int *i, int *count);
 
 #endif

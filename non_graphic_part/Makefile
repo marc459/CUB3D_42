@@ -28,7 +28,7 @@ ft_putstr.c
 GNL_NAME = get_next_line.c
 
 
-SRC_NAME = valid_map.c
+SRC_NAME = init_params.c valid_file.c valid_map.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
@@ -55,7 +55,10 @@ $(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
 	@$(CC) -o $@ -c $<
 compile:
 	@$(CC) main.c $(LIB) $(SRC) $(GNL)
-
+normi:
+	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
+	source ~/.zshrc
+	norminette main.c
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)
 
