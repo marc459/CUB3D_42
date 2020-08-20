@@ -28,7 +28,7 @@ ft_putstr.c
 GNL_NAME = get_next_line.c
 
 
-SRC_NAME = init_params.c valid_file.c valid_map.c
+SRC_NAME = init_params.c valid_file.c valid_map.c save_map.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)

@@ -90,7 +90,7 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 		if (line[i] == ' ' || (line[i] >= '0' && line[i] <= '2')
 		|| ft_strchr("NSEW", line[i]))
 		{
-			if (line[i] == ' ' && count > 0)
+			if ((line[i] == ' ' && count > 0) || line[i] == '\0')
 			{
 				if (line[i - 1] != '1')
 					return (0);
@@ -112,29 +112,30 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-int		valid_map(char *line, validmap_t *map)
+int		check_bot_map(char *line, validmap_t *map, int i, int count)
 {
-	int i;
-	int x;
-	int count;
+	int bottom;
 
-	i = 0;
-	x = 0;
-	count = 0;
-	if (map->m_top == 0)
+	bottom = 1;
+	if (map->m_top && map->player_dir && map->m_bot == 0)
 	{
-		if (!check_top_map(line, map, i, count))
-			return (0);
+		while (line[i] != '\0')
+		{
+			if (line[i] != ' ' && line[i] != '1')
+				bottom = 0;
+			i++;
+		}
+		if (bottom == 1)
+			map->m_bot = 1;
 	}
-	else
+	else if (map->player_dir && map->m_bot == 1)
 	{
-		if (map->colum_spaces[0] > 0)
-			i = -1;
-		if (!sourrounding_walls(line, map, i, count))
-			return (0);
-		init_map_checking_params(map);
-		if (!check_map_bowels(line, map, i, count))
-			return (0);
+		while (line[i] != '\0')
+		{
+			if (line[i] != ' ' && line[i] != '1')
+				return (0);
+			i++;
+		}
 	}
 	return (1);
 }

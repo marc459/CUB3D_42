@@ -47,7 +47,7 @@ typedef	struct	archparams_s
 typedef	struct	validmap_s
 {
 	int		m_top;
-	int		m_down;
+	int		m_bot;
 	int		*colum_spaces;
 	int		*colum_nums;
 	int		line_width;
@@ -68,5 +68,6 @@ int		check_top_map(char *line, validmap_t *map, int i, int count);
 int		sourrounding_walls(char *line, validmap_t *map, int i, int count);
 int		check_map_bowels(char *line, validmap_t *map, int i, int count);
 int		numsearch(char *line, validmap_t *map, int *i, int *count);
+int		check_bot_map(char *line, validmap_t *map, int i, int count);
 
 #endif

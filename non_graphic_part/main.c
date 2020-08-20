@@ -55,6 +55,7 @@ int		main(int argc, char **argv)
 	validmap_t		map;
 
 	map.m_top = 0;
+	map.m_bot = 0;
 	map.player_dir = '\0';
 	init_map_checking_params(&map);
 	init_arch_params(&arch);
