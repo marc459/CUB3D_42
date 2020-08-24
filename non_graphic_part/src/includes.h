@@ -41,6 +41,7 @@ typedef	struct	archparams_s
 	char		*s_texture;
 	char		*f_color;
 	char		*c_color;
+	int			**worldMap;
 	int			parameters_count;
 }				archparams_t;
 
@@ -51,11 +52,12 @@ typedef	struct	validmap_s
 	int		*colum_spaces;
 	int		*colum_nums;
 	int		line_width;
+	int		m_line;
 	char	player_dir;
 }				validmap_t;
 
 int		ft_puterror(char *str);
-int		valid_map(char *line, validmap_t *map);
+int		valid_map(char *line, validmap_t *map, archparams_t	*arch);
 void	init_map_checking_params(validmap_t	*map);
 void	init_arch_params(archparams_t *arch);
 void	init_map_checking_params(validmap_t *map);
@@ -69,5 +71,8 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count);
 int		check_map_bowels(char *line, validmap_t *map, int i, int count);
 int		numsearch(char *line, validmap_t *map, int *i, int *count);
 int		check_bot_map(char *line, validmap_t *map, int i, int count);
+int		save_map(char *line, validmap_t *map, archparams_t	*arch, int i);
+int		loop_gnl(archparams_t *arch, validmap_t *map, char *line);
+void	print_params(archparams_t	*arch, validmap_t *map);
 
 #endif

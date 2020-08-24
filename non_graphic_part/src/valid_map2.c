@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_map.c                                         :+:      :+:    :+:   */
+/*   valid_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,18 @@
 
 #include "includes.h"
 
-int		save_map(char *line, validmap_t *map, archparams_t *arch, int i)
+int		numsearch(char *line, validmap_t *map, int *i, int *count)
 {
-	arch->worldMap[map->m_line] = (int*)malloc(sizeof(int) * ft_strlen(line));
-	while (line[i] != '\0')
+	while (((line[i[0]] >= '0' && line[i[0]] <= '2')
+	|| ft_strchr("NSEW", line[i[0]])) && line[i[0]] != '\0')
 	{
-		if (line[i] == ' ' || line[i] == '0')
-			arch->worldMap[map->m_line][i] = 0;
-		else if (line[i] == '1')
-			arch->worldMap[map->m_line][i] = 1;
-		else if (line[i] == '2')
-			arch->worldMap[map->m_line][i] = 2;
-		else if (ft_strchr("NSWE", line[i]))
-			arch->worldMap[map->m_line][i] = 3;
-		i++;
+		if (ft_strchr("NSEW", line[i[0]]) && map->player_dir == '\0')
+			map->player_dir = line[i[0]];
+		else if (ft_strchr("NSEW", line[i[0]]) && map->player_dir)
+			return (0);
+		map->colum_nums[count[0]]++;
+		map->line_width++;
+		i[0]++;
 	}
+	return (1);
 }

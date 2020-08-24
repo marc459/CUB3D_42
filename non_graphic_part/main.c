@@ -20,6 +20,36 @@ int		ft_puterror(char *str)
 	return (0);
 }
 
+void	print_params(archparams_t *arch, validmap_t *map)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	printf("Resolution: %d*%d\n", arch->win_x, arch->win_y);
+	printf("no_texture: %s\n", arch->no_texture);
+	printf("so_texture: %s\n", arch->so_texture);
+	printf("we_texture: %s\n", arch->we_texture);
+	printf("ea_texture: %s\n", arch->ea_texture);
+	printf("s_texture: %s\n", arch->s_texture);
+	printf("c_color: %s\n", arch->c_color);
+	printf("f_color: %s\n", arch->f_color);
+	printf("Map:\n");
+	while (x < map->m_line)
+	{
+		while (arch->worldMap[x][y] >= 0 && arch->worldMap[x][y] <= 3)
+		{
+			printf("%d", arch->worldMap[x][y]);
+			y++;
+		}
+		printf("\n");
+		y = 0;
+		x++;
+	}
+	printf("\n\n");
+}
+
 int		parameter_management(int count_params, char **params)
 {
 	int		i;
@@ -56,12 +86,15 @@ int		main(int argc, char **argv)
 
 	map.m_top = 0;
 	map.m_bot = 0;
+	map.m_line = 0;
 	map.player_dir = '\0';
+	arch.worldMap = (int**)malloc(sizeof(int*) * 15);
 	init_map_checking_params(&map);
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
 		return (0);
+	print_params(&arch, &map);
 	printf("Entra al programa\n");
 	return (0);
 }
