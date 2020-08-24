@@ -12,10 +12,43 @@
 
 #include "includes.h"
 
+char	*identifycolor(char *line)
+{
+	int		i;
+	int		count;
+	int		num;
+	char	*str;
+
+	str = (char*)malloc(sizeof(char) * 8);
+	str = "0x";
+	i = 1;
+	count = 0;
+	while (line[i] == ' ' && line[i] != '\0')
+		i++;
+	while(line[i] != '\0')
+	{
+		num = 0;
+		while (line[i] >= '0' && line[i] <= '9')
+		{
+			num = num * 10 + line[i] - '0';
+			i++;
+		}
+		count++;
+		str = ft_strjoin(str,ft_dectohex(num));
+		if (line[i] == ',' || line[i] == '\0')
+			i++;
+		else
+			return (ft_strdup(""));
+		
+	}
+	if (ft_strlen(str) != 8 || count != 3)
+		return (ft_strdup(""));
+	return (str);
+}
+
 int		identifyresolution(char *line, archparams_t *arch)
 {
 	int		i;
-	int		width;
 
 	i = 1;
 	while (line[i] != ' ' && line[i] != '\0')
@@ -70,6 +103,8 @@ char	*identifytexture(char *line)
 int		texture_checker(char *line, archparams_t *arch)
 {
 	arch->parameters_count++;
+	if(identifytexture(line)[0] == '\0')
+		return (0);
 	if (!(ft_strncmp(line, "NO ", 3)) && arch->no_texture[0] == '\0')
 		arch->no_texture = identifytexture(line);
 	else if (!(ft_strncmp(line, "SO ", 3)) && arch->so_texture[0] == '\0')
@@ -80,10 +115,12 @@ int		texture_checker(char *line, archparams_t *arch)
 		arch->ea_texture = identifytexture(line);
 	else if (line[0] == 'S' && arch->s_texture[0] == '\0')
 		arch->s_texture = identifytexture(line);
+	else if (identifycolor(line)[0] == '\0')
+		return (0);
 	else if (line[0] == 'F' && arch->f_color[0] == '\0')
-		arch->f_color = identifytexture(line);
+		arch->f_color = identifycolor(line);
 	else if (line[0] == 'C' && arch->c_color[0] == '\0')
-		arch->c_color = identifytexture(line);
+		arch->c_color = identifycolor(line);
 	else
 		return (0);
 	return (1);

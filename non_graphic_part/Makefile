@@ -23,7 +23,7 @@ ft_lstmap_bonus.c \
 ft_intlen.c ft_len.c \
 ft_itoa_without_minus.c \
 ft_putchar.c ft_strrev.c \
-ft_putstr.c
+ft_putstr.c ft_dectohex.c
 
 GNL_NAME = get_next_line.c
 

@@ -73,6 +73,7 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count);
 int		check_bot_map(char *line, validmap_t *map, int i, int count);
 int		save_map(char *line, validmap_t *map, archparams_t	*arch, int i);
 int		loop_gnl(archparams_t *arch, validmap_t *map, char *line);
+char	*identifycolor(char *line);
 void	print_params(archparams_t	*arch, validmap_t *map);
 
 #endif

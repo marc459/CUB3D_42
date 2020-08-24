@@ -75,5 +75,6 @@ int				ft_len(long nb);
 char			*ft_itoa_without_minus(long int n);
 char			*ft_strrev(char *str);
 void			ft_putstr(char *s);
+char			*ft_dectohex(long long num);
 
 #endif

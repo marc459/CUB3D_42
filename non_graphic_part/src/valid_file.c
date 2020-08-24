@@ -18,10 +18,10 @@ int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
 		i = 0;
 	else if (ft_strchr("NSWESFC", line[i]))
 	{
-		if (texture_checker(line + i, arch) == 0)
+		if (!texture_checker(line + i, arch))
 			return (ft_puterror("Error en el nombre de los parametros"));
-		if (identifytexture(line)[0] == '\0')
-			return (ft_puterror("El path de texturas es incorrecto"));
+		/*if (identifytexture(line)[0] == '\0' || identifycolor(line)[0] == '\0')
+			return (ft_puterror("El path de texturas es incorrecto"));*/
 	}
 	else if (line[i] == 'R')
 	{
