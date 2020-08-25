@@ -12,7 +12,7 @@
 
 #include "includes.h"
 
-int		save_map(char *line, validmap_t *map, archparams_t *arch, int i)
+void		save_map(char *line, validmap_t *map, archparams_t *arch, int i)
 {
 	arch->worldMap[map->m_line] = (int*)malloc(sizeof(int) * ft_strlen(line));
 	while (line[i] != '\0')
