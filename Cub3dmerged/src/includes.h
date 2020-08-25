@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "../minilibx/mlx.h"
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
 
