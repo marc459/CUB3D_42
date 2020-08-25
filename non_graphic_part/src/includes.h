@@ -62,7 +62,7 @@ void	init_map_checking_params(validmap_t	*map);
 void	init_arch_params(archparams_t *arch);
 void	init_map_checking_params(validmap_t *map);
 int		identifyresolution(char *line, archparams_t *arch);
-char	*identifytexture(char *line);
+char	*identifytexture(char *line, int i);
 int		texture_checker(char *line, archparams_t *arch);
 int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i);
 int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map);
@@ -73,7 +73,7 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count);
 int		check_bot_map(char *line, validmap_t *map, int i, int count);
 int		save_map(char *line, validmap_t *map, archparams_t	*arch, int i);
 int		loop_gnl(archparams_t *arch, validmap_t *map, char *line);
-char	*identifycolor(char *line);
+char	*identifycolor(char *line, int i);
 void	print_params(archparams_t	*arch, validmap_t *map);
 
 #endif

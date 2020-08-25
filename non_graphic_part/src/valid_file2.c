@@ -12,34 +12,28 @@
 
 #include "includes.h"
 
-char	*identifycolor(char *line)
+char	*identifycolor(char *line, int i)
 {
-	int		i;
 	int		count;
 	int		num;
 	char	*str;
 
 	str = (char*)malloc(sizeof(char) * 8);
 	str = "0x";
-	i = 1;
 	count = 0;
 	while (line[i] == ' ' && line[i] != '\0')
 		i++;
-	while(line[i] != '\0')
+	while (line[i] != '\0')
 	{
 		num = 0;
 		while (line[i] >= '0' && line[i] <= '9')
-		{
-			num = num * 10 + line[i] - '0';
-			i++;
-		}
+			num = num * 10 + line[i++] - '0';
 		count++;
-		str = ft_strjoin(str,ft_dectohex(num));
+		str = ft_strjoin(str, ft_dectohex(num));
 		if (line[i] == ',' || line[i] == '\0')
 			i++;
 		else
 			return (ft_strdup(""));
-		
 	}
 	if (ft_strlen(str) != 8 || count != 3)
 		return (ft_strdup(""));
@@ -74,14 +68,12 @@ int		identifyresolution(char *line, archparams_t *arch)
 		return (0);
 }
 
-char	*identifytexture(char *line)
+char	*identifytexture(char *line, int i)
 {
-	int		i;
 	int		x;
 	char	*dest;
 
 	x = 0;
-	i = 0;
 	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		return (NULL);
 	while (line[i] != ' ' && line[i] != '\0')
@@ -102,25 +94,28 @@ char	*identifytexture(char *line)
 
 int		texture_checker(char *line, archparams_t *arch)
 {
+	int i;
+
+	i = 1;
 	arch->parameters_count++;
-	if(identifytexture(line)[0] == '\0')
-		return (0);
+	if (identifytexture(line, i)[0] == '\0' && ft_strchr("NSWE", line[0]))
+		printf("error1\n");
 	if (!(ft_strncmp(line, "NO ", 3)) && arch->no_texture[0] == '\0')
-		arch->no_texture = identifytexture(line);
+		arch->no_texture = identifytexture(line, i);
 	else if (!(ft_strncmp(line, "SO ", 3)) && arch->so_texture[0] == '\0')
-		arch->so_texture = identifytexture(line);
+		arch->so_texture = identifytexture(line, i);
 	else if (!(ft_strncmp(line, "WE ", 3)) && arch->we_texture[0] == '\0')
-		arch->we_texture = identifytexture(line);
+		arch->we_texture = identifytexture(line, i);
 	else if (!(ft_strncmp(line, "EA ", 3)) && arch->ea_texture[0] == '\0')
-		arch->ea_texture = identifytexture(line);
+		arch->ea_texture = identifytexture(line, i);
 	else if (line[0] == 'S' && arch->s_texture[0] == '\0')
-		arch->s_texture = identifytexture(line);
-	else if (identifycolor(line)[0] == '\0')
-		return (0);
+		arch->s_texture = identifytexture(line, i);
+	else if (identifycolor(line, i)[0] == '\0' && ft_strchr("FC", line[0]))
+		printf("error2\n");
 	else if (line[0] == 'F' && arch->f_color[0] == '\0')
-		arch->f_color = identifycolor(line);
+		arch->f_color = identifycolor(line, i);
 	else if (line[0] == 'C' && arch->c_color[0] == '\0')
-		arch->c_color = identifycolor(line);
+		arch->c_color = identifycolor(line, i);
 	else
 		return (0);
 	return (1);

@@ -20,8 +20,6 @@ int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
 	{
 		if (!texture_checker(line + i, arch))
 			return (ft_puterror("Error en el nombre de los parametros"));
-		/*if (identifytexture(line)[0] == '\0' || identifycolor(line)[0] == '\0')
-			return (ft_puterror("El path de texturas es incorrecto"));*/
 	}
 	else if (line[i] == 'R')
 	{
@@ -45,7 +43,7 @@ int		loop_gnl(archparams_t *arch, validmap_t *map, char *line)
 	int i;
 
 	i = 0;
-	while (line[i] == ' ' && line[i] != '\0')
+	while (ft_strchr(" \t", line[i]) && line[i] != '\0')
 		i++;
 	if (map->m_top == 1 && map->m_bot == 0 && line[0] == '\0')
 		return (ft_puterror("El mapa es invalido"));

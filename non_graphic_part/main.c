@@ -34,8 +34,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	printf("ea_texture: %s\n", arch->ea_texture);
 	printf("s_texture: %s\n", arch->s_texture);
 	printf("c_color: %s\n", arch->c_color);
-	printf("f_color: %s\n", arch->f_color);
-	printf("Map:\n");
+	printf("f_color: %s\nMap:\n", arch->f_color);
 	while (x < map->m_line)
 	{
 		while (arch->worldMap[x][y] >= 0 && arch->worldMap[x][y] <= 3)
@@ -94,7 +93,7 @@ int		main(int argc, char **argv)
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
 		return (0);
-	print_params(&arch, &map);
+	//print_params(&arch, &map);
 	printf("Entra al programa\n");
 	return (0);
 }
