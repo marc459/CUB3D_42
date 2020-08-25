@@ -122,8 +122,8 @@ int		main(int argc, char **argv)
 	/*int texture[8];
 	for (int i = 0; i < 8; i++)
 		texture[i].resize(texWidth * texHeight);*/
-	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, rc);
-	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, rc);
+	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
+	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
 
 	mlx_loop(rc.mlx_ptr);
 	
