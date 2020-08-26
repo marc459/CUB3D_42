@@ -78,26 +78,6 @@ int		parameter_management(int count_params, char **params)
 	}
 }
 
-int raycasting(int key, t_raycaster *rc)
-{
-	int x;
-	
-	x = 0;
-	refresh_screen(rc);
-	//for
-	while (x < rc->win_x)
-    {
-		initial_calc(rc, x);
-		perform_dda(rc);
-    	calc_wall_height(rc);
-		draw_vert_line(rc, x);
-	  	x++;
-    }	
-	if (handle_events(key,rc) != 0)
-		return (-1);
-	return (0);
-}
-
 int		main(int argc, char **argv)
 {
 	archparams_t	arch;
@@ -117,15 +97,15 @@ int		main(int argc, char **argv)
 	print_params(&arch, &map);
 
 	printf("Entra al programa\n");
-	if (!init_raycast_params(&rc, &arch, &map))
+	/*if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	/*int texture[8];
 	for (int i = 0; i < 8; i++)
 		texture[i].resize(texWidth * texHeight);*/
-	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
+	/*mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
 
-	mlx_loop(rc.mlx_ptr);
+	mlx_loop(rc.mlx_ptr);*/
 	
 	return (0);
 }
