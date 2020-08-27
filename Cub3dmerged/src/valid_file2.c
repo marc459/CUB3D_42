@@ -23,7 +23,7 @@ char	*identifycolor(char *line, int i)
 	count = 0;
 	while (line[i] == ' ' && line[i] != '\0')
 		i++;
-	while (line[i] != '\0')
+	while (line[i] != '\0' && count < 3)
 	{
 		num = 0;
 		while (line[i] >= '0' && line[i] <= '9')
