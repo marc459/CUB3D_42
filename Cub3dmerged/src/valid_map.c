@@ -43,6 +43,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 	int x;
 
 	x = 0;
+	printf("i->%d\n",i);
 	while (map->colum_spaces[x] != 0 || map->colum_nums[x] != 0)
 	{
 		if (map->colum_spaces[x] != 0)
@@ -52,19 +53,17 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			while (count < i && count > 0)
 			{
 				if (!(line[count] == '1' || line[count] == ' '))
-				{
-					printf("err1->%s,%c;\n",line,line[count]);
 					return (0);
-				}
 				count++;
 			}
 		}
 		if (map->colum_nums[x] != 0)
 		{
 			i = i + map->colum_nums[x] - 1;
+			printf("line>%s,%c,%c;\n",line,line[i - 1],line[i]);
 			if (!(line[i] == '1' || line[i] == ' '))
 			{
-				printf("err2->%s,%c;\n",line,line[i]);
+				printf("err>%s,%c,%c;\n",line,line[i - 1],line[i]);
 				return (0);
 			}
 		}
