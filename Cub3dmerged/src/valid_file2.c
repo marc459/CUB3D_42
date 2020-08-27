@@ -35,8 +35,9 @@ char	*identifycolor(char *line, int i)
 		else
 			return (ft_strdup(""));
 	}
+	printf("%s-%d-%d\n",line,ft_strlen(str),count);
 	if (ft_strlen(str) != 8 || count != 3)
-		return (ft_strdup(""));
+		printf("err\n");
 	return (str);
 }
 

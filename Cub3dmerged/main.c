@@ -99,7 +99,7 @@ int		main(int argc, char **argv)
 	printf("Entra al programa\n");
 	/*if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
-	/*int texture[8];
+	int texture[8];
 	for (int i = 0; i < 8; i++)
 		texture[i].resize(texWidth * texHeight);*/
 	/*mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
