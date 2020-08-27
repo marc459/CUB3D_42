@@ -28,7 +28,6 @@ char	*identifycolor(char *line, int i)
 		num = 0;
 		while (line[i] >= '0' && line[i] <= '9')
 			num = num * 10 + line[i++] - '0';
-		printf("%s\n",str);
 		count++;
 		str = ft_strjoin(str, ft_dectohex(num));
 		if (line[i] == ',' || line[i] == '\0')
