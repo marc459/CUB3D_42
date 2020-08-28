@@ -50,6 +50,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 		{
 			count = i;
 			i = i + map->colum_spaces[x] + 1;
+			printf("colum_spaces[x]->%d[%d] line>%s,%c,%c;\n",map->colum_spaces[x],x,line,line[i - 1],line[i]);
 			while (count < i && count > 0)
 			{
 				if (!(line[count] == '1' || line[count] == ' '))
