@@ -62,7 +62,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 		{
 			i = i + map->colum_nums[x] - 1;
 			printf("colum_nums[x]->%d[%d] line>%s,%c,%c,i->%d;\n",map->colum_nums[x],x,line,line[i - 1],line[i],i);
-			if (!(line[i] == '1' || line[i] == ' ' || line[i] == '\0'))
+			if (line[i] != '1' && line[i] != ' ' && line[i] != '\0')
 			{
 				printf("err>%s,%c,%c,i->%d;\n",line,line[i - 1],line[i],i);
 				return (0);
