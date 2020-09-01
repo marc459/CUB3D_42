@@ -74,9 +74,10 @@ typedef	struct	validmap_s
 {
 	int				m_top;
 	int				m_bot;
+	int				mapWidth;
+	char			**map;
 	int				*colum_spaces;
 	int				*colum_nums;
-	int				line_width;
 	int				m_line;
 	char			player_dir;
 	int				init_p_pos_x;

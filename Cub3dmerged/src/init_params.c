@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/24 21:23:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/01 13:09:24 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_map_checking_params(validmap_t *map)
 	int i;
 
 	i = 0;
-	map->line_width = 0;
+	map->mapWidth = 0;
 	map->colum_spaces = malloc(sizeof(int) * 255);
 	map->colum_nums = malloc(sizeof(int) * 255);
 	while (i < 255)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/24 21:23:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/01 13:18:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	x = 0;
 	y = 0;
 	printf("Resolution: %d*%d\n", arch->win_x, arch->win_y);
+	printf("Dimensiones: %d,%d", map->mapWidth,map->m_line);
 	printf("no_texture: %s\n", arch->no_texture);
 	printf("so_texture: %s\n", arch->so_texture);
 	printf("we_texture: %s\n", arch->we_texture);
@@ -37,7 +38,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	printf("f_color: %s\nMap:\n", arch->f_color);
 	while (x < map->m_line)
 	{
-		while (arch->worldMap[x][y] >= 0 && arch->worldMap[x][y] <= 3)
+		while (y < map->mapWidth)
 		{
 			printf("%d", arch->worldMap[x][y]);
 			y++;
@@ -88,7 +89,7 @@ int		main(int argc, char **argv)
 	map.m_bot = 0;
 	map.m_line = 0;
 	map.player_dir = '\0';
-	arch.worldMap = (int**)malloc(sizeof(int*) * 16);
+	arch.worldMap = (int**)malloc(sizeof(int*) * 30);
 	init_map_checking_params(&map);
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
