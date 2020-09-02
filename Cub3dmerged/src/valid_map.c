@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/01 13:20:45 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/02 12:53:05 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,15 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 	int x;
 
 	x = 0;
-	printf("i->%d\n",i);
 	while (map->colum_spaces[x] != 0 || map->colum_nums[x] != 0)
 	{
 		if (map->colum_spaces[x] != 0)
 		{
 			count = i;
 			i = i + map->colum_spaces[x] + 1;
-			printf("colum_spaces[x]->%d[%d] line>%s,%c,%c;\n",map->colum_spaces[x],x,line,line[i - 1],line[i]);
 			while (count < i && count > 0)
 			{
-				if (line[i] != '1' && line[i] != ' ')
+				if (line[i] != '1' && line[i] != ' ' && line[i] != '\0' && !line[i])
 					return (0);
 				count++;
 			}
@@ -60,8 +58,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 		if (map->colum_nums[x] != 0)
 		{
 			i = i + map->colum_nums[x] - 1;
-			printf("colum_nums[x]->%d[%d] line>%s,%c,%c,i->%d;\n",map->colum_nums[x],x,line,line[i - 1],line[i],i);
-			if (line[i] != '1' && line[i] != ' ' && line[i] != '\0')
+			if (line[i] != '1' && line[i] != ' ' && line[i] != '\0' && !line[i])
 			{
 				printf("err>%s,%c,%c;%ld,i->%d;\n",line,line[i - 1],line[i],ft_strlen(line),i);
 				return (0);
@@ -153,10 +150,9 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 		|| !check_bot_map(line, map, i, count))
 			return (0);
 	}
-	printf("len->%zu\n",ft_strlen(line));
 	if (ft_strlen(line) > map->mapWidth)
 		map->mapWidth = ft_strlen(line);
-	save_map(line, map, arch, i);
+	//save_map(line, map, arch, i);
 	map->m_line++;
 	return (1);
 }

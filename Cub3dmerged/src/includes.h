@@ -99,7 +99,8 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count);
 int		check_map_bowels(char *line, validmap_t *map, int i, int count);
 int		numsearch(char *line, validmap_t *map, int *i, int *count);
 int		check_bot_map(char *line, validmap_t *map, int i, int count);
-void	save_map(char *line, validmap_t *map, archparams_t	*arch, int i);
+void	save_map(char *mapfile, archparams_t *arch, validmap_t *map);
+void	loop_map(archparams_t *arch, validmap_t *map, char *line, int *x);
 int		loop_gnl(archparams_t *arch, validmap_t *map, char *line);
 char	*identifycolor(char *line, int i);
 

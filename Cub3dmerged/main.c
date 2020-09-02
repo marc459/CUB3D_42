@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/01 13:18:33 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/02 13:10:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,20 @@ int		main(int argc, char **argv)
 	map.m_top = 0;
 	map.m_bot = 0;
 	map.m_line = 0;
+	map.mapWidth = 0;
 	map.player_dir = '\0';
-	arch.worldMap = (int**)malloc(sizeof(int*) * 30);
 	init_map_checking_params(&map);
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
 		return (0);
+	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
-
 	printf("Entra al programa\n");
 	/*if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
-	int texture[8];
-	for (int i = 0; i < 8; i++)
-		texture[i].resize(texWidth * texHeight);*/
-	/*mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
+	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
-
 	mlx_loop(rc.mlx_ptr);*/
 	
 	return (0);
