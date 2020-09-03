@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/02 12:53:05 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/03 13:35:09 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,30 @@ int		check_top_map(char *line, validmap_t *map, int i, int count)
 int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 {
 	int x;
+	int tmp;
 
 	x = 0;
+	tmp = 0;
 	while (map->colum_spaces[x] != 0 || map->colum_nums[x] != 0)
 	{
 		if (map->colum_spaces[x] != 0)
 		{
+			tmp = i;
 			count = i;
 			i = i + map->colum_spaces[x] + 1;
-			while (count < i && count > 0)
+			if (count == -1)
 			{
-				if (line[i] != '1' && line[i] != ' ' && line[i] != '\0' && !line[i])
+				while (count < (i - 1))
+				{
+					count++;
+					if (line[count] != '1')
+						return (0);
+				}
+			}
+			count = tmp + 1;
+			while (count < (i - 1) && count > 0)
+			{
+				if (line[count] != '1' && line[count] != ' ')
 					return (0);
 				count++;
 			}
@@ -59,10 +72,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 		{
 			i = i + map->colum_nums[x] - 1;
 			if (line[i] != '1' && line[i] != ' ' && line[i] != '\0' && !line[i])
-			{
-				printf("err>%s,%c,%c;%ld,i->%d;\n",line,line[i - 1],line[i],ft_strlen(line),i);
 				return (0);
-			}
 		}
 		x++;
 	}
@@ -152,7 +162,6 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 	}
 	if (ft_strlen(line) > map->mapWidth)
 		map->mapWidth = ft_strlen(line);
-	//save_map(line, map, arch, i);
 	map->m_line++;
 	return (1);
 }

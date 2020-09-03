@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/02 13:14:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/03 12:25:30 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 		y++;
 	if (line[y] == '1')
 	{
+		y = 0;
 		arch->worldMap[*x] = (int *)malloc(sizeof(int) * map->mapWidth);
 		while (line[y] != '\0')
 		{
-			if (line[y] == ' ')
-				arch->worldMap[*x][y] = 2;
-			else if(line[y] == '0')
-				arch->worldMap[*x][y] = 0;
-			else if (line[y] == '1')
+			if (line[y] == '1')
 				arch->worldMap[*x][y] = 1;
 			else if (line[y] == '2')
 				arch->worldMap[*x][y] = 2;
@@ -36,8 +33,13 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 				arch->worldMap[*x][y] = 0;
 			y++;
 		}
+		while(y < map->mapWidth)
+		{
+			arch->worldMap[*x][y] = 0;
+			y++;
+		}
 		(*x)++;
-	}
+		}
 }
 
 void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)

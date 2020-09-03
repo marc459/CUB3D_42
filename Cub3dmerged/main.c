@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/02 13:10:29 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/03 13:35:27 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	x = 0;
 	y = 0;
 	printf("Resolution: %d*%d\n", arch->win_x, arch->win_y);
-	printf("Dimensiones: %d,%d", map->mapWidth,map->m_line);
+	printf("Dimensiones: %d,%d\n", map->mapWidth,map->m_line);
 	printf("no_texture: %s\n", arch->no_texture);
 	printf("so_texture: %s\n", arch->so_texture);
 	printf("we_texture: %s\n", arch->we_texture);
@@ -98,11 +98,11 @@ int		main(int argc, char **argv)
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
 	printf("Entra al programa\n");
-	/*if (!init_raycast_params(&rc, &arch, &map))
+	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
-	mlx_loop(rc.mlx_ptr);*/
+	mlx_loop(rc.mlx_ptr);
 	
 	return (0);
 }
