@@ -1,16 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   raycast1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/24 21:23:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/04 12:11:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
+
+void	drawMap(t_raycaster *rc)
+{
+	int y;
+	int x;
+
+	int x_wall;
+	int y_wall;
+
+	x = 0;
+	y = 0;
+
+	x_wall=3;
+	y_wall=3;
+
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x, rc->player_pos_y, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x33FF3C);
+
+	while (x < rc->mapHeight)
+	{
+		while (y < rc->mapWidth)
+		{
+			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2 || rc->worldMap[x][y] == 3)
+			{
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall, y_wall, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall + 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall - 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall + 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);
+			}
+			y++;
+			x_wall = x_wall + 3;
+		}
+		y = 3;
+		x++;
+		x_wall=3;
+		y_wall = y_wall + 3;
+	}
+}
 
 int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 {
@@ -22,9 +64,11 @@ int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
   rc->player_pos_x = map->init_p_pos_x;
   rc->player_pos_y = map->init_p_pos_y;
   rc->player_dir_x = -1;
-  rc->player_dir_y = 0;
+  rc->player_dir_y = 1;
   rc->player_plane_x = INIT_P_PLANE_X;
   rc->player_plane_y = INIT_P_PLANE_Y;
+  rc->mapWidth = map->mapWidth;
+  rc->mapHeight = map->m_line;
 
   if (!(rc->mlx_ptr = mlx_init()))
 	return (ft_puterror("Inicio de Minilibx fallida\n"));
@@ -217,8 +261,9 @@ int raycasting(int key, t_raycaster *rc)
     	calc_wall_height(rc);
 		draw_vert_line(rc, x);
 	  	x++;
-    }	
+    }
 	if (handle_events(key,rc) != 0)
 		return (-1);
+	drawMap(rc);
 	return (0);
 }

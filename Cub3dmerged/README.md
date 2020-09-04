@@ -24,4 +24,8 @@ valid_file2 && valid_map2:	Son continuaciones de valid_file y valid_map para org
 
 Texturas:
 	mlx_new_image, mlx_get_data_addr
+
+FUnciones auxiliares e inecesario para probar el funcionamiento del programa:
+void	drawMap(t_raycaster *rc);
+void	print_params(archparams_t	*arch, validmap_t *map);
 							

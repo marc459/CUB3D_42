@@ -41,6 +41,8 @@ typedef struct      s_raycaster
   double          player_plane_y;
   double          ray_dir_x;
   double          ray_dir_y;
+  int				mapWidth;
+  int				mapHeight;
   int             map_x;
   int             map_y;
   double          side_dist_x;
@@ -113,4 +115,5 @@ void	perform_dda(t_raycaster *rc);
 void	calc_wall_height(t_raycaster *rc);
 void	draw_vert_line(t_raycaster *rc, int x);
 int		handle_events(int key, t_raycaster *rc);
+void	drawMap(t_raycaster *rc);
 #endif
