@@ -205,28 +205,28 @@ int handle_events(int key, t_raycaster *rc)
 	double oldDirX;
 	double oldPlaneX;
 	
-		if (key == 53)
+		if (key == K_ESC)
 		{
 			system("killall a.out && clear");
 			return (-1);
 		}
-		if (key == 125 || key == 126 || key == 124 || key == 123)
+		if (key == K_AR_D || key == K_AR_U || key == K_AR_R || key == K_AR_L)
 		{
-			if (key == 126)
+			if (key == K_AR_U)
 			{
 				if (rc->worldMap[(int)(rc->player_pos_x + rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
 					rc->player_pos_x += rc->player_dir_x * MV_SPEED;
 				if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->player_dir_y * MV_SPEED)] == 0)
 					rc->player_pos_y += rc->player_dir_y * MV_SPEED;
 			}
-			if (key == 125)
+			if (key == K_AR_D)
 			{
 				if (rc->worldMap[(int)(rc->player_pos_x - rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
 					rc->player_pos_x -= rc->player_dir_x * MV_SPEED;
 				if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->player_dir_y * MV_SPEED)] == 0)
 					rc->player_pos_y -= rc->player_dir_y * MV_SPEED;
 			}
-			if (key == 124)
+			if (key == K_AR_R)
 			{
 				oldDirX = rc->player_dir_x;
 				rc->player_dir_x = rc->player_dir_x * cos(-ROT_SPEED) - rc->player_dir_y * sin(-ROT_SPEED);
@@ -235,7 +235,7 @@ int handle_events(int key, t_raycaster *rc)
 				rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
 				rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
 			}
-			if (key == 123)
+			if (key == K_AR_L)
 			{
 				oldDirX = rc->player_dir_x;
 				rc->player_dir_x = rc->player_dir_x * cos(ROT_SPEED) - rc->player_dir_y * sin(ROT_SPEED);

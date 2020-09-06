@@ -9,9 +9,16 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../minilibx/mlx.h"
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
+
+# if defined(__APPLE__)
+#  include "key_macos.h"
+#  include "../minilibx/mlx.h"
+# else
+#  include "key_linux.h"
+#  include "../minilibx_linux/mlx.h"
+# endif
 
 #define INIT_P_PLANE_X  0
 #define INIT_P_PLANE_Y  0.66
