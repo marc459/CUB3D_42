@@ -31,6 +31,7 @@
 
 #define	MLX_H
 
+#include <key_linux.h>
 
 void	*mlx_init();
 /*
