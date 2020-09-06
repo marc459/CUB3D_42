@@ -253,7 +253,6 @@ int raycasting(int key, t_raycaster *rc)
 	int x;
 	
 	x = 0;
-	printf("key->%d\n",key);
 	refresh_screen(rc);
 	//for
 	while (x < rc->win_x)
@@ -267,6 +266,5 @@ int raycasting(int key, t_raycaster *rc)
 	if (handle_events(key,rc) != 0)
 		return (-1);
 	drawMap(rc);
-	printf("key->%d\n",key);
 	return (0);
 }
