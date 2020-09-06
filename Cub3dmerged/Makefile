@@ -57,6 +57,8 @@ compile:
 	@$(CC) main.c $(LIB) $(SRC) $(GNL)
 run:
 	@cc -I /usr/local/include main.c src/raycast1.c $(LIB) $(SRC) $(GNL)  -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+runlinux:
+	clang main.c src/raycast1.c $(LIB) $(SRC) $(GNL) -lbsd -lmlx -lXext -lX11
 normi:
 	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
 	source ~/.zshrc
