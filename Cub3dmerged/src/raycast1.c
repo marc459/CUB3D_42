@@ -204,12 +204,13 @@ int handle_events(int key, t_raycaster *rc)
 {
 	double oldDirX;
 	double oldPlaneX;
-	printf("key->%d",key);
 		if (key == 53)
+			system("clear && echo hola1");
+		/*if (key == 53)
 		{
 			system("killall a.out && clear");
 			return (-1);
-		}
+		}*/
 		if (key == 125 || key == 126 || key == 124 || key == 123)
 		{
 			if (key == 126)
