@@ -204,13 +204,12 @@ int handle_events(int key, t_raycaster *rc)
 {
 	double oldDirX;
 	double oldPlaneX;
+	
 		if (key == 53)
-			system("clear && echo hola1");
-		/*if (key == 53)
 		{
 			system("killall a.out && clear");
 			return (-1);
-		}*/
+		}
 		if (key == 125 || key == 126 || key == 124 || key == 123)
 		{
 			if (key == 126)
@@ -254,6 +253,7 @@ int raycasting(int key, t_raycaster *rc)
 	int x;
 	
 	x = 0;
+	printf("key->%d\n",key);
 	refresh_screen(rc);
 	//for
 	while (x < rc->win_x)
@@ -267,5 +267,6 @@ int raycasting(int key, t_raycaster *rc)
 	if (handle_events(key,rc) != 0)
 		return (-1);
 	drawMap(rc);
+	printf("key->%d\n",key);
 	return (0);
 }
