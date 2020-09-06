@@ -4,6 +4,7 @@ R 1920 1080
 SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture
 EA ./path_to_the_east_texture
+NO brick.xpm
 S  ./path_to_the_sprite_texture
 
 F 220,100,0
