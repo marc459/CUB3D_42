@@ -209,9 +209,9 @@ int handle_events(int key, t_raycaster *rc)
 			system("killall a.out && clear");
 			return (-1);
 		}
-		if (key == 125 || key == 126 || key == 124 || key == 123)
+		if (key == 125 || key == K_AR_L || key == 124 || key == 123)
 		{
-			if (key == 126)
+			if (key == K_AR_L)
 			{
 				if (rc->worldMap[(int)(rc->player_pos_x + rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
 					rc->player_pos_x += rc->player_dir_x * MV_SPEED;
