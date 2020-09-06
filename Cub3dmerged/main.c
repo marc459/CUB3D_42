@@ -100,8 +100,9 @@ int		main(int argc, char **argv)
 	printf("Entra al programa\n");
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
-	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
-	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
+	mlx_key_hook(rc.win_ptr, raycasting, &rc);
+	/*mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
+	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);*/
 	mlx_loop(rc.mlx_ptr);
 
 	return (0);
