@@ -47,11 +47,17 @@
 # define CEILING_COLOR RGB_DARKBLUE
 # define FLOOR_COLOR RGB_DARKGRAY
 
+# if defined(__APPLE__)
+#  include "key_macos.h"
+# else
+#  include "key_linux.h"
+# endif
+
 /*
 ** Define keys
 */
 
-# define A 0
+/*# define A 0
 # define S 1
 # define D 2
 # define F 3
@@ -99,6 +105,14 @@
 # define RIGHT 124
 # define DOWN 125
 # define UP 126
+# define SHIFT_L 257
+# define SHIFT_R 258*/
+
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
+
 # define SHIFT_L 257
 # define SHIFT_R 258
 

@@ -33,6 +33,9 @@ SRCS	=	main.c\
 all		:	$(SRCS)
 		@gcc $(SRCS) -lmlx -framework OpenGL -framework AppKit && ./a.out "map2.cub"
 
+runlinux:
+	gcc $(SRCS) -lm -lbsd -lmlx -lXext -lX11
+
 map		:	$(SRCS)
 		@gcc $(SRCS) -lmlx -framework OpenGL -framework AppKit && ./a.out "map1.cub"
 
