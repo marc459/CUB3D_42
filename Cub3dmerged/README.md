@@ -37,4 +37,6 @@ void	print_params(archparams_t	*arch, validmap_t *map);
 
 Compilar cub3d en ubuntu
 clang -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11
-							
+
+Test de mapas:
+	https://github.com/joycemacksuele/cub3d_tests
