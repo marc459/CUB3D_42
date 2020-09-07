@@ -56,7 +56,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 				while (count < (i - 1))
 				{
 					count++;
-					if (line[count] != '1')
+					if (line[count] != '1' && line[count] != ' ')
 						return (0);
 				}
 			}
