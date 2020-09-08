@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/24 21:23:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/08 12:43:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,24 @@ char	*identifycolor(char *line, int i)
 	count = 0;
 	while (line[i] == ' ' && line[i] != '\0')
 		i++;
-	while (line[i] != '\0' && count < 3)
+	while (line[i] != '\0' && count <= 2)
 	{
 		num = 0;
 		while (line[i] >= '0' && line[i] <= '9')
 			num = num * 10 + line[i++] - '0';
-		count++;
+			
 		str = ft_strjoin(str, ft_dectohex(num));
-		if (line[i] == ',' || line[i] == '\0')
-			i++;
-		else
+		if (line[i] != ',' && count <= 1)
 			return (ft_strdup(""));
+		if (line[i] != '\0')
+			i++;
+		count++;
+	}
+	while (line[i] != '\0')
+	{
+		if (line[i++] != ' ')
+			return (ft_strdup(""));
+			
 	}
 	if (ft_strlen(str) != 8 || count != 3)
 		return (ft_strdup(""));
@@ -45,8 +52,6 @@ int		identifyresolution(char *line, archparams_t *arch)
 	int		i;
 
 	i = 1;
-	while (line[i] != ' ' && line[i] != '\0')
-		i++;
 	while (line[i] == ' ' && line[i] != '\0')
 		i++;
 	while (line[i] >= '0' && line[i] <= '9')
@@ -61,6 +66,12 @@ int		identifyresolution(char *line, archparams_t *arch)
 		arch->win_y = arch->win_y * 10 + line[i] - '0';
 		i++;
 	}
+	while (line[i] != '\0')
+	{
+		if(line[i++] != ' ')
+			return (0);
+	}
+		
 	arch->parameters_count++;
 	if (arch->win_y > 0 && arch->win_x > 0)
 		return (1);
@@ -86,8 +97,11 @@ char	*identifytexture(char *line, int i)
 		x++;
 		i++;
 	}
-	if (line[i] != '\0')
-		return (ft_strdup(""));
+	while (line[i] != '\0')
+	{
+		if (line[i++] != ' ')
+			return (ft_strdup(""));
+	}
 	dest[x] = '\0';
 	return (ft_strdup(dest));
 }
