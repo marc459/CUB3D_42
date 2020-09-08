@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   includes.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
+/*   Updated: 2020/09/08 13:27:05 by msantos-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #ifndef INCLUDES_H
 # define INCLUDES_H
 
@@ -11,13 +24,16 @@
 
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
+#include "../bash_prompt.h"
 
 # if defined(__APPLE__)
 #  include "key_macos.h"
 #  include "../minilibx/mlx.h"
+#	define SO "MACOS"
 # else
 #  include "key_linux.h"
 #  include "../minilibx_linux/mlx.h"
+#	define	SO "LINUX"
 # endif
 
 #define INIT_P_PLANE_X  0

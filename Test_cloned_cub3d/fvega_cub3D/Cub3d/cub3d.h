@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:03:33 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/01/13 20:31:03 by fvega-tr         ###   ########.fr       */
+/*   Updated: 2020/09/08 13:05:04 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@
 
 # if defined(__APPLE__)
 #  include "key_macos.h"
+#	define SO  "MACOS"
 # else
 #  include "key_linux.h"
+#	define SO "LINUX"
 # endif
 
 /*
@@ -108,13 +110,6 @@
 # define SHIFT_L 257
 # define SHIFT_R 258*/
 
-# define LEFT 65361
-# define RIGHT 65363
-# define UP 65362
-# define DOWN 65364
-
-# define SHIFT_L 257
-# define SHIFT_R 258
 
 typedef struct		s_images
 {

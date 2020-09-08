@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/08 11:41:18 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/08 13:35:21 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 
 	x = 0;
 	y = 0;
+	printf("%s-------YOU ARE IN %s OPERARIVE SYSTEM-------%s\n\n", Red, SO, Color_Off);
 	printf("Resolution: %d*%d\n", arch->win_x, arch->win_y);
 	printf("Dimensiones: %d,%d\n", map->mapWidth,map->m_line);
 	printf("no_texture: %s\n", arch->no_texture);

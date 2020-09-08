@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 23:02:53 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/01/13 21:11:13 by fvega-tr         ###   ########.fr       */
+/*   Updated: 2020/09/08 12:53:19 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	sprite_drawing(t_struct *t, int i)
 	}
 }
 
-/*static void	enemy_movement_x(t_struct *t, double x, double y)
+static void	enemy_movement_x(t_struct *t, double x, double y)
 {
 	t->enem_stepx = (t->posx - x) / 700;
 	t->enem_stepy = (t->posy - y) / 700;
@@ -54,7 +54,7 @@ static void	sprite_drawing(t_struct *t, int i)
 	}
 	else
 		t->sprite[1].tex = t->tex[8];
-}*/
+}
 
 static void	sprite_casting2(t_struct *t)
 {
@@ -91,7 +91,7 @@ void		sprite_casting(t_struct *t)
 		t->spritex = t->sprite[i].x - t->posx;
 		t->spritey = t->sprite[i].y - t->posy;
 		sprite_casting2(t);
-		//enemy_movement_x(t, t->sprite[1].x, t->sprite[1].y);
+		enemy_movement_x(t, t->sprite[1].x, t->sprite[1].y);
 		sprite_drawing(t, i);
 		i++;
 	}
