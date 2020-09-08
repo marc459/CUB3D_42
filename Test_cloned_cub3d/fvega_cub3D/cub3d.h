@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "mlx.h"
+# include "minilibx_linux/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <math.h>
