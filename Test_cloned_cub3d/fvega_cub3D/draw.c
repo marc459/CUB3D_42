@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:27:04 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/01/14 19:20:39 by fvega-tr         ###   ########.fr       */
+/*   Updated: 2020/09/09 13:39:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		floor_and_sky_draw(t_struct *t, int x)
 
 void		draw_wall(t_struct *t, int x)
 {
+	printf("%d,%d,%d,%d,%d,%d\n", t->drawstart, t->drawend, t->lineheight, t->win_width, t->tex_id,x);
 	while (t->drawstart <= t->drawend)
 	{
 		t->tex_y = abs((((t->drawstart * 256 - t->win_height * 128 +

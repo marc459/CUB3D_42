@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 05:37:19 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/09/08 12:58:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/09 13:03:34 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		key_press(int key, t_struct *t)
 {
-	printf("key->%d;\n",key);
 	if (key == UP || key == W)
 		t->up = 1;
 	if (key == DOWN || key == S)
