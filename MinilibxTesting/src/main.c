@@ -23,6 +23,8 @@
 int deal_key(int key, t_cub3d *f)
 {
 	printf("key->%d;\n",key);
+	if(key == 65307)
+		system("killall a.out && clear");
 	return (0);
 }
 
@@ -47,19 +49,15 @@ void draw_wall(t_struct *t, int x)
 
 int		main(void)
 {
-	t_cub3d		*f;
 	t_struct	*t;
-
 	int x;
 
-	f = malloc(sizeof(t_cub3d));
+	t = malloc(sizeof(t_struct));
 	
-	f->mlx_ptr = mlx_init();
-	f->win_ptr = mlx_new_window(f->mlx_ptr, screenWidth, screenHeight, "mx 42");
-
-	//mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->x_position, 200, 0xFFD2C8);
-	t->tex[0].img = mlx_xpm_file_to_image(f->mlx_ptr, "textures/stone.xpm", &t->tex_height, &t->tex_height);
-	//t->tex[0].data = mlx_get_data_addr(t->tex[0].img, &t->tex[0].bpp, &t->tex[0].sizeline, &t->tex[0].endian);
+	t->mlx_ptr = mlx_init();
+	t->win_ptr = mlx_new_window(t->mlx_ptr, screenWidth, screenHeight, "mx 42");
+	t->tex[1].img = mlx_xpm_file_to_image(t->mlx_ptr, "textures/stone.xpm", &t->tex_height, &t->tex_height);
+	t->tex[1].data = mlx_get_data_addr(t->tex[1].img, &t->tex[1].bpp, &t->tex[1].sizeline, &t->tex[1].endian);
 
 	/*t->drawstart = 300;
 	t->drawend = 800;
@@ -70,6 +68,6 @@ int		main(void)
 	x = 800;*/
 	//draw_wall(t,x);
 	
-	//mlx_key_hook(f->win_ptr, deal_key, &(*f));
-	mlx_loop(f->mlx_ptr);
+	mlx_key_hook(t->win_ptr, deal_key, &(*t));
+	mlx_loop(t->mlx_ptr);
 }

@@ -21,7 +21,7 @@
 #include <strings.h>
 #include <math.h>
 
-#include "../minilibx/mlx.h"
+#include "../minilibx_linux/mlx.h"
 #include "../libft/libft.h"
 
 #define SCREENWIDTH 2640
@@ -34,7 +34,7 @@ typedef struct s_images
 	int bpp;
 	int sizeline;
 	int endian;
-} t_images;
+}				t_images;
 
 typedef struct	s_cub3d
 {
@@ -42,7 +42,6 @@ typedef struct	s_cub3d
 	void	*win_ptr;
 	double	posX;
 	double	posY;	  //x and y start position
-	t_images tex[12];
 
 	double	dirX;
 	double	dirY;		  //initial direction vector
