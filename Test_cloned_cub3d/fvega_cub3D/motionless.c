@@ -131,7 +131,7 @@ int			motionless(t_struct *t)
 		t->spr_buffer[x] = t->perpwalldist;
 		x++;
 	}
-	sprite_casting(t);
+	//sprite_casting(t);
 	//sound_damage(t);
 	game_over(t);
 	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 0, 0);
