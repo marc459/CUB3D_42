@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/11 13:20:49 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/14 14:03:36 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ int		main(void)
 
 	t->mlx_ptr = mlx_init();
 	t->win_ptr = mlx_new_window(t->mlx_ptr, t->win_width, t->win_height, "mx 42");
-	t->tex[1].img = mlx_xpm_file_to_image(t->mlx_ptr, "textures/stone.xpm", &t->tex_height + 40, &t->tex_height);
+	t->tex[1].img = mlx_xpm_file_to_image(t->mlx_ptr, "textures/stone.xpm", &t->tex_height, &t->tex_height);
 	t->tex[1].data = mlx_get_data_addr(t->tex[1].img, &t->tex[1].bpp, &t->tex[1].sizeline, &t->tex[1].endian);
-	
+	ft_memcpy(t->tex[1].data + 4 * 10, &t->tex[1].data[500], sizeof(int));
 	//t->img_ptr = mlx_new_image(t->mlx_ptr, t->win_width, t->win_height);
 	t->img_ptr = t->tex[1].img;
 
-	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 700, 350);
+	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 0, 0);
 	mlx_key_hook(t->win_ptr, deal_key, &(*t));
 	mlx_loop(t->mlx_ptr);
 }

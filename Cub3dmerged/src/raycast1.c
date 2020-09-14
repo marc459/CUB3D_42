@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/04 12:11:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/14 14:09:35 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,8 +253,9 @@ int raycasting(int key, t_raycaster *rc)
 	int x;
 	
 	x = 0;
+	if (handle_events(key, rc) != 0)
+		return (-1);
 	refresh_screen(rc);
-	//for
 	while (x < rc->win_x)
     {
 		initial_calc(rc, x);
@@ -263,8 +264,7 @@ int raycasting(int key, t_raycaster *rc)
 		draw_vert_line(rc, x);
 	  	x++;
     }
-	if (handle_events(key,rc) != 0)
-		return (-1);
+	
 	drawMap(rc);
 	return (0);
 }

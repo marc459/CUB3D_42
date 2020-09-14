@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/08 13:27:05 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/14 13:24:53 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 #define GREEN           0x00FF00
 #define BLUE            0x0000FF
 #define BLACK           0x000000
+
 
 typedef struct      s_raycaster
 {
@@ -139,4 +140,13 @@ void	calc_wall_height(t_raycaster *rc);
 void	draw_vert_line(t_raycaster *rc, int x);
 int		handle_events(int key, t_raycaster *rc);
 void	drawMap(t_raycaster *rc);
+int		motionless(t_raycaster *rc);
+static void motionless_2(t_raycaster *rc, int x);
+static void motionless_3(t_raycaster *rc);
+static void dda(t_raycaster *rc);
+void calcule_wall(t_raycaster *rc, int x);
+void draw_wall(t_raycaster *rc, int x);
+void floor_and_sky_draw(t_raycaster *rc, int x);
+static void floor_directions(t_raycaster *rc);
+void	init(t_raycaster *rc, char *map);
 #endif
