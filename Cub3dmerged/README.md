@@ -17,13 +17,14 @@ valid_file:	Se encargara de validar y recoger los parametros de las texturas,
 valid_map:	Se encargara de validar y guardar el mapa que esta situado
 			al final del archivo ".cub"
 
-			sourroundingwalls():
+			sourroundingwalls(): 
 				Comprueba la existencia de muros y espacios por debajo de los espacios y de las cadenas de numeros
-			checkmapbowels(): Comprueba la existencia de espacios y muros delante y detras de las cadenas de numeros y espacios.
+			checkmapbowels(): 
+				Comprueba la existencia de espacios y muros delante y detras de las cadenas de numeros y espacios.
 
 
 
-save_map:	Su unica fucion es almacenar el mapa en un array bidimensional que luego se 				recorrera para realizar el raycasting
+save_map:	Su unica fucion es almacenar el mapa en un array bidimensional que luego se recorrera para realizar el raycasting
 
 valid_file2 && valid_map2:	Son continuaciones de valid_file y valid_map para organizar y
 							simplificar el contenido de los archivos del programa
