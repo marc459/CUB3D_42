@@ -39,7 +39,7 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 			y++;
 		}
 		(*x)++;
-		}
+	}
 }
 
 void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
@@ -48,11 +48,29 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 	char *line;
 	int retorno;
 	int x;
+	int y;
 
 	x = 0;
+	y = 0;
+	if(map->m_line > map->mapWidth)
+		map->mapWidth = map->m_line;
+	else
+		map->m_line = map->mapWidth;
+
 	arch->worldMap = (int **)malloc(sizeof(int *) * map->m_line);
 	fd = open(mapfile, O_RDONLY);
 	while ((retorno = get_next_line(fd, &line)) == 1)
 		loop_map(arch, map, line, &x);
 	loop_map(arch, map, line, &x);
+	
+	while(x < map->m_line)
+	{
+		arch->worldMap[x] = (int *)malloc(sizeof(int) * map->mapWidth);
+		while(y < map->mapWidth)
+		{
+			arch->worldMap[x][y] = 0;
+			y++;
+		}
+		x++;
+	}
 }
