@@ -70,22 +70,14 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 		}
 		if (map->colum_nums[x] != 0)
 		{
-			count = map->previus_line_ending;
+			count = map->last_0;
 			i = i + map->colum_nums[x] - 1;
-			printf("%s,%c[%d]\n", line, line[i], i);
 			/*if (line[i] != '1' && line[i] != ' ' && line[i] != '\0')
 				return (0);*/
 			if (line[i] != '1' && line[i - 1] != '1' && line[i + 1] != '1')
 				return (0);
-			/*if (map->colum_nums[x + 1] == 0)
-			{
-				while (count < (i - 1) && count > 0)
-				{
-					if (line[count] != '1' && line[count] != ' ')
-						return (0);
-					count++;
-				}
-			}*/
+			if(!line[map->last_0] || line[map->last_0] == '\0')
+				return (0);
 		}
 		x++;
 	}
@@ -117,8 +109,6 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 		}
 		else
 			return (0);
-		printf("line->%s,%i\n\n",line,i);
-		map->previus_line_ending = i;
 	}
 	return (1);
 }

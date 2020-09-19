@@ -108,7 +108,7 @@ typedef	struct	validmap_s
 	char			player_dir;
 	int				init_p_pos_x;
 	int				init_p_pos_y;
-	int				previus_line_ending;
+	int				last_0;
 }				validmap_t;
 
 int		ft_puterror(char *str);

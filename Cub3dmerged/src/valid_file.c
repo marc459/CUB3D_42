@@ -69,6 +69,8 @@ int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
 	}
 	if (!loop_gnl(arch, map, line))
 		return (0);
+	if(map->m_bot == 0)
+		return (ft_puterror("El mapa es invalido"));
 	if (arch->parameters_count != 8)
 		return (ft_puterror("Faltan parametros en el archivo"));
 	if (!map->player_dir)

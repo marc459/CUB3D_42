@@ -16,6 +16,8 @@ void	drawMap(t_raycaster *rc)
 {
 	int y;
 	int x;
+	int printplayer_X;
+	int printplayer_Y;
 
 	int x_wall;
 	int y_wall;
@@ -23,14 +25,16 @@ void	drawMap(t_raycaster *rc)
 	x = 0;
 	y = 0;
 
-	x_wall=3;
-	y_wall=3;
+	x_wall=10;
+	y_wall=10;
 
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x, rc->player_pos_y, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y - 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x - 1, rc->player_pos_y + 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, rc->player_pos_x + 1, rc->player_pos_y - 1, 0x33FF3C);
+	printplayer_X = rc->player_pos_x * 10;
+	printplayer_Y = rc->player_pos_y * 10;
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X, printplayer_Y, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
 
 	while (x < rc->mapHeight)
 	{
@@ -45,12 +49,12 @@ void	drawMap(t_raycaster *rc)
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);
 			}
 			y++;
-			x_wall = x_wall + 3;
+			x_wall = x_wall + 10;
 		}
 		y = 3;
 		x++;
 		x_wall=3;
-		y_wall = y_wall + 3;
+		y_wall = y_wall + 10;
 	}
 }
 

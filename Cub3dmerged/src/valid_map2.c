@@ -26,6 +26,8 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count)
 		else if (ft_strchr("NSEW", line[i[0]]) && map->player_dir)
 			return (0);
 		map->colum_nums[count[0]]++;
+		if(line[i[0]] == '0')
+			map->last_0 = i[0];
 		i[0]++;
 	}
 	return (1);
