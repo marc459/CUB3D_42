@@ -17,11 +17,8 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 	int y;
 
 	y = 0;
-	while (line[y] == ' ' && line[y] != '\0')
-		y++;
 	if (line[y] == '1')
 	{
-		y = 0;
 		arch->worldMap[*x] = (int *)malloc(sizeof(int) * map->mapWidth);
 		while (line[y] != '\0')
 		{
@@ -71,6 +68,20 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 			arch->worldMap[x][y] = 0;
 			y++;
 		}
+		y=0;
+		x++;
+	}
+	x = 0;
+	y = 0;
+	while(x < map->m_line)
+	{
+		while(y < map->mapWidth)
+		{
+			if (x == 0 || x == (map->m_line-1) || y == 0 || y == (map->mapWidth-1))
+				arch->worldMap[x][y] = 1;
+			y++;
+		}
+		y=0;
 		x++;
 	}
 }
