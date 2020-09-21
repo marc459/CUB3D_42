@@ -53,7 +53,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			i = i + map->colum_spaces[x] + 1;
 			if (count == -1)
 			{
-				while (count < (i - 1))
+				while (count < i)
 				{
 					count++;
 					if (line[count] != '1' && line[count] != ' ')
@@ -61,7 +61,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 				}
 			}
 			count = tmp + 1;
-			while (count < (i - 1) && count > 0)
+			while (count < i && count > 0)
 			{
 				if (line[count] != '1' && line[count] != ' ')
 					return (0);
@@ -74,9 +74,9 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			i = i + map->colum_nums[x] - 1;
 			/*if (line[i] != '1' && line[i] != ' ' && line[i] != '\0')
 				return (0);*/
-			if ((line[i] != '1' && line[i - 1] != '1' && line[i + 1] != '1') && (strlen(line) >= i))
+			if ((line[i] != '1' && line[i - 1] != '1' && line[i + 1] != '1') && (ft_strlen(line) >= i))
 				return (0);
-			if(!line[map->last_0] || line[map->last_0] == '\0')
+			if(!line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= ft_strlen(line))
 				return(0);
 		}
 		x++;
