@@ -49,10 +49,10 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 
 	x = 0;
 	y = 0;
-	/*if(map->m_line > map->mapWidth)
+	if(map->m_line > map->mapWidth)
 		map->mapWidth = map->m_line;
 	else
-		map->m_line = map->mapWidth;*/
+		map->m_line = map->mapWidth;
 
 	arch->worldMap = (int **)malloc(sizeof(int *) * map->m_line);
 	fd = open(mapfile, O_RDONLY);
@@ -60,7 +60,7 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 		loop_map(arch, map, line, &x);
 	loop_map(arch, map, line, &x);
 	
-	/*while(x < map->m_line)
+	while(x < map->m_line)
 	{
 		arch->worldMap[x] = (int *)malloc(sizeof(int) * map->mapWidth);
 		while(y < map->mapWidth)
@@ -83,5 +83,5 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 		}
 		y=0;
 		x++;
-	}*/
+	}
 }
