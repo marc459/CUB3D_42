@@ -21,6 +21,7 @@ void	drawMap(t_raycaster *rc)
 
 	int x_wall;
 	int y_wall;
+	char *str;
 
 	x = 0;
 	y = 0;
@@ -28,13 +29,15 @@ void	drawMap(t_raycaster *rc)
 	x_wall=10;
 	y_wall=10;
 
-	printplayer_X = rc->player_pos_x;
-	printplayer_Y = rc->player_pos_y;
+	printplayer_X = rc->player_pos_x* 10;
+	printplayer_Y = rc->player_pos_y* 10;
+
+	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x/2 - 20, 10, 0x33FF3C,"CUB3D");
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X, printplayer_Y, 0x33FF3C);
-	/*mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y - 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y + 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);*/
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
 
 	while (x < rc->mapHeight)
 	{
@@ -43,18 +46,18 @@ void	drawMap(t_raycaster *rc)
 			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2 || rc->worldMap[x][y] == 3)
 			{
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall, y_wall, 0xFA2C00);
-				/*mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall + 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall + 1, 0xFA2C00);
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall - 1, 0xFA2C00);
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall + 1, 0xFA2C00);
-				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);*/
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);
 			}
 			y++;
-			x_wall++;
+			x_wall = x_wall + 10;
 		}
-		y = 3;
+		y = 0;
 		x++;
 		x_wall=10;
-		y_wall++;
+		y_wall = y_wall + 10;
 	}
 }
 
