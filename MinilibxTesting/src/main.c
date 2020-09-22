@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/14 14:03:36 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/22 12:36:00 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,6 @@ void init(t_struct *t)
 	t->sprite[1].y = 1.5;
 }
 
-void		draw_wall(t_struct *t, int x)
-{
-	//printf("%d,%d,%d,%d,%d,%d\n", t->drawstart, t->drawend, t->lineheight, t->win_width, t->tex_id,x);
-	while (t->drawstart <= t->drawend)
-	{
-		t->tex_y = abs((((t->drawstart * 256 - t->win_height * 128 +
-					t->lineheight * 128) * 64) / t->lineheight) / 256);
-		ft_memcpy(t->img_data + 4 * t->win_width * t->drawstart + x * 4,
-				&t->tex[t->tex_id].data[t->tex_y % t->tex_height *
-				t->tex[t->tex_id].sizeline + t->tex_x % t->tex_width *
-				t->tex[t->tex_id].bpp / 8], sizeof(int));
-		t->drawstart++;
-	}
-}
-
 int deal_key(int key, t_cub3d *f)
 {
 	printf("key->%d;\n",key);
@@ -69,7 +54,7 @@ int		main(void)
 {
 	t_struct	*t;
 	int x;
-	
+	/*    https: //github.com/keuhdall/images_example */
 
 	t = malloc(sizeof(t_struct));
 	init(t);
