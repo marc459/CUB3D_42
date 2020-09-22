@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/14 14:09:35 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/22 12:07:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,24 @@ void	drawMap(t_raycaster *rc)
 	x_wall=10;
 	y_wall=10;
 
-	printplayer_X = rc->player_pos_x* 10;
-	printplayer_Y = rc->player_pos_y* 10;
-
+	
+	printplayer_X = rc->player_pos_y * 10;
+	printplayer_Y = rc->player_pos_x * 10;
+	printf("2-\nX: %f\nY: %f\n\n", rc->player_pos_x, rc->player_pos_y);
+	
 	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x/2 - 20, 10, 0x33FF3C,"CUB3D");
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X, printplayer_Y, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y - 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X - 1, printplayer_Y + 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, printplayer_X + 1, printplayer_Y - 1, 0x33FF3C);
+	int tmpx = printplayer_X;
+	int tmpy = printplayer_Y;
+	for (int numFila = 0; numFila < 5; numFila++)
+	{
+		for (int numColum = 0; numColum < 5; numColum++)
+		{
+			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
+			tmpy++;
+		}
+		tmpy = printplayer_Y;
+		tmpx++;
+	}
 
 	while (x < rc->mapHeight)
 	{
@@ -68,14 +77,40 @@ int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
   rc->win_x = arch->win_x;
   rc->win_y = arch->win_y;
   rc->worldMap = arch->worldMap;
-  rc->player_pos_x = map->init_p_pos_x;
-  rc->player_pos_y = map->init_p_pos_y;
-  rc->player_dir_x = -1;
-  rc->player_dir_y = 1;
-  rc->player_plane_x = INIT_P_PLANE_X;
-  rc->player_plane_y = INIT_P_PLANE_Y;
+  rc->player_pos_x = map->init_p_pos_y;
+  rc->player_pos_y = map->init_p_pos_x;
   rc->mapWidth = map->mapWidth;
   rc->mapHeight = map->m_line;
+  if(map->player_dir == 'N')
+  {
+	  rc->player_dir_x = -1;
+	  rc->player_dir_y = 0;
+	  rc->player_plane_x = 0;
+	  rc->player_plane_y = 0.66;
+  }
+  else if(map->player_dir == 'S')
+  {
+	  rc->player_plane_x = 0;
+	  rc->player_plane_y = -0.66;
+	  rc->player_dir_x = 1;
+	  rc->player_dir_y = 0;
+  }
+  else if (map->player_dir == 'E')
+  {
+	  rc->player_plane_x = 0.66;
+	  rc->player_plane_y = 0;
+	  rc->player_dir_x = 0;
+	  rc->player_dir_y = 1;
+  }
+  else if (map->player_dir == 'W')
+  {
+	  rc->player_plane_x = -0.66;
+	  rc->player_plane_y = 0;
+	  rc->player_dir_x = 0;
+	  rc->player_dir_y = -1;
+  }
+
+  printf("1-\nX: %f\nY: %f\n\n", rc->player_pos_x, rc->player_pos_y);
 
   if (!(rc->mlx_ptr = mlx_init()))
 	return (ft_puterror("Inicio de Minilibx fallida\n"));

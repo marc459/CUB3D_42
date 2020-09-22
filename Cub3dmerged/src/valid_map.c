@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/17 13:17:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/22 10:40:23 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 		if (map->colum_spaces[0] > 0)
 			i = -1;
 		if (!sourrounding_walls(line, map, i, count))
-			return (0);
+			printf("ok");
 		i = 0;
 		init_map_checking_params(map);
 		if (!check_map_bowels(line, map, i, count)
