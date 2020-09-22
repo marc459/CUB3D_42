@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/22 12:07:07 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/22 12:13:39 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	drawMap(t_raycaster *rc)
 	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x/2 - 20, 10, 0x33FF3C,"CUB3D");
 	int tmpx = printplayer_X;
 	int tmpy = printplayer_Y;
-	for (int numFila = 0; numFila < 5; numFila++)
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
+	/*for (int numFila = 0; numFila < 5; numFila++)
 	{
 		for (int numColum = 0; numColum < 5; numColum++)
 		{
@@ -46,7 +47,7 @@ void	drawMap(t_raycaster *rc)
 		}
 		tmpy = printplayer_Y;
 		tmpx++;
-	}
+	}*/
 
 	while (x < rc->mapHeight)
 	{
