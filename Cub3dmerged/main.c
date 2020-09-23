@@ -89,6 +89,7 @@ int		main(int argc, char **argv)
 	map.m_top = 0;
 	map.m_bot = 0;
 	map.m_line = 0;
+	map.prev_line = "";
 	map.mapWidth = 0;
 	map.player_dir = '\0';
 	init_map_checking_params(&map);

@@ -101,9 +101,11 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 			}
 			while (line[i] == ' ')
 			{
+				if ((map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ' && map->prev_line[i-1] != '\0')
+				|| (map->prev_line[i] != '1' && map->prev_line[i] != ' ')
+				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' ' && map->prev_line[i+1] != '\0'))
+					return(0);
 				map->colum_spaces[count]++;
-				if (map->prev_line[i] != '1' && map->prev_line[i] != ' ')
-					printf("line->%s,%c[%d],prev->%s,%c\n", line, line[i], i, map->prev_line, map->prev_line[i]);
 				i++;
 			}
 			if (line[i] != '1')
@@ -173,5 +175,6 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 	if (ft_strlen(line) > map->mapWidth)
 		map->mapWidth = ft_strlen(line);
 	map->m_line++;
+	map->prev_line = ft_strdup(line);
 	return (1);
 }

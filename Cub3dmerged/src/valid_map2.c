@@ -30,6 +30,5 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count)
 			map->last_0 = i[0];
 		i[0]++;
 	}
-	map->prev_line = ft_strdup(line);
 	return (1);
 }

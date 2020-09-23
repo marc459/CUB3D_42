@@ -34,7 +34,6 @@ void	init_map_checking_params(validmap_t *map)
 	map->colum_spaces = malloc(sizeof(int) * 255);
 	map->colum_nums = malloc(sizeof(int) * 255);
 	map->last_0 = 0;
-	map->prev_line = "";
 	while (i < 255)
 	{
 		map->colum_spaces[i] = 0;
