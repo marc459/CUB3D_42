@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/17 13:05:17 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/23 12:56:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef	struct	validmap_s
 	int				init_p_pos_x;
 	int				init_p_pos_y;
 	int				last_0;
+	char			*prev_line;
 }				validmap_t;
 
 int		ft_puterror(char *str);

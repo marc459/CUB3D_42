@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/01 12:50:44 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/23 13:09:35 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count)
 			map->last_0 = i[0];
 		i[0]++;
 	}
+	map->prev_line = ft_strdup(line);
 	return (1);
 }

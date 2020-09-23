@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/03 12:25:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/23 11:37:52 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 	int y;
 
 	y = 0;
+	while(line[y] == ' ')
+		y++;
 	if (line[y] == '1')
 	{
+		y = 0;
 		arch->worldMap[*x] = (int *)malloc(sizeof(int) * map->mapWidth);
 		while (line[y] != '\0')
 		{
