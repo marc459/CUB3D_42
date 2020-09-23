@@ -63,7 +63,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			else
 			{
 				count = tmp + 1;
-				while (count < i && count > 0)
+				while (count < i +1 && count > 0)
 				{
 					if (line[count] != '1' && line[count] != ' ')
 						return (0);
@@ -170,7 +170,7 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 		init_map_checking_params(map);
 		if (!check_map_bowels(line, map, i, count)
 		|| !check_bot_map(line, map, i, count))
-			return (0);
+			return(0);
 	}
 	if (ft_strlen(line) > map->mapWidth)
 		map->mapWidth = ft_strlen(line);
