@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/25 13:08:40 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/25 13:11:14 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			i = i + map->colum_nums[x] - 1;
 			/*if (line[i] != '1'  && line[i - 1] != '1' && line[i + 1] != '1' && line[i] != ' ' && line[i] != '\0')
 				return (0);*/
-			if ((line[i] != '1' && line[i] != ' ') && (ft_strlen(line) >= i))
+			if ((line[i] != '1' && line[i] != ' ') && (ft_strlen(line) > i))
 				return (0);
 			if(!line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= ft_strlen(line))
 				return(0);
