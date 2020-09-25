@@ -103,10 +103,10 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 			{
 				if (
 				((map->prev_line[i] != '1' && map->prev_line[i] != ' ')
-				|| (map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ')
-				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' '))
+				|| (map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ' && map->prev_line[i-1] != '\0')
+				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' ' && map->prev_line[i+1] != '\0'))
 				&& ft_strlen(map->prev_line) > i)
-					return (0);
+					return(0);
 				map->colum_spaces[count]++;
 				i++;
 			}
