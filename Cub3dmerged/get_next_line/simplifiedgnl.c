@@ -13,8 +13,6 @@ char *ft_strjoint(char *s, char c)
     dest = malloc(ft_strlen(s) + 2);
     while (s[i] != '\0')
     {
-		if(s[i] == '\t')
-			printf("Existe un Tabulador\n");
         dest[i] = s[i];
         i++;
     }
