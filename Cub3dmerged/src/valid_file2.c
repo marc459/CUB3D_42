@@ -21,7 +21,7 @@ char	*identifycolor(char *line, int i)
 	str = (char*)malloc(sizeof(char) * 8);
 	str = "0x";
 	count = 0;
-	while (line[i] == ' ' && line[i] != '\0')
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
 	while (line[i] != '\0' && count <= 2)
 	{
@@ -38,9 +38,9 @@ char	*identifycolor(char *line, int i)
 	}
 	while (line[i] != '\0')
 	{
-		if (line[i++] != ' ')
+		if (line[i] != ' ' && line[i] != '\t')
 			return (ft_strdup(""));
-			
+		i++;
 	}
 	if (ft_strlen(str) != 8 || count != 3)
 		return (ft_strdup(""));
@@ -52,14 +52,14 @@ int		identifyresolution(char *line, archparams_t *arch)
 	int		i;
 
 	i = 1;
-	while (line[i] == ' ' && line[i] != '\0')
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
 	while (line[i] >= '0' && line[i] <= '9')
 	{
 		arch->win_x = arch->win_x * 10 + line[i] - '0';
 		i++;
 	}
-	while (line[i] == ' ' && line[i] != '\0')
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
 	while (line[i] >= '0' && line[i] <= '9')
 	{
@@ -68,8 +68,9 @@ int		identifyresolution(char *line, archparams_t *arch)
 	}
 	while (line[i] != '\0')
 	{
-		if(line[i++] != ' ')
+		if (line[i] != ' ' && line[i] != '\t')
 			return (0);
+		i++;
 	}
 		
 	arch->parameters_count++;
@@ -87,11 +88,12 @@ char	*identifytexture(char *line, int i)
 	x = 0;
 	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		return (NULL);
-	while (line[i] != ' ' && line[i] != '\0')
+	
+	while ((line[i] != ' ' && line[i] != '\t') && line[i] != '\0')
 		i++;
-	while (line[i] == ' ' && line[i] != '\0')
+	while ((line[i] == '\t' || line[i] == ' ') && line[i] != '\0')
 		i++;
-	while (line[i] != ' ' && line[i] != '\0')
+	while ((line[i] != ' ' && line[i] != '\t') && line[i] != '\0')
 	{
 		dest[x] = line[i];
 		x++;
@@ -99,8 +101,9 @@ char	*identifytexture(char *line, int i)
 	}
 	while (line[i] != '\0')
 	{
-		if (line[i++] != ' ')
+		if (line[i] != ' ' && line[i] != '\t')
 			return (ft_strdup(""));
+		i++;
 	}
 	dest[x] = '\0';
 	return (ft_strdup(dest));
@@ -114,13 +117,13 @@ int		texture_checker(char *line, archparams_t *arch)
 	arch->parameters_count++;
 	if (identifytexture(line, i)[0] == '\0' && ft_strchr("NSWE", line[0]))
 		return (0);
-	if (!(ft_strncmp(line, "NO ", 3)) && arch->no_texture[0] == '\0')
+	if (!(ft_strncmp(line, "NO", 2)) && arch->no_texture[0] == '\0')
 		arch->no_texture = identifytexture(line, i);
-	else if (!(ft_strncmp(line, "SO ", 3)) && arch->so_texture[0] == '\0')
+	else if (!(ft_strncmp(line, "SO", 2)) && arch->so_texture[0] == '\0')
 		arch->so_texture = identifytexture(line, i);
-	else if (!(ft_strncmp(line, "WE ", 3)) && arch->we_texture[0] == '\0')
+	else if (!(ft_strncmp(line, "WE", 2)) && arch->we_texture[0] == '\0')
 		arch->we_texture = identifytexture(line, i);
-	else if (!(ft_strncmp(line, "EA ", 3)) && arch->ea_texture[0] == '\0')
+	else if (!(ft_strncmp(line, "EA", 2)) && arch->ea_texture[0] == '\0')
 		arch->ea_texture = identifytexture(line, i);
 	else if (line[0] == 'S' && arch->s_texture[0] == '\0')
 		arch->s_texture = identifytexture(line, i);
