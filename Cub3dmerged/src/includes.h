@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/23 12:56:01 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/29 13:19:09 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,24 @@
 #define BLUE            0x0000FF
 #define BLACK           0x000000
 
+typedef struct s_img
+{
+	void *img_ptr;
+	int *data;
+	int size_l;
+	int bpp;
+	int endian;
+} t_img;
 
 typedef struct      s_raycaster
 {
   void			*mlx_ptr;
   void			*win_ptr;
+  void			*img_ptr;
+  int			*img_data;
+  int			bpp;
+  int			size_line;
+  int			endian;
   double			win_x;
   double			win_y;
   int			**worldMap;

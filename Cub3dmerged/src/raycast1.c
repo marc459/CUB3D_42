@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/22 12:13:39 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/29 13:36:44 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ void          draw_vert_line(t_raycaster *rc, int x)
 {
 	int color;
 	int y;
+	int tmp;
 
 	color = BLUE;
 	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
@@ -236,9 +237,12 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		color = color;
 
 	y = rc->draw_start;
+	printf("%d\n",x);
 	while (y < rc->draw_end)
 	{
-		mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, color);
+		tmp = y * rc->win_x + x;
+		rc->img_data[tmp] = color;
+		//mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, color);
 		y++;
 	}
 }
@@ -296,9 +300,12 @@ int raycasting(int key, t_raycaster *rc)
 	int x;
 	
 	x = 0;
+	
 	if (handle_events(key, rc) != 0)
 		return (-1);
-	refresh_screen(rc);
+	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
+	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
+	//refresh_screen(rc);
 	while (x < rc->win_x)
     {
 		initial_calc(rc, x);
@@ -309,5 +316,22 @@ int raycasting(int key, t_raycaster *rc)
     }
 	
 	drawMap(rc);
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
 	return (0);
 }
+
+/*while (count_h < t->win_height)
+{
+	while (count_w < (tex_width * 3))
+	{
+		if (count_h < 64)
+		{
+			t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[x];
+		}
+		x++;
+		// = t->tex[1].data[count_h * t->win_width + count_w];
+		count_w++;
+	}
+	count_w = 0;
+	count_h++;
+}*/
