@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/29 13:36:44 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/30 12:55:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
   rc->player_pos_y = map->init_p_pos_x;
   rc->mapWidth = map->mapWidth;
   rc->mapHeight = map->m_line;
+  rc->tex_height = 64;
+  rc->tex_width = 64;
   if(map->player_dir == 'N')
   {
 	  rc->player_dir_x = -1;
@@ -198,19 +200,24 @@ void          perform_dda(t_raycaster *rc)
 
 void          calc_wall_height(t_raycaster *rc)
 {
-  int         line_height;
-
   if (rc->side == 0)
     rc->perp_wall_dist = (rc->map_x - rc->player_pos_x + (1 - rc->step_x) / 2) / rc->ray_dir_x;
   else
     rc->perp_wall_dist = (rc->map_y - rc->player_pos_y + (1 - rc->step_y) / 2) / rc->ray_dir_y;
-  line_height = (int)(rc->win_y / rc->perp_wall_dist);
-  rc->draw_start = -line_height / 2 + rc->win_y / 2;
+  rc->line_height = (int)(rc->win_y / rc->perp_wall_dist);
+  rc->draw_start = -rc->line_height / 2 + rc->win_y / 2;
   if (rc->draw_start < 0)
     rc->draw_start = 0;
-  rc->draw_end = line_height / 2 + rc->win_y / 2;
+  rc->draw_end = rc->line_height / 2 + rc->win_y / 2;
   if (rc->draw_end >= rc->win_y)
     rc->draw_end = rc->win_y - 1;
+	
+  if (rc->side == 0)
+	  rc->wall_x = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_x;
+  else
+	  rc->wall_x = rc->player_pos_x + rc->perp_wall_dist * rc->ray_dir_y;
+  rc->wall_x -= floor(rc->wall_x);
+  rc->tex_x = abs((int)(rc->wall_x * (double)(64)));
 }
 
 void          draw_vert_line(t_raycaster *rc, int x)
@@ -246,7 +253,26 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		y++;
 	}
 }
-	
+
+void draw_wall(t_raycaster *rc, int x)
+{
+	while (rc->draw_start <= rc->draw_end)
+	{
+		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
+						   rc->line_height * 128) *
+						  64) /
+						 rc->line_height) /
+						256);
+		ft_memcpy(rc->img_data + 4 * rc->win_x * rc->draw_start + x * 4,
+				  &rc->tex[1].data[rc->tex_y % rc->tex_height *
+											  rc->tex[1].size_l +
+										  rc->tex_x % rc->tex_width *
+											  rc->tex[1].bpp / 8],
+				  sizeof(int));
+		rc->draw_start++;
+	}
+}
+
 int handle_events(int key, t_raycaster *rc)
 {
 	double oldDirX;
@@ -311,7 +337,8 @@ int raycasting(int key, t_raycaster *rc)
 		initial_calc(rc, x);
 		perform_dda(rc);
     	calc_wall_height(rc);
-		draw_vert_line(rc, x);
+		draw_wall(rc, x);
+		//draw_vert_line(rc, x);
 	  	x++;
     }
 	

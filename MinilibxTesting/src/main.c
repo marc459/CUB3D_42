@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/29 13:11:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/30 11:42:21 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,23 @@ int		main(void)
 	t->tex[1].img = mlx_xpm_file_to_image(t->mlx_ptr, "textures/stone.xpm", &t->tex_height, &t->tex_height);
 	t->tex[1].data = (int *)mlx_get_data_addr(t->tex[1].img, &t->tex[1].bpp, &t->tex[1].sizeline, &t->tex[1].endian);
 	printf("%d\n",t->tex[1].data[4095]);
-	while (count_h < t->win_height)
+	while (count_w < t->win_width)
 	{
-		while (count_w < (tex_width))
+		while (count_h < t->win_height)
 		{
-			printf("x->%d,count_h->%d\n", x, count_h);
-			if (count_h < 64)
+			//printf("x->%d,count_h->%d\n", x, count_h);
+			if (count_h < 128 && count_w < 128)
 			{
 				t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[x];
-			
 			}
-			x++;
+			if (count_h % 2)
+				x++;
 			//t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[count_h * t->win_width + count_w];
-			count_w++;
+			count_h++;
 			
 		}
-		count_w = 0;
-		count_h++;
+		count_h = 0;
+		count_w++;
 	}
 	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 0, 0);
 	mlx_key_hook(t->win_ptr, deal_key, &(*t));

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/25 13:11:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/30 14:18:56 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 			{
 				if (
 				((map->prev_line[i] != '1' && map->prev_line[i] != ' ')
-				|| (map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ' && map->prev_line[i-1] != '\0')
-				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' ' && map->prev_line[i+1] != '\0'))
+				|| (map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ' && i > 0)
+				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' ' &&  map->prev_line[i+1] != '\0'))
 				&& ft_strlen(map->prev_line) > i)
 					return(0);
 				map->colum_spaces[count]++;

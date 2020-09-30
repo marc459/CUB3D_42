@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/29 13:19:09 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/30 12:53:45 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 
 typedef struct s_img
 {
-	void *img_ptr;
+	void *img;
 	int *data;
 	int size_l;
 	int bpp;
@@ -67,8 +67,15 @@ typedef struct      s_raycaster
   int			bpp;
   int			size_line;
   int			endian;
-  double			win_x;
-  double			win_y;
+  t_img			tex[12];
+  int			tex_y;
+  int			tex_x;
+  int			tex_height;
+  int			tex_width;
+  int			wall_x;
+  int			line_height;
+  int			win_x;
+  int			win_y;
   int			**worldMap;
   double          player_pos_x;
   double          player_pos_y;
