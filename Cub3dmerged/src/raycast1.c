@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/30 12:55:07 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/09/30 14:29:30 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,7 +331,11 @@ int raycasting(int key, t_raycaster *rc)
 		return (-1);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
+
+	rc->tex[1].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/stone.xpm", &rc->tex_height, &rc->tex_height);
+	rc->tex[1].data = (int *)mlx_get_data_addr(rc->tex[1].img, &rc->tex[1].bpp, &rc->tex[1].size_l, &rc->tex[1].endian);
 	//refresh_screen(rc);
+	printf("------->%d<--------\n", rc->tex[1].data[4094]);
 	while (x < rc->win_x)
     {
 		initial_calc(rc, x);
