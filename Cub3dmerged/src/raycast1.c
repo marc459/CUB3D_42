@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/30 14:29:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/01 14:29:09 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ void	drawMap(t_raycaster *rc)
 	int tmpx = printplayer_X;
 	int tmpy = printplayer_Y;
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
-	/*for (int numFila = 0; numFila < 5; numFila++)
-	{
-		for (int numColum = 0; numColum < 5; numColum++)
-		{
-			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
-			tmpy++;
-		}
-		tmpy = printplayer_Y;
-		tmpx++;
-	}*/
 
 	while (x < rc->mapHeight)
 	{
@@ -211,7 +201,7 @@ void          calc_wall_height(t_raycaster *rc)
   rc->draw_end = rc->line_height / 2 + rc->win_y / 2;
   if (rc->draw_end >= rc->win_y)
     rc->draw_end = rc->win_y - 1;
-	
+
   if (rc->side == 0)
 	  rc->wall_x = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_x;
   else
@@ -253,6 +243,64 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		y++;
 	}
 }
+
+/*static void floor_directions(t_raycaster *rc)
+{
+	if (rc->side == 0 && rc->ray_dir_x > 0)
+	{
+		rc->tex_side = 1;
+		rc->floorxwall = rc->mapx;
+		rc->floorywall = rc->mapy + rc->wallx;
+	}
+	else if (rc->side == 0 && rc->raydirx < 0)
+	{
+		rc->tex_side = 0;
+		rc->floorxwall = rc->mapx + 1.0;
+		rc->floorywall = rc->mapy + rc->wallx;
+	}
+	else if (rc->side == 1 && rc->raydiry > 0)
+	{
+		rc->tex_side = 2;
+		rc->floorxwall = rc->mapx + rc->wallx;
+		rc->floorywall = rc->mapy;
+	}
+	else
+	{
+		rc->tex_side = 3;
+		rc->floorxwall = rc->mapx + rc->wallx;
+		rc->floorywall = rc->mapy + 1.0;
+	}
+}
+
+void floor_and_sky_draw(t_raycaster *rc, int x)
+{
+	int y;
+
+	y = rc->draw_end + 1;
+	floor_directions(rc);
+	if (rc->draw_end < 0)
+		rc->draw_end = rc->win_y;
+	while (y < rc->win_y)
+	{
+		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
+		rc->weight = rc->currentdist / rc->perp_wall_dist;
+		rc->currentfloorx = rc->weight * rc->floorxwall +
+						   (1.0 - rc->weight) * rc->posx;
+		rc->currentfloory = rc->weight * rc->floorywall +
+						   (1.0 - rc->weight) * rc->posy;
+		rc->floortexx = (int)(rc->currentfloorx * rc->tex_width) % rc->tex_width;
+		rc->floortexy = (int)(rc->currentfloory * rc->tex_height) % rc->tex_height;
+		ft_memcpy(rc->img_data + 4 * rc->win_width * y + x * 4,
+				  &rc->tex[4].data[4 * rc->floor_tex_x * rc->tex_width +
+								  4 * rc->floor_tex_y],
+				  sizeof(int));
+		ft_memcpy(rc->img_data + 4 * rc->win_width * (rc->win_height - y) + x * 4,
+				  &rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
+								  4 * rc->floortexy],
+				  sizeof(int));
+		y++;
+	}
+}*/
 
 void draw_wall(t_raycaster *rc, int x)
 {
@@ -330,39 +378,25 @@ int raycasting(int key, t_raycaster *rc)
 	if (handle_events(key, rc) != 0)
 		return (-1);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
-	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
+	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
 
 	rc->tex[1].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/stone.xpm", &rc->tex_height, &rc->tex_height);
-	rc->tex[1].data = (int *)mlx_get_data_addr(rc->tex[1].img, &rc->tex[1].bpp, &rc->tex[1].size_l, &rc->tex[1].endian);
+	rc->tex[1].data = mlx_get_data_addr(rc->tex[1].img, &rc->tex[1].bpp, &rc->tex[1].size_l, &rc->tex[1].endian);
 	//refresh_screen(rc);
-	printf("------->%d<--------\n", rc->tex[1].data[4094]);
 	while (x < rc->win_x)
     {
 		initial_calc(rc, x);
 		perform_dda(rc);
     	calc_wall_height(rc);
+		//floor_and_sky_draw(rc, x);
 		draw_wall(rc, x);
 		//draw_vert_line(rc, x);
 	  	x++;
     }
 	
-	drawMap(rc);
+
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
+	drawMap(rc);
 	return (0);
 }
 
-/*while (count_h < t->win_height)
-{
-	while (count_w < (tex_width * 3))
-	{
-		if (count_h < 64)
-		{
-			t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[x];
-		}
-		x++;
-		// = t->tex[1].data[count_h * t->win_width + count_w];
-		count_w++;
-	}
-	count_w = 0;
-	count_h++;
-}*/

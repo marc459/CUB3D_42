@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/30 12:53:45 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/01 14:29:12 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 typedef struct s_img
 {
 	void *img;
-	int *data;
+	char *data;
 	int size_l;
 	int bpp;
 	int endian;
@@ -63,16 +63,17 @@ typedef struct      s_raycaster
   void			*mlx_ptr;
   void			*win_ptr;
   void			*img_ptr;
-  int			*img_data;
+  char			*img_data;
   int			bpp;
   int			size_line;
   int			endian;
   t_img			tex[12];
+  int			tex_side;
   int			tex_y;
   int			tex_x;
   int			tex_height;
   int			tex_width;
-  int			wall_x;
+  double			wall_x;
   int			line_height;
   int			win_x;
   int			win_y;
