@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:27:04 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/01 13:40:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/02 11:15:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void		draw_wall(t_struct *t, int x)
 		t->tex_y = abs((((t->drawstart * 256 - t->win_height * 128 +
 					t->lineheight * 128) * 64) / t->lineheight) / 256);
 		ft_memcpy(t->img_data + 4 * t->win_width * t->drawstart + x * 4,
-				&t->tex[t->tex_id].data[t->tex_y % t->tex_height *
-				t->tex[t->tex_id].sizeline + t->tex_x % t->tex_width *
-				t->tex[t->tex_id].bpp / 8], sizeof(int));
+				&t->tex[1].data[t->tex_y % t->tex_height *
+				t->tex[1].sizeline + t->tex_x % t->tex_width *
+				t->tex[1].bpp / 8], sizeof(int));
 		t->drawstart++;
 	}
 }

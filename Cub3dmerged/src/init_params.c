@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/23 12:56:49 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:05:20 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ void	init_map_checking_params(validmap_t *map)
 		map->colum_nums[i] = 0;
 		i++;
 	}
+}
+
+int ft_puterror(char *str)
+{
+	ft_putstr("Error:\n ");
+	ft_putstr(str);
+	ft_putstr("\n");
+	return (0);
 }

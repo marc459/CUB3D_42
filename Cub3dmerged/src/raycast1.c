@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/01 14:29:09 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:16:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
   rc->mapHeight = map->m_line;
   rc->tex_height = 64;
   rc->tex_width = 64;
+  //rc->spr_buffer = malloc(sizeof(double) * arch->win_x);
   if(map->player_dir == 'N')
   {
 	  rc->player_dir_x = -1;
@@ -230,8 +231,6 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		
 	if (rc->side == 1)
 		color = color + 3000;
-	else
-		color = color;
 
 	y = rc->draw_start;
 	printf("%d\n",x);
@@ -380,8 +379,6 @@ int raycasting(int key, t_raycaster *rc)
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
 
-	rc->tex[1].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/stone.xpm", &rc->tex_height, &rc->tex_height);
-	rc->tex[1].data = mlx_get_data_addr(rc->tex[1].img, &rc->tex[1].bpp, &rc->tex[1].size_l, &rc->tex[1].endian);
 	//refresh_screen(rc);
 	while (x < rc->win_x)
     {
@@ -391,7 +388,8 @@ int raycasting(int key, t_raycaster *rc)
 		//floor_and_sky_draw(rc, x);
 		draw_wall(rc, x);
 		//draw_vert_line(rc, x);
-	  	x++;
+		//rc->spr_buffer[x] = rc->perp_wall_dist;
+		x++;
     }
 	
 

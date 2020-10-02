@@ -6,19 +6,11 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/29 13:40:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:14:20 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "src/includes.h"
-
-int		ft_puterror(char *str)
-{
-	ft_putstr("Error:\n ");
-	ft_putstr(str);
-	ft_putstr("\n");
-	return (0);
-}
 
 void	print_params(archparams_t *arch, validmap_t *map)
 {
@@ -105,6 +97,7 @@ int		main(int argc, char **argv)
 	//mlx_key_hook(rc.win_ptr, motionless, &rc);
 	//mlx_key_hook(rc.win_ptr, raycasting, &rc);
 	//mlx_loop_hook(rc.win_ptr, raycasting, &rc);
+	load_textures(&rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
 	mlx_loop(rc.mlx_ptr);
