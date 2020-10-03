@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:21:29 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/02 14:14:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/03 14:10:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-static void load_textures_2(t_raycaster *rc)
+/*static void load_textures_2(t_raycaster *rc)
 {
 	rc->tex[6].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/barrel.xpm",
 			&rc->tex_width, &rc->tex_height);
@@ -59,4 +59,4 @@ void load_textures(t_raycaster *rc)
 	rc->tex[5].data = mlx_get_data_addr(rc->tex[5].img, &rc->tex[5].bpp,
 			&rc->tex[5].size_l, &rc->tex[5].endian);
 	load_textures_2(rc);
-}
+}*/

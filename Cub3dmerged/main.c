@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/02 14:14:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/03 12:54:49 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		main(int argc, char **argv)
 	//mlx_key_hook(rc.win_ptr, motionless, &rc);
 	//mlx_key_hook(rc.win_ptr, raycasting, &rc);
 	//mlx_loop_hook(rc.win_ptr, raycasting, &rc);
-	load_textures(&rc);
+	//load_textures(&rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
 	mlx_loop(rc.mlx_ptr);

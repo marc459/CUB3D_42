@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/02 14:16:26 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/03 14:27:38 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void	drawMap(t_raycaster *rc)
 	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x/2 - 20, 10, 0x33FF3C,"CUB3D");
 	int tmpx = printplayer_X;
 	int tmpy = printplayer_Y;
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy + 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
 
 	while (x < rc->mapHeight)
 	{
@@ -301,7 +305,7 @@ void floor_and_sky_draw(t_raycaster *rc, int x)
 	}
 }*/
 
-void draw_wall(t_raycaster *rc, int x)
+/*void draw_wall(t_raycaster *rc, int x)
 {
 	while (rc->draw_start <= rc->draw_end)
 	{
@@ -318,7 +322,7 @@ void draw_wall(t_raycaster *rc, int x)
 				  sizeof(int));
 		rc->draw_start++;
 	}
-}
+}*/
 
 int handle_events(int key, t_raycaster *rc)
 {
@@ -377,7 +381,10 @@ int raycasting(int key, t_raycaster *rc)
 	if (handle_events(key, rc) != 0)
 		return (-1);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
-	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
+	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
+
+	/*rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
+	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);*/
 
 	//refresh_screen(rc);
 	while (x < rc->win_x)
@@ -386,8 +393,8 @@ int raycasting(int key, t_raycaster *rc)
 		perform_dda(rc);
     	calc_wall_height(rc);
 		//floor_and_sky_draw(rc, x);
-		draw_wall(rc, x);
-		//draw_vert_line(rc, x);
+		//draw_wall(rc, x);
+		draw_vert_line(rc, x);
 		//rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;
     }

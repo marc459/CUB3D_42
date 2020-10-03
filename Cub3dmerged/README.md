@@ -41,3 +41,5 @@ clang -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11
 
 Test de mapas:
 	https://github.com/joycemacksuele/cub3d_tests
+42 GUIDE:
+https://harm-smits.github.io/42docs/
