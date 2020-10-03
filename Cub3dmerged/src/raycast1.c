@@ -237,7 +237,6 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		color = color + 3000;
 
 	y = rc->draw_start;
-	printf("%d\n",x);
 	while (y < rc->draw_end)
 	{
 		tmp = y * rc->win_x + x;
@@ -305,7 +304,7 @@ void floor_and_sky_draw(t_raycaster *rc, int x)
 	}
 }*/
 
-/*void draw_wall(t_raycaster *rc, int x)
+void draw_wall(t_raycaster *rc, int x)
 {
 	while (rc->draw_start <= rc->draw_end)
 	{
@@ -322,7 +321,7 @@ void floor_and_sky_draw(t_raycaster *rc, int x)
 				  sizeof(int));
 		rc->draw_start++;
 	}
-}*/
+}
 
 int handle_events(int key, t_raycaster *rc)
 {
@@ -380,11 +379,11 @@ int raycasting(int key, t_raycaster *rc)
 	
 	if (handle_events(key, rc) != 0)
 		return (-1);
-	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
-	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
-
 	/*rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
-	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);*/
+	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);*/
+
+	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
+	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
 
 	//refresh_screen(rc);
 	while (x < rc->win_x)
@@ -393,8 +392,8 @@ int raycasting(int key, t_raycaster *rc)
 		perform_dda(rc);
     	calc_wall_height(rc);
 		//floor_and_sky_draw(rc, x);
-		//draw_wall(rc, x);
-		draw_vert_line(rc, x);
+		draw_wall(rc, x);
+		//draw_vert_line(rc, x);
 		//rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;
     }

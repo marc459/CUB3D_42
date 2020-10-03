@@ -50,8 +50,8 @@
 
 typedef struct s_img
 {
-	void *img_ptr;
-	int *data;
+	void *img;
+	char *data;
 	int size_l;
 	int bpp;
 	int endian;
@@ -62,7 +62,7 @@ typedef struct s_raycaster
 	void *mlx_ptr;
 	void *win_ptr;
 	void *img_ptr;
-	int *img_data;
+	char *img_data;
 	int line_height;
 	int bpp;
 	int size_line;
@@ -73,8 +73,8 @@ typedef struct s_raycaster
 	int tex_x;
 	int tex_y;
 	t_img tex[12];
-	double win_x; //double for untextured image
-	double win_y; //double for untextured image
+	int win_x; //double for untextured image
+	int win_y; //double for untextured image
 	int **worldMap;
 	double player_pos_x;
 	double player_pos_y;
@@ -170,4 +170,6 @@ void draw_wall(t_raycaster *rc, int x);
 void floor_and_sky_draw(t_raycaster *rc, int x);
 static void floor_directions(t_raycaster *rc);
 void init(t_raycaster *rc, char *map);
+void load_textures(t_raycaster *rc);
+static void load_textures_2(t_raycaster *rc);
 #endif

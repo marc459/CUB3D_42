@@ -97,7 +97,7 @@ int		main(int argc, char **argv)
 	//mlx_key_hook(rc.win_ptr, motionless, &rc);
 	//mlx_key_hook(rc.win_ptr, raycasting, &rc);
 	//mlx_loop_hook(rc.win_ptr, raycasting, &rc);
-	//load_textures(&rc);
+	load_textures(&rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
 	mlx_loop(rc.mlx_ptr);
