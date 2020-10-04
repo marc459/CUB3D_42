@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/04 13:28:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/04 14:46:18 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 {
-	/*rc->mlx_ptr = NULL;
+	rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;
 	rc->win_x = arch->win_x;
 	rc->win_y = arch->win_y;
@@ -24,9 +24,10 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->mapWidth = map->mapWidth;
 	rc->mapHeight = map->m_line;
 	rc->tex_height = 64;
-	rc->tex_width = 64;*/
+	rc->tex_width = 64;
+	rc->movespeed = 0.400;
 
-	rc->mlx_ptr = NULL;
+	/*rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;
 	rc->win_x = 1640;
 	rc->win_y = 980;
@@ -39,34 +40,35 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->map_y = 0;
 	rc->tex_height = 64;
 	rc->tex_width = 64;
-	rc->movespeed = 0.400;
+	rc->movespeed = 0.400;*/
 	if (map->player_dir == 'N')
 	{
-		rc->player_dir_x = -1;
-		rc->player_dir_y = 0;
+		rc->dirx = -1;
+		rc->diry = 0;
 		rc->player_plane_x = 0;
 		rc->player_plane_y = 0.66;
+		rc->initial_pos++;
 	}
 	else if (map->player_dir == 'S')
 	{
 		rc->player_plane_x = 0;
 		rc->player_plane_y = -0.66;
-		rc->player_dir_x = 1;
-		rc->player_dir_y = 0;
+		rc->dirx = 1;
+		rc->diry = 0;
 	}
 	else if (map->player_dir == 'E')
 	{
 		rc->player_plane_x = 0.66;
 		rc->player_plane_y = 0;
-		rc->player_dir_x = 0;
-		rc->player_dir_y = 1;
+		rc->dirx = 0;
+		rc->diry = 1;
 	}
 	else if (map->player_dir == 'W')
 	{
 		rc->player_plane_x = -0.66;
 		rc->player_plane_y = 0;
-		rc->player_dir_x = 0;
-		rc->player_dir_y = -1;
+		rc->dirx = 0;
+		rc->diry = -1;
 	}
 
 	printf("1-\nX: %f\nY: %f\n\n", rc->player_pos_x, rc->player_pos_y);
@@ -78,6 +80,57 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	return (1);
 }
 
+void drawMap(t_raycaster *rc)
+{
+	int y;
+	int x;
+	int printplayer_X;
+	int printplayer_Y;
+
+	int x_wall;
+	int y_wall;
+	char *str;
+
+	x = 0;
+	y = 0;
+
+	x_wall = 10;
+	y_wall = 10;
+
+	printplayer_X = rc->player_pos_y * 10;
+	printplayer_Y = rc->player_pos_x * 10;
+	printf("2-\nX: %f\nY: %f\n\n", rc->player_pos_x, rc->player_pos_y);
+
+	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x / 2 - 20, 10, 0x33FF3C, "CUB3D");
+	int tmpx = printplayer_X;
+	int tmpy = printplayer_Y;
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
+
+	while (x < rc->mapHeight)
+	{
+		while (y < rc->mapWidth)
+		{
+			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2 || rc->worldMap[x][y] == 3)
+			{
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall, y_wall, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall + 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall - 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall - 1, y_wall + 1, 0xFA2C00);
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x_wall + 1, y_wall - 1, 0xFA2C00);
+			}
+			y++;
+			x_wall = x_wall + 10;
+		}
+		y = 0;
+		x++;
+		x_wall = 10;
+		y_wall = y_wall + 10;
+	}
+}
 
 static void motionless_4(t_raycaster *rc)
 {
@@ -121,21 +174,21 @@ void draw_wall(t_raycaster *rc, int x)
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
-						  rc->line_height * 128) *
-						 64) /
-						rc->line_height) /
-					   256);
+						   rc->line_height * 128) *
+						  64) /
+						 rc->line_height) /
+						256);
 		ft_memcpy(rc->img_data + 4 * rc->win_x * rc->draw_start + x * 4,
 				  &rc->tex[1].data[rc->tex_y % rc->tex_height *
-									  rc->tex[1].size_l +
-								  rc->tex_x % rc->tex_width *
-									  rc->tex[1].bpp / 8],
+									   rc->tex[1].size_l +
+								   rc->tex_x % rc->tex_width *
+									   rc->tex[1].bpp / 8],
 				  sizeof(int));
 		rc->draw_start++;
 	}
 }
 
-void calcule_wall(t_raycaster *rc, int x)
+void calcule_wall(t_raycaster *rc)
 {
 	//rc->tex_id = rc->worldMap[rc->map_x][rc->map_y] + rc->tex_side;
 	if (rc->side == 0)
@@ -197,33 +250,33 @@ int handle_events(int key, t_raycaster *rc)
 		if (key == UP)
 		{
 			if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx *
-										   rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+			rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 				rc->player_pos_x += rc->dirx * rc->movespeed;
 			if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry *
-														   rc->movespeed)] == 0)
+			rc->movespeed)] == 0)
 				rc->player_pos_y += rc->diry * rc->movespeed;
 		}
 		if (key == DOWN)
 		{
-			if (rc->worldMap[(int)(rc->player_pos_x - rc->player_dir_x * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
-				rc->player_pos_x -= rc->player_dir_x * MV_SPEED;
-			if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->player_dir_y * MV_SPEED)] == 0)
-				rc->player_pos_y -= rc->player_dir_y * MV_SPEED;
+			if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
+				rc->player_pos_x -= rc->dirx * MV_SPEED;
+			if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * MV_SPEED)] == 0)
+				rc->player_pos_y -= rc->diry * MV_SPEED;
 		}
 		if (key == RIGHT)
 		{
-			oldDirX = rc->player_dir_x;
-			rc->player_dir_x = rc->player_dir_x * cos(-ROT_SPEED) - rc->player_dir_y * sin(-ROT_SPEED);
-			rc->player_dir_y = oldDirX * sin(-ROT_SPEED) + rc->player_dir_y * cos(-ROT_SPEED);
+			oldDirX = rc->dirx;
+			rc->dirx = rc->dirx * cos(-ROT_SPEED) - rc->diry * sin(-ROT_SPEED);
+			rc->diry = oldDirX * sin(-ROT_SPEED) + rc->diry * cos(-ROT_SPEED);
 			oldPlaneX = rc->player_plane_x;
 			rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
 			rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
 		}
 		if (key == LEFT)
 		{
-			oldDirX = rc->player_dir_x;
-			rc->player_dir_x = rc->player_dir_x * cos(ROT_SPEED) - rc->player_dir_y * sin(ROT_SPEED);
-			rc->player_dir_y = oldDirX * sin(ROT_SPEED) + rc->player_dir_y * cos(ROT_SPEED);
+			oldDirX = rc->dirx;
+			rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
+			rc->diry = oldDirX * sin(ROT_SPEED) + rc->diry * cos(ROT_SPEED);
 			oldPlaneX = rc->player_plane_x;
 			rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED) - rc->player_plane_y * sin(ROT_SPEED);
 			rc->player_plane_y = oldPlaneX * sin(ROT_SPEED) + rc->player_plane_y * cos(ROT_SPEED);
@@ -237,7 +290,7 @@ int raycasting(int key, t_raycaster *rc)
 	int x;
 
 	x = 0;
-
+	printf("Funciona Raycasting2\n");
 	if (handle_events(key, rc) != 0)
 		return (-1);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
@@ -249,10 +302,11 @@ int raycasting(int key, t_raycaster *rc)
 		motionless_3(rc);
 		dda(rc);
 		motionless_4(rc);
-		calcule_wall(rc, x);
+		calcule_wall(rc);
 		draw_wall(rc, x);
 		x++;
 	}
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
+	drawMap(rc);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/04 13:28:12 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/04 14:30:10 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_raycaster
 	int	textnum;
 	double wallx;
 	double movespeed;
+	int initial_pos;
 } t_raycaster;
 
 typedef struct archparams_s
@@ -174,7 +175,7 @@ int motionless(t_raycaster *rc);
 static void motionless_2(t_raycaster *rc, int x);
 static void motionless_3(t_raycaster *rc);
 static void dda(t_raycaster *rc);
-void calcule_wall(t_raycaster *rc, int x);
+void calcule_wall(t_raycaster *rc);
 void draw_wall(t_raycaster *rc, int x);
 void floor_and_sky_draw(t_raycaster *rc, int x);
 static void floor_directions(t_raycaster *rc);
