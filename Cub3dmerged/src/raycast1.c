@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/03 14:27:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/04 12:47:10 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	drawMap(t_raycaster *rc)
 
 int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 {
-  rc->mlx_ptr = NULL;
+  /*rc->mlx_ptr = NULL;
   rc->win_ptr = NULL;
   rc->win_x = arch->win_x;
   rc->win_y = arch->win_y;
@@ -76,8 +76,25 @@ int		init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
   rc->player_pos_y = map->init_p_pos_x;
   rc->mapWidth = map->mapWidth;
   rc->mapHeight = map->m_line;
+  rc->map_x = 0;
+  rc->map_y = 0;
+  rc->tex_height = 64;
+  rc->tex_width = 64;*/
+
+  rc->mlx_ptr = NULL;
+  rc->win_ptr = NULL;
+  rc->win_x = 1640;
+  rc->win_y = 980;
+  rc->worldMap = arch->worldMap;
+  rc->player_pos_x = 22;
+  rc->player_pos_y = 11.5;
+  rc->mapWidth = 0;
+  rc->mapHeight = 0;
+  rc->map_x = 0;
+  rc->map_y = 0;
   rc->tex_height = 64;
   rc->tex_width = 64;
+
   //rc->spr_buffer = malloc(sizeof(double) * arch->win_x);
   if(map->player_dir == 'N')
   {

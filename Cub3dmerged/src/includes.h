@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/03 14:25:25 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/04 13:28:12 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,45 +59,54 @@ typedef struct s_img
 
 typedef struct s_raycaster
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
-	char *img_data;
-	int line_height;
-	int bpp;
-	int size_line;
-	int endian;
-	int tex_height;
-	int tex_width;
-	double wall_x;
-	int tex_x;
-	int tex_y;
-	t_img tex[12];
+	void *mlx_ptr;//
+	void *win_ptr;//
+	void *img_ptr;//
+	char *img_data;//
+	int line_height;//
+	int bpp;//
+	int size_line;//
+	int endian;//
+	int tex_height;//
+	int tex_width;//
+	double wall_x;//
+	int tex_x;//
+	int tex_y;//
+	t_img tex[12];//
 	int win_x; //double for untextured image
 	int win_y; //double for untextured image
-	int **worldMap;
-	double player_pos_x;
-	double player_pos_y;
-	double player_dir_x;
-	double player_dir_y;
-	double player_plane_x;
-	double player_plane_y;
-	double ray_dir_x;
-	double ray_dir_y;
-	int mapWidth;
-	int mapHeight;
-	int map_x;
-	int map_y;
-	double side_dist_x;
-	double side_dist_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	int step_x;
-	int step_y;
-	int side;
-	int draw_start;
-	int draw_end;
-	double perp_wall_dist;
+	int **worldMap;//
+	double player_pos_x;//
+	double player_pos_y;//
+	double player_dir_x;//
+	double player_dir_y;//
+	double player_plane_x;//
+	double player_plane_y;//
+	double ray_dir_x;//
+	double ray_dir_y;//
+	int mapWidth;//
+	int mapHeight;//
+	int map_x;//
+	int map_y;//
+	double side_dist_x;//
+	double side_dist_y;//
+	double delta_dist_x;//
+	double delta_dist_y;//
+	int step_x;//
+	int step_y;//
+	int side;//
+	int draw_start;//
+	int draw_end;//
+	double perp_wall_dist;//
+	double camerax;
+	double dirx;
+	double diry;
+	int stepx;
+	int stepy;
+	int	hit;
+	int	textnum;
+	double wallx;
+	double movespeed;
 } t_raycaster;
 
 typedef struct archparams_s

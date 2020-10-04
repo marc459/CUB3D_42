@@ -28,7 +28,7 @@ ft_putstr.c ft_dectohex.c
 GNL_NAME = simplifiedgnl.c
 
 
-SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c load_textures.c raycast1.c
+SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c load_textures.c raycast2.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
