@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/04 14:30:10 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/05 12:02:00 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,11 @@ typedef struct s_raycaster
 	int stepx;
 	int stepy;
 	int	hit;
-	int	textnum;
 	double wallx;
 	double movespeed;
-	int initial_pos;
+	int tex_id;
+	int tex_side;
+
 } t_raycaster;
 
 typedef struct archparams_s

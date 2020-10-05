@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/04 14:19:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/05 11:08:54 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,7 +382,6 @@ int raycasting(int key, t_raycaster *rc)
 	
 	if (handle_events(key, rc) != 0)
 		return (-1);
-	printf("Funciona Raycasting1\n");
 	/*rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = (int *)mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);*/
 
