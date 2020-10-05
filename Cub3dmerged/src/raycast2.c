@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/05 12:38:21 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:04:15 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->tex_width = 64;
 	rc->tex_side = 1;
 	rc->movespeed = 0.400;
-	rc->wallx = 0;
 
 	if (map->player_dir == 'N')
 	{
@@ -152,77 +151,39 @@ static void dda(t_raycaster *rc)
 	}
 }
 
-void floor_and_sky_draw(t_raycaster *rc, int x)
+/*void floor_and_sky_draw(t_raycaster *rc, int x)
 {
 	int y;
-	double currentdist;
-	double currentfloorx;
-	double currentfloory;
-	double weight;
-	int floortexx;
-	int floortexy;
-	double floorxwall;
-	double floorywall;
-	floorxwall = rc->map_x;
-	floorywall = rc->map_y + rc->wallx;
 
 	y = rc->draw_end + 1;
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
 	while (y < rc->win_y)
 	{
-		currentdist = rc->win_y / (2.0 * y - rc->win_y);
-		weight = currentdist / rc->perp_wall_dist;
-		currentfloorx = weight * floorxwall +
-						   (1.0 - weight) * rc->player_pos_x;
-		currentfloory = weight * floorywall +
-						   (1.0 - weight) * rc->player_pos_y;
-		floortexx = (int)(currentfloorx * rc->tex_width) % rc->tex_width;
-		floortexy = (int)(currentfloory * rc->tex_height) % rc->tex_height;
-		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
-				  &rc->tex[4].data[4 * floortexx * rc->tex_width +
-								  4 * floortexy],
+		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
+		rc->weight = rc->currentdist / rc->perpwalldist;
+		rc->currentfloorx = rc->weight * rc->floorxwall +
+						   (1.0 - rc->weight) * rc->posx;
+		rc->currentfloory = rc->weight * rc->floorywall +
+						   (1.0 - rc->weight) * rc->posy;
+		rc->floortexx = (int)(rc->currentfloorx * rc->tex_width) % rc->tex_width;
+		rc->floortexy = (int)(rc->currentfloory * rc->tex_height) % rc->tex_height;
+		ft_memcpy(rc->img_data + 4 * rc->win_width * y + x * 4,
+				  &rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
+								  4 * rc->floortexy],
 				  sizeof(int));
-		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
-				  &rc->tex[7].data[4 * floortexx * rc->tex_width +
-								  4 * floortexy],
+		ft_memcpy(rc->img_data + 4 * rc->win_width * (rc->win_y - y) + x * 4,
+				  &rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
+								  4 * rc->floortexy],
 				  sizeof(int));
 		y++;
 	}
-}
+}*/
 
-void draw_vert_line(t_raycaster *rc, int x)
-{
-	int color;
-	int y;
-	int tmp;
-
-	color = BLUE;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
-		color = WHITE;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 2)
-		color = GREEN;
-
-	if (rc->side == 1)
-		color = color + 3000;
-
-	y = rc->draw_start;
-	while (y < rc->draw_end)
-	{
-		tmp = y * rc->win_x + x * 4;
-		rc->img_data[tmp] = color;
-		//mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, color);
-		y++;
-	}
-}
 void draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
 		rc->tex_side = 1;
-	/*if (rc->worldMap[rc->map_x][rc->map_y] == 2)
-		rc->tex_side = 2;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 3)
-		rc->tex_side = 3;*/
 	if (rc->side == 1)
 		rc->tex_side = 3;
 	while (rc->draw_start <= rc->draw_end)
@@ -354,12 +315,9 @@ int raycasting(int key, t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
-		//floor_and_sky_draw(rc, x);
-		//draw_wall(rc, x);
-		draw_vert_line(rc, x);
+		draw_wall(rc, x);
 		x++;
 	}
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
-	drawMap(rc);
 	return (0);
 }

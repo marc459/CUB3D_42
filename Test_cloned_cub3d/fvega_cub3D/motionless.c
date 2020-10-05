@@ -6,7 +6,7 @@
 /*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:02:32 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/04 13:20:03 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:01:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int			motionless(t_struct *t)
 		dda(t);
 		motionless_4(t);
 		calcule_wall(t, x);
-		//floor_and_sky_draw(t, x);
+		floor_and_sky_draw(t, x);
 		draw_wall(t, x);
 		t->spr_buffer[x] = t->perpwalldist;
 		x++;
