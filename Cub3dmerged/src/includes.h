@@ -108,6 +108,14 @@ typedef struct s_raycaster
 	double movespeed;
 	int tex_id;
 	int tex_side;
+	double floorxwall;
+	double floorywall;
+	double currentdist;
+	double currentfloorx;
+	double currentfloory;
+	double weight;
+	int floortexx;
+	int floortexy;
 
 } t_raycaster;
 

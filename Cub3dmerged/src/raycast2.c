@@ -151,41 +151,95 @@ static void dda(t_raycaster *rc)
 	}
 }
 
-/*void floor_and_sky_draw(t_raycaster *rc, int x)
+static void	floor_directions(t_raycaster *rc)
+{
+	if (rc->side == 0 && rc->ray_dir_x > 0)
+	{
+		rc->tex_side = 1;
+		rc->floorxwall = rc->map_x;
+		rc->floorywall = rc->map_y + rc->wallx;
+	}
+	else if (rc->side == 0 && rc->ray_dir_x < 0)
+	{
+		rc->tex_side = 0;
+		rc->floorxwall = rc->map_x + 1.0;
+		rc->floorywall = rc->map_y + rc->wallx;
+	}
+	else if (rc->side == 1 && rc->ray_dir_y > 0)
+	{
+		rc->tex_side = 2;
+		rc->floorxwall = rc->map_x + rc->wallx;
+		rc->floorywall = rc->map_y;
+	}
+	else
+	{
+		rc->tex_side = 3;
+		rc->floorxwall = rc->map_x + rc->wallx;
+		rc->floorywall = rc->map_y + 1.0;
+	}
+}
+
+
+void floor_and_sky_draw(t_raycaster *rc, int x)
 {
 	int y;
 
 	y = rc->draw_end + 1;
+	floor_directions(rc);
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
 	while (y < rc->win_y)
 	{
 		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
-		rc->weight = rc->currentdist / rc->perpwalldist;
+		rc->weight = rc->currentdist / rc->perp_wall_dist;
 		rc->currentfloorx = rc->weight * rc->floorxwall +
-						   (1.0 - rc->weight) * rc->posx;
+						   (1.0 - rc->weight) * rc->player_pos_x;
 		rc->currentfloory = rc->weight * rc->floorywall +
-						   (1.0 - rc->weight) * rc->posy;
+						   (1.0 - rc->weight) * rc->player_pos_y;
 		rc->floortexx = (int)(rc->currentfloorx * rc->tex_width) % rc->tex_width;
 		rc->floortexy = (int)(rc->currentfloory * rc->tex_height) % rc->tex_height;
-		ft_memcpy(rc->img_data + 4 * rc->win_width * y + x * 4,
+		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
 				  &rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
 								  4 * rc->floortexy],
 				  sizeof(int));
-		ft_memcpy(rc->img_data + 4 * rc->win_width * (rc->win_y - y) + x * 4,
+		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
 				  &rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
 								  4 * rc->floortexy],
 				  sizeof(int));
 		y++;
 	}
-}*/
+}
 
 void draw_wall(t_raycaster *rc, int x)
 {
-	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
-		rc->tex_side = 1;
+	int y;
+	y= 0;
+	floor_directions(rc);
 	if (rc->side == 1)
-		rc->tex_side = 3;
+		rc->tex_id = 2;
+	else
+		rc->tex_id = 1;
+
+	while(y < rc->draw_start)
+	{
+		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
+		rc->weight = rc->currentdist / rc->perp_wall_dist;
+		rc->currentfloorx = rc->weight * rc->floorxwall +
+						   (1.0 - rc->weight) * rc->player_pos_x;
+		rc->currentfloory = rc->weight * rc->floorywall +
+						   (1.0 - rc->weight) * rc->player_pos_y;
+		rc->floortexx = (int)(rc->currentfloorx * rc->tex_width) % rc->tex_width;
+		rc->floortexy = (int)(rc->currentfloory * rc->tex_height) % rc->tex_height;
+		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
+				  &rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
+								  4 * rc->floortexy],
+				  sizeof(int));
+		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
+				  &rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
+								  4 * rc->floortexy],
+				  sizeof(int));
+		y++;
+	}
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
@@ -194,11 +248,9 @@ void draw_wall(t_raycaster *rc, int x)
 						 rc->line_height) /
 						256);
 		ft_memcpy(rc->img_data + 4 * rc->win_x * rc->draw_start + x * 4,
-				  &rc->tex[rc->tex_side].data[rc->tex_y % rc->tex_height *
-												  rc->tex[rc->tex_side].size_l +
-											  rc->tex_x % rc->tex_width *
-												  rc->tex[rc->tex_side].bpp / 8],
-				  sizeof(int));
+				 	&rc->tex[rc->tex_id].data[rc->tex_y % rc->tex_height *
+					rc->tex[rc->tex_id].size_l + rc->tex_x % rc->tex_width *
+					rc->tex[rc->tex_id].bpp / 8], sizeof(int));
 		rc->draw_start++;
 	}
 }
@@ -315,6 +367,7 @@ int raycasting(int key, t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
+		//floor_and_sky_draw(rc, x);
 		draw_wall(rc, x);
 		x++;
 	}
