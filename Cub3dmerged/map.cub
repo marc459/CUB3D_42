@@ -1,4 +1,4 @@
-R 1700 1000
+R 1000 500
 NO ./image_texture/test.xpm
 SO ./image_texture/test1.xpm
 WE ./image_texture/test2.xpm

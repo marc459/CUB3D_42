@@ -27,6 +27,7 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->tex_width = 64;
 	rc->tex_side = 1;
 	rc->movespeed = 0.400;
+	rc->textured = 1;
 
 	if (map->player_dir == 'N')
 	{
@@ -229,6 +230,53 @@ void draw_wall(t_raycaster *rc, int x)
 	}
 }
 
+void          draw_vert_line(t_raycaster *rc, int x)
+{
+	int color;
+	int y;
+	int pixel;
+	int tmp;
+
+	color = BLUE;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
+		color = WHITE;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 2)
+		color = GREEN;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 3)
+		color = GREEN;
+	if(rc->worldMap[rc->map_x][rc->map_y] == 4)
+		color = RED;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 5)
+		color = BLACK;
+		
+	if (rc->side == 1)
+		color = color + 3000;
+
+	y = rc->draw_start;
+	if (rc->bpp != 32)
+    	color = mlx_get_color_value(rc->mlx_ptr, color);
+	while (y < rc->draw_end)
+	{
+		pixel = (y * rc->win_x + x) * 4;
+
+		if (rc->endian == 1)
+	    {
+	        rc->img_data[pixel + 0] = (color >> 24);
+	        rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
+	        rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
+	        rc->img_data[pixel + 3] = (color) & 0xFF;
+	    }
+	    else if (rc->endian == 0)
+	    {
+	        rc->img_data[pixel + 0] = (color) & 0xFF;
+	        rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
+	        rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
+	        rc->img_data[pixel + 3] = (color >> 24);
+	    }
+		y++;
+	}
+}
+
 void calcule_wall(t_raycaster *rc)
 {
 	rc->tex_id = rc->worldMap[rc->map_x][rc->map_y] + rc->tex_side;
@@ -280,11 +328,19 @@ int handle_events(int key, t_raycaster *rc)
 {
 	double oldDirX;
 	double oldPlaneX;
-	printf("%d\n",key);
 	if (key == ESC)
 	{
 		exit(-1);
 		return (-1);
+	}
+	printf("key->%d\n",key);
+	if(key == C)
+	{
+		printf("tex->%d\n",rc->textured);
+		if(rc->textured == 1)
+			rc->textured = 0;
+		else
+			rc->textured = 1;
 	}
 	if (key == DOWN || key == UP || key == RIGHT || key == LEFT)
 	{
@@ -341,10 +397,15 @@ int raycasting(int key, t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
-		//floor_and_sky_draw(rc, x);
-		draw_wall(rc, x);
+		if (rc->textured == 0)
+			draw_vert_line(rc,x);
+		else
+		{
+			floor_and_sky_draw(rc, x);
+			draw_wall(rc, x);
+		}
 		x++;
 	}
-	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 30);
 	return (0);
 }

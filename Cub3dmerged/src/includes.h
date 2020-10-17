@@ -98,6 +98,7 @@ typedef struct s_raycaster
 	int draw_start;//
 	int draw_end;//
 	double perp_wall_dist;//
+	int textured;//
 	double camerax;
 	double dirx;
 	double diry;
