@@ -27,14 +27,15 @@ ft_putstr.c ft_dectohex.c
 
 GNL_NAME = simplifiedgnl.c
 
+SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
 
-SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c \
-save_map.c load_textures.c raycast2.c
+RAYCASTING = load_textures.c raycast2.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+RAY_C = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 GNL = $(addprefix $(GNL_PATH)/, $(GNL_NAME))
 LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
 
@@ -55,12 +56,12 @@ $(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 compile:
-	@$(CC) main.c $(LIB) $(SRC) $(GNL)
+	@$(CC) main.c testing.c $(LIB) $(SRC) $(GNL)
 run:
-	@cc -I /usr/local/include main.c $(LIB) $(SRC) $(GNL)  -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+	@cc -I /usr/local/include main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL)  -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 runlinux:
-	gcc main.c $(LIB) $(SRC) $(GNL) -lm -lbsd -lmlx -lXext -lX11
-normi:
+	gcc main.c testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) -lm -lbsd -lmlx -lXext -lX11
+normilinux:
 	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
 	source ~/.zshrc
 	norminette main.c

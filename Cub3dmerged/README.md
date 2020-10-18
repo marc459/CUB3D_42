@@ -43,3 +43,11 @@ Test de mapas:
 	https://github.com/joycemacksuele/cub3d_tests
 42 GUIDE:
 https://harm-smits.github.io/42docs/
+
+BIBLIOGRAFIA:
+-Simple untextured raycastSDL
+	https://github.com/matroyer/raycaster-sdl
+-Minilibx Images Guide
+	https://github.com/keuhdall/images_example
+-Functions of Minilibx
+	https://qst0.github.io/ft_libgfx/man_mlx_new_image.html

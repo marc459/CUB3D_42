@@ -333,49 +333,44 @@ int handle_events(int key, t_raycaster *rc)
 		exit(-1);
 		return (-1);
 	}
-	printf("key->%d\n",key);
 	if(key == C)
 	{
-		printf("tex->%d\n",rc->textured);
 		if(rc->textured == 1)
 			rc->textured = 0;
 		else
 			rc->textured = 1;
 	}
-	if (key == DOWN || key == UP || key == RIGHT || key == LEFT)
+	if (key == UP || key == W)
 	{
-		if (key == UP)
-		{
-			if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
-				rc->player_pos_x += rc->dirx * MV_SPEED;
-			if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * MV_SPEED)] == 0)
-				rc->player_pos_y += rc->diry * MV_SPEED;
-		}
-		if (key == DOWN)
-		{
-			if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
-				rc->player_pos_x -= rc->dirx * MV_SPEED;
-			if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * MV_SPEED)] == 0)
-				rc->player_pos_y -= rc->diry * MV_SPEED;
-		}
-		if (key == RIGHT)
-		{
-			oldDirX = rc->dirx;
-			rc->dirx = rc->dirx * cos(-ROT_SPEED) - rc->diry * sin(-ROT_SPEED);
-			rc->diry = oldDirX * sin(-ROT_SPEED) + rc->diry * cos(-ROT_SPEED);
-			oldPlaneX = rc->player_plane_x;
-			rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
-			rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
-		}
-		if (key == LEFT)
-		{
-			oldDirX = rc->dirx;
-			rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
-			rc->diry = oldDirX * sin(ROT_SPEED) + rc->diry * cos(ROT_SPEED);
-			oldPlaneX = rc->player_plane_x;
-			rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED) - rc->player_plane_y * sin(ROT_SPEED);
-			rc->player_plane_y = oldPlaneX * sin(ROT_SPEED) + rc->player_plane_y * cos(ROT_SPEED);
-		}
+		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
+			rc->player_pos_x += rc->dirx * MV_SPEED;
+		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * MV_SPEED)] == 0)
+			rc->player_pos_y += rc->diry * MV_SPEED;
+	}
+	if (key == DOWN || key == S)
+	{
+		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
+			rc->player_pos_x -= rc->dirx * MV_SPEED;
+		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * MV_SPEED)] == 0)
+			rc->player_pos_y -= rc->diry * MV_SPEED;
+	}
+	if (key == RIGHT || key == D)
+	{
+		oldDirX = rc->dirx;
+		rc->dirx = rc->dirx * cos(-ROT_SPEED) - rc->diry * sin(-ROT_SPEED);
+		rc->diry = oldDirX * sin(-ROT_SPEED) + rc->diry * cos(-ROT_SPEED);
+		oldPlaneX = rc->player_plane_x;
+		rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
+		rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
+	}
+	if (key == LEFT || key == A)
+	{
+		oldDirX = rc->dirx;
+		rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
+		rc->diry = oldDirX * sin(ROT_SPEED) + rc->diry * cos(ROT_SPEED);
+		oldPlaneX = rc->player_plane_x;
+		rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED) - rc->player_plane_y * sin(ROT_SPEED);
+		rc->player_plane_y = oldPlaneX * sin(ROT_SPEED) + rc->player_plane_y * cos(ROT_SPEED);
 	}
 	return (0);
 }
