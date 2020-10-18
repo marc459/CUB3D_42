@@ -68,6 +68,8 @@
 
 # define SP 32
 # define ESC 65307
+# define SHIFT 65505
+# define CTRL 65507
 
 /*
 ** Mouse

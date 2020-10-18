@@ -99,6 +99,7 @@ typedef struct s_raycaster
 	int draw_end;//
 	double perp_wall_dist;//
 	int textured;//
+	int crouch;
 	double camerax;
 	double dirx;
 	double diry;

@@ -35,7 +35,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
-RAY_C = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+RAY_C = $(addprefix $(SRC_PATH)/, $(RAYCASTING))
 GNL = $(addprefix $(GNL_PATH)/, $(GNL_NAME))
 LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
 

@@ -26,8 +26,9 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->tex_height = 64;
 	rc->tex_width = 64;
 	rc->tex_side = 1;
-	rc->movespeed = 0.400;
+	rc->movespeed = 0.300;
 	rc->textured = 1;
+	rc->crouch = 0;
 
 	if (map->player_dir == 'N')
 	{
@@ -340,19 +341,34 @@ int handle_events(int key, t_raycaster *rc)
 		else
 			rc->textured = 1;
 	}
+	if (key == CTRL)
+	{
+		
+		if(rc->crouch == 0)
+		{
+			rc->movespeed = rc->movespeed / 2.5;
+			rc->crouch = -30;
+		}	
+		else
+		{
+			rc->movespeed = rc->movespeed * 2.5;
+			rc->crouch = 0;
+		}
+		
+	}
 	if (key == UP || key == W)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
-			rc->player_pos_x += rc->dirx * MV_SPEED;
-		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * MV_SPEED)] == 0)
-			rc->player_pos_y += rc->diry * MV_SPEED;
+		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+			rc->player_pos_x += rc->dirx * rc->movespeed;
+		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
+			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
 	if (key == DOWN || key == S)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * MV_SPEED)][(int)(rc->player_pos_y)] == 0)
-			rc->player_pos_x -= rc->dirx * MV_SPEED;
-		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * MV_SPEED)] == 0)
-			rc->player_pos_y -= rc->diry * MV_SPEED;
+		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+			rc->player_pos_x -= rc->dirx * rc->movespeed;
+		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
+			rc->player_pos_y -= rc->diry * rc->movespeed;
 	}
 	if (key == RIGHT || key == D)
 	{
@@ -401,6 +417,6 @@ int raycasting(int key, t_raycaster *rc)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, rc->crouch);
 	return (0);
 }
