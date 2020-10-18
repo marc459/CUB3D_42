@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_params.c                                      :+:      :+:    :+:   */
+/*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/02 14:05:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:04:15 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void	init_arch_params(archparams_t *arch)
+int ft_puterror(char *str)
 {
-	arch->parameters_count = 0;
-	arch->win_x = 0;
-	arch->win_y = 0;
-	arch->no_texture = "";
-	arch->so_texture = "";
-	arch->we_texture = "";
-	arch->ea_texture = "";
-	arch->s_texture = "";
-	arch->f_color = "";
-	arch->c_color = "";
+	ft_putstr("Error:\n ");
+	ft_putstr(str);
+	ft_putstr("\n");
+	return (0);
 }
 
-void	init_map_checking_params(validmap_t *map)
+int		close_success(t_raycaster *rc)
 {
-	int i;
+	(void)rc;
+	exit(EXIT_SUCCESS);
+	return (0);
+}
 
-	i = 0;
-	map->colum_spaces = malloc(sizeof(int) * 255);
-	map->colum_nums = malloc(sizeof(int) * 255);
-	map->last_0 = 0;
-	while (i < 255)
-	{
-		map->colum_spaces[i] = 0;
-		map->colum_nums[i] = 0;
-		i++;
-	}
+int		close_failure(char *message)
+{
+	ft_putstr(message);
+	exit(EXIT_FAILURE);
+	return (1);
 }

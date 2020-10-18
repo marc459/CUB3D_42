@@ -193,4 +193,13 @@ static void floor_directions(t_raycaster *rc);
 void init(t_raycaster *rc, char *map);
 void load_textures(t_raycaster *rc);
 static void load_textures_2(t_raycaster *rc);
+
+int screenshot(int key, t_raycaster *rc);
+int			save_bmp(t_raycaster *rc);
+static int	write_bmp_data(int file, t_raycaster *rc, int pad);
+static int	get_color(t_raycaster *rc, int x, int y);
+static int	write_bmp_header(int fd, int filesize, t_raycaster *rc);
+static void	set_int_char(unsigned char *start, int value);
+int		close_success(t_raycaster *rc);
+int		close_failure(char *message);
 #endif

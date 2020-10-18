@@ -51,3 +51,10 @@ BIBLIOGRAFIA:
 	https://github.com/keuhdall/images_example
 -Functions of Minilibx
 	https://qst0.github.io/ft_libgfx/man_mlx_new_image.html
+
+----PARTE OBLIGATORIA---
+Deepthrought
+Flags
+Leaks
+Norminete
+bonus part(makefile rule and modularization)
