@@ -56,5 +56,5 @@ BIBLIOGRAFIA:
 Deepthrought
 Flags
 Leaks
-Norminete
+Norminette
 bonus part(makefile rule and modularization)

@@ -45,8 +45,8 @@ int		main(int argc, char **argv)
 	t.win_ptr = mlx_new_window(t.mlx_ptr, t.win_width, t.win_height,
 	"wolfenstein");
 	load_textures(&t);
-	mlx_hook(t.win_ptr, 2, 0, key_press, &t);
-	mlx_hook(t.win_ptr, 3, 0, key_release, &t);
+	mlx_hook(t.win_ptr, 2, 1L << 0, key_press, &t);
+	mlx_hook(t.win_ptr, 3, 1L << 1, key_release, &t);
 	if (argc == 3 && ft_strncmp("--save", argv[2], ft_strlen("--save")) == 0)
 		mlx_loop_hook(t.mlx_ptr, screenshot, &t);
 	else

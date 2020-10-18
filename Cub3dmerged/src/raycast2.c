@@ -327,11 +327,12 @@ static void motionless_2(t_raycaster *rc, int x)
 
 int handle_events(int key, t_raycaster *rc)
 {
+	printf("%d\n",key);
 	double oldDirX;
 	double oldPlaneX;
 	if (key == ESC)
 	{
-		exit(-1);
+		close_success(rc);
 		return (-1);
 	}
 	if(key == C)
