@@ -53,7 +53,7 @@ BIBLIOGRAFIA:
 	https://qst0.github.io/ft_libgfx/man_mlx_new_image.html
 
 ----PARTE OBLIGATORIA---
-Deepthrought
+Deepthrought - OK
 Flags
 Leaks
 Norminette
