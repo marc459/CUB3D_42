@@ -92,7 +92,7 @@ int		main(int argc, char **argv)
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
 	printf("Entra al programa\n");
-	if (!init_raycast_params(&rc, &arch, &map))
+	/*if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
 	//mlx_key_hook(rc.win_ptr, motionless, &rc);
@@ -100,7 +100,7 @@ int		main(int argc, char **argv)
 	//mlx_loop_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 	//mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
-	mlx_loop(rc.mlx_ptr);
+	mlx_loop(rc.mlx_ptr);*/
 
 	return (0);
 }

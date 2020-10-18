@@ -79,8 +79,8 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 				return (0);*/
 			if ((line[i] != '1' && line[i] != ' ') && (ft_strlen(line) > i))
 				return (0);
-			if(!line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= ft_strlen(line))
-				return(0);
+			if(!line[map->last_0 + 1] || !line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= ft_strlen(line))
+				printf("%s\n",line);
 		}
 		x++;
 	}

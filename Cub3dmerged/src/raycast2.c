@@ -406,6 +406,6 @@ int raycasting(int key, t_raycaster *rc)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 30);
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, 0);
 	return (0);
 }
