@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/05 14:04:15 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:26:34 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,10 @@ void floor_and_sky_draw(t_raycaster *rc, int x)
 {
 	int y;
 
-	y = 0;
+	y = rc->draw_end + 1; //0 if linux
 	floor_directions(rc);
+	if (rc->draw_end < 0)
+		rc->draw_end = rc->win_y;
 	while (y < rc->win_y)
 	{
 		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);

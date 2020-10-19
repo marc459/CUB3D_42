@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/04 13:07:44 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:27:05 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,16 @@ int		main(int argc, char **argv)
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
-	//mlx_key_hook(rc.win_ptr, motionless, &rc);
-	//mlx_key_hook(rc.win_ptr, raycasting, &rc);
-	//mlx_loop_hook(rc.win_ptr, raycasting, &rc);
+	/*mlx_hook(rc.win_ptr, 2, 0, key_press, &rc);
+	mlx_hook(rc.win_ptr, 3, 0, key_release, &rc);
 	if (argc == 3)
-	{
+		mlx_loop_hook(rc.win_ptr, screenshot, &rc);
+	else
+		mlx_loop_hook(rc.win_ptr, raycasting, &rc);*/	
+	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
+	
+	if (argc == 3)
 		mlx_key_hook(rc.win_ptr, screenshot, &rc);
-	}
 	else
 	{
 		mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
@@ -78,5 +81,5 @@ int		main(int argc, char **argv)
 	}
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	mlx_loop(rc.mlx_ptr);
-	return (EXIT_SUCCESS);
+	//return (EXIT_SUCCESS);
 }

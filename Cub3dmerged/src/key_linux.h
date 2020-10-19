@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_linux.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oouklich <oouklich@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2019/12/28 22:20:10 by oouklich         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:04:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 
 # define SP 32
 # define ESC 65307
-# define SHIFT 65505
+# define SHIFT_L 65505
 # define CTRL 65507
 
 /*

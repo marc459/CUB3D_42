@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2020/09/08 11:40:44 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:04:19 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@
 # define SP 49
 # define ESC 53
 # define TAB 48
+#define SHIFT_L 257
+#define CTRL 256
 
 /*
 ** Mouse

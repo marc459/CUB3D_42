@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/05 13:38:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:28:17 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,13 @@ typedef struct s_raycaster
 	int draw_start;//
 	int draw_end;//
 	double perp_wall_dist;//
+	int	up;//
+	int down;//
+	int right;//
+	int left;//
 	int textured;//
-	int crouch;
+	int crouch;//
+	int sprint;//
 	double camerax;
 	double dirx;
 	double diry;
