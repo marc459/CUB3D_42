@@ -113,13 +113,11 @@ static void motionless_2(t_raycaster *rc, int x)
 }
 
 
-int screenshot(int key, t_raycaster *rc)
+int screenshot( t_raycaster *rc)
 {
 	int x;
 
 	x = 0;
-	if (handle_events(key, rc) != 0)
-		return (-1);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
 

@@ -29,6 +29,10 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->movespeed = 0.300;
 	rc->textured = 1;
 	rc->crouch = 0;
+	rc->up = 0;
+	rc->down = 0;
+	rc->right = 0;
+	rc->left = 0;
 
 	if (map->player_dir == 'N')
 	{
@@ -327,12 +331,11 @@ static void motionless_2(t_raycaster *rc, int x)
 	rc->hit = 0;
 }
 
-int handle_events(int key, t_raycaster *rc)
+int handle_events(t_raycaster *rc)
 {
-	printf("%d\n",key);
 	double oldDirX;
 	double oldPlaneX;
-	if (key == ESC)
+	/*if (key == ESC)
 	{
 		close_success(rc);
 		return (-1);
@@ -358,22 +361,23 @@ int handle_events(int key, t_raycaster *rc)
 			rc->crouch = 0;
 		}
 		
-	}
-	if (key == UP || key == W)
+	}*/
+
+	if (rc->up == 1)
 	{
 		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x += rc->dirx * rc->movespeed;
 		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
-	if (key == DOWN || key == S)
+	if (rc->down)
 	{
 		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x -= rc->dirx * rc->movespeed;
 		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y -= rc->diry * rc->movespeed;
 	}
-	if (key == RIGHT || key == D)
+	if (rc->right)
 	{
 		oldDirX = rc->dirx;
 		rc->dirx = rc->dirx * cos(-ROT_SPEED) - rc->diry * sin(-ROT_SPEED);
@@ -382,7 +386,7 @@ int handle_events(int key, t_raycaster *rc)
 		rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
 		rc->player_plane_y = oldPlaneX * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
 	}
-	if (key == LEFT || key == A)
+	if (rc->left)
 	{
 		oldDirX = rc->dirx;
 		rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
@@ -394,13 +398,12 @@ int handle_events(int key, t_raycaster *rc)
 	return (0);
 }
 
-int raycasting(int key, t_raycaster *rc)
+int raycasting(t_raycaster *rc)
 {
 	int x;
 
 	x = 0;
-	if (handle_events(key, rc) != 0)
-		return (-1);
+	handle_events(rc);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
 

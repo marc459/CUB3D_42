@@ -64,21 +64,21 @@ int		main(int argc, char **argv)
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
-	/*mlx_hook(rc.win_ptr, 2, 0, key_press, &rc);
-	mlx_hook(rc.win_ptr, 3, 0, key_release, &rc);
-	if (argc == 3)
-		mlx_loop_hook(rc.win_ptr, screenshot, &rc);
-	else
-		mlx_loop_hook(rc.win_ptr, raycasting, &rc);*/	
-	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	
+	mlx_hook(rc.win_ptr, 2, 1L << 0, &key_press, &rc);
+	mlx_hook(rc.win_ptr, 3, 1L << 1, &key_release, &rc);
 	if (argc == 3)
+		mlx_loop_hook(rc.mlx_ptr, &screenshot, &rc);
+	else
+		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
+	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
+	/*if (argc == 3)
 		mlx_key_hook(rc.win_ptr, screenshot, &rc);
 	else
 	{
 		mlx_hook(rc.win_ptr, 2, 1L << 0, &raycasting, &rc);
 		mlx_hook(rc.win_ptr, 3, 1L << 1, &raycasting, &rc);
-	}
+	}*/
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	mlx_loop(rc.mlx_ptr);
 	//return (EXIT_SUCCESS);
