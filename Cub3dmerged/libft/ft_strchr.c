@@ -16,11 +16,9 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	car;
 	int		i;
-	int		cont;
 
 	car = (char)c;
 	i = 0;
-	cont = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == car)

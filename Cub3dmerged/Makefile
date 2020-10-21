@@ -1,4 +1,4 @@
-CC = gcc
+CC = gcc -g
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -70,6 +70,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 $(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
+compile:
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
 normilinux:

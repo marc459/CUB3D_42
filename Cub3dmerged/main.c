@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 {
 	archparams_t	arch;
 	validmap_t		map;
-	t_raycaster		rc;
+	//t_raycaster		rc;
 
 	map.m_top = 0;
 	map.m_bot = 0;
@@ -61,7 +61,7 @@ int		main(int argc, char **argv)
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
 	printf("Entra al programa\n");
-	if (!init_raycast_params(&rc, &arch, &map))
+	/*if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
 	
@@ -73,6 +73,9 @@ int		main(int argc, char **argv)
 		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
 	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
-	mlx_loop(rc.mlx_ptr);
+	mlx_loop(rc.mlx_ptr);*/
+	ace_of_empires("Alvaro","es","una","Guarrilla");
+	free(arch.f_color);
+	free(arch.c_color);
 	return (EXIT_SUCCESS);
 }

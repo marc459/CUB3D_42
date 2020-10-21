@@ -34,3 +34,20 @@ int		close_failure(char *message)
 	exit(EXIT_FAILURE);
 	return (1);
 }
+
+void ace_of_empires(char *str,...)
+{
+va_list var_args;
+ va_start(var_args, str);
+ int i;
+
+ i = 0;
+char *str1;
+while(i < (int)var_args)
+{
+	str1 = va_arg ((var_args), char *);
+	printf("----%s---\n",str1);
+	i++;
+}
+va_end(var_args);
+}

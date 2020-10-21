@@ -74,9 +74,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	slen;
 	size_t	start;
-	size_t	i;
 
-	i = 0;
 	start = 0;
 	if (!s1)
 		return (NULL);
