@@ -17,6 +17,8 @@ endif
 
 NAME = cub3d.a
 
+CHECKLEAKS=/Applications/Xcode.app/Contents/Developer/usr/lib/libLeaksAtExit.dylib leaks -atExit -- ./a.out map.cub
+
 SRC_PATH = ./src
 GNL_PATH = ./get_next_line
 LIB_PATH = ./libft
@@ -69,7 +71,7 @@ $(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 run:
-	@cc $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
 normilinux:
 	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
 	source ~/.zshrc

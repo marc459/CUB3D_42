@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/21 12:05:25 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:31:40 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int key_press(int key, t_raycaster *rc)
 {
+//system("leaks a.out");
 	printf("%d\n", key);
 	if (key == UP || key == W)
 		rc->up = 1;
