@@ -2,6 +2,19 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
+ifeq ($(OS),Windows_NT) 
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+endif
+
+ifeq ($(detected_OS),Darwin)
+    MLXFLAGS = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+endif
+ifeq ($(detected_OS),Linux)
+    MLXFLAGS = -lm -lbsd -lmlx -lXext -lX11
+endif
+
 NAME = cub3d.a
 
 SRC_PATH = ./src
@@ -25,7 +38,7 @@ ft_itoa_without_minus.c \
 ft_putchar.c ft_strrev.c \
 ft_putstr.c ft_dectohex.c
 
-GNL_NAME = simplifiedgnl.c
+GNL_NAME = get_next_line.c
 
 SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
 
@@ -55,12 +68,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 $(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
-compile:
-	@$(CC) main.c testing.c $(LIB) $(SRC) $(GNL)
 run:
-	@cc -I /usr/local/include main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL)  -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-runlinux:
-	gcc main.c testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) -lm -lbsd -lmlx -lXext -lX11
+	@cc $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
 normilinux:
 	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
 	source ~/.zshrc

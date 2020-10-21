@@ -54,7 +54,8 @@ BIBLIOGRAFIA:
 
 ----PARTE OBLIGATORIA---
 Deepthrought - OK
-Flags
+Keys - OK
+Flags - OK
 Leaks
 Norminette
 bonus part(makefile rule and modularization)

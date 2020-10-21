@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/30 14:18:56 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:56:24 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 				count = tmp + 1;
 				while (count < i + 1 && count > 0)
 				{
-					if (line[count] != '1' && line[count] != ' ' && count < ft_strlen(line))
+					if (line[count] != '1' && line[count] != ' ' && count < (int)ft_strlen(line))
 						return (0);
 					count++;
 				}
@@ -77,9 +77,9 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 			i = i + map->colum_nums[x] - 1;
 			/*if (line[i] != '1'  && line[i - 1] != '1' && line[i + 1] != '1' && line[i] != ' ' && line[i] != '\0')
 				return (0);*/
-			if ((line[i] != '1' && line[i] != ' ') && (ft_strlen(line) > i))
+			if ((line[i] != '1' && line[i] != ' ') && ((int)ft_strlen(line) > i))
 				return (0);
-			if(!line[map->last_0 + 1] || !line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= ft_strlen(line))
+			if(!line[map->last_0 + 1] || !line[map->last_0] || line[map->last_0] == '\0' || map->last_0 >= (int)ft_strlen(line))
 				printf("%s\n",line);
 		}
 		x++;
@@ -105,7 +105,7 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 				((map->prev_line[i] != '1' && map->prev_line[i] != ' ')
 				|| (map->prev_line[i-1] != '1' && map->prev_line[i-1] != ' ' && i > 0)
 				|| (map->prev_line[i+1] != '1' && map->prev_line[i+1] != ' ' &&  map->prev_line[i+1] != '\0'))
-				&& ft_strlen(map->prev_line) > i)
+				&& (int)ft_strlen(map->prev_line) > i)
 					return(0);
 				map->colum_spaces[count]++;
 				i++;
@@ -122,7 +122,7 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-int		check_bot_map(char *line, validmap_t *map, int i, int count)
+int		check_bot_map(char *line, validmap_t *map, int i)
 {
 	int bottom;
 
@@ -150,7 +150,7 @@ int		check_bot_map(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-int		valid_map(char *line, validmap_t *map, archparams_t *arch)
+int		valid_map(char *line, validmap_t *map)
 {
 	int i;
 	int count;
@@ -171,10 +171,10 @@ int		valid_map(char *line, validmap_t *map, archparams_t *arch)
 		i = 0;
 		init_map_checking_params(map);
 		if (!check_map_bowels(line, map, i, count)
-		|| !check_bot_map(line, map, i, count))
+		|| !check_bot_map(line, map, i))
 			return(0);
 	}
-	if (ft_strlen(line) > map->mapWidth)
+	if ((int)ft_strlen(line) > map->mapWidth)
 		map->mapWidth = ft_strlen(line);
 	map->m_line++;
 	map->prev_line = ft_strdup(line);

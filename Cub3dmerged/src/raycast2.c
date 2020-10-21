@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/19 14:26:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:53:37 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void drawMap(t_raycaster *rc)
 
 	int x_wall;
 	int y_wall;
-	char *str;
 
 	x = 0;
 	y = 0;
@@ -121,7 +120,7 @@ void drawMap(t_raycaster *rc)
 	}
 }
 
-static void motionless_4(t_raycaster *rc)
+void motionless_4(t_raycaster *rc)
 {
 	if (rc->side == 0)
 		rc->perp_wall_dist = (rc->map_x - rc->player_pos_x + (1 - rc->stepx) / 2) / rc->ray_dir_x;
@@ -136,7 +135,7 @@ static void motionless_4(t_raycaster *rc)
 		rc->draw_end = rc->win_y - 1;
 }
 
-static void dda(t_raycaster *rc)
+void dda(t_raycaster *rc)
 {
 	while (rc->hit == 0)
 	{
@@ -157,7 +156,7 @@ static void dda(t_raycaster *rc)
 	}
 }
 
-static void	floor_directions(t_raycaster *rc)
+void	floor_directions(t_raycaster *rc)
 {
 	if (rc->side == 0 && rc->ray_dir_x > 0)
 	{
@@ -242,7 +241,6 @@ void          draw_vert_line(t_raycaster *rc, int x)
 	int color;
 	int y;
 	int pixel;
-	int tmp;
 
 	color = BLUE;
 	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
@@ -295,7 +293,7 @@ void calcule_wall(t_raycaster *rc)
 	rc->tex_x = abs((int)(rc->wallx * (double)(64)));
 }
 
-static void motionless_3(t_raycaster *rc)
+void motionless_3(t_raycaster *rc)
 {
 	if (rc->ray_dir_x < 0)
 	{
@@ -319,7 +317,7 @@ static void motionless_3(t_raycaster *rc)
 	}
 }
 
-static void motionless_2(t_raycaster *rc, int x)
+void motionless_2(t_raycaster *rc, int x)
 {
 	rc->camerax = 2 * x / (double)rc->win_x - 1;
 	rc->ray_dir_x = rc->dirx + rc->player_plane_x * rc->camerax;
@@ -335,33 +333,6 @@ int handle_events(t_raycaster *rc)
 {
 	double oldDirX;
 	double oldPlaneX;
-	/*if (key == ESC)
-	{
-		close_success(rc);
-		return (-1);
-	}
-	if(key == C)
-	{
-		if(rc->textured == 1)
-			rc->textured = 0;
-		else
-			rc->textured = 1;
-	}
-	if (key == CTRL)
-	{
-		
-		if(rc->crouch == 0)
-		{
-			rc->movespeed = rc->movespeed / 2.5;
-			rc->crouch = -30;
-		}	
-		else
-		{
-			rc->movespeed = rc->movespeed * 2.5;
-			rc->crouch = 0;
-		}
-		
-	}*/
 
 	if (rc->up == 1)
 	{
@@ -423,6 +394,6 @@ int raycasting(t_raycaster *rc)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, 0, rc->crouch);
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr, rc->img_ptr, rc->crouch, rc->crouch);
 	return (0);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast2.c                                         :+:      :+:    :+:   */
+/*   bmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/05 14:04:15 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:30:25 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-static void	set_int_char(unsigned char *start, int value)
+void	set_int_char(unsigned char *start, int value)
 {
 	start[0] = (unsigned char)(value);
 	start[1] = (unsigned char)(value >> 8);
@@ -20,7 +20,7 @@ static void	set_int_char(unsigned char *start, int value)
 	start[3] = (unsigned char)(value >> 24);
 }
 
-static int	write_bmp_header(int fd, int filesize, t_raycaster *rc)
+int	write_bmp_header(int fd, int filesize, t_raycaster *rc)
 {
 	int				i;
 	unsigned char	bmpfileheader[54];
@@ -40,7 +40,7 @@ static int	write_bmp_header(int fd, int filesize, t_raycaster *rc)
 	return (!(write(fd, bmpfileheader, 54) < 0));
 }
 
-static int	get_color(t_raycaster *rc, int x, int y)
+int	get_color(t_raycaster *rc, int x, int y)
 {
 	int	rgb;
 	int	color;
@@ -50,8 +50,7 @@ static int	get_color(t_raycaster *rc, int x, int y)
 	rgb = (color & 0xFF0000) | (color & 0x00FF00) | (color & 0x0000FF);
 	return (rgb);
 }
-
-static int	write_bmp_data(int file, t_raycaster *rc, int pad)
+int	write_bmp_data(int file, t_raycaster *rc, int pad)
 {
 	const unsigned char zero[3] = {0, 0, 0};
 	int					i;

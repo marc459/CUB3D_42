@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/19 14:28:17 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/21 12:56:40 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <strings.h>
 #include <stdlib.h>
 #include <math.h>
+#include <fcntl.h>
 
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
@@ -158,7 +159,7 @@ typedef struct validmap_s
 } validmap_t;
 
 int ft_puterror(char *str);
-int valid_map(char *line, validmap_t *map, archparams_t *arch);
+int valid_map(char *line, validmap_t *map);
 void init_map_checking_params(validmap_t *map);
 void init_arch_params(archparams_t *arch);
 void init_map_checking_params(validmap_t *map);
@@ -171,7 +172,7 @@ int check_top_map(char *line, validmap_t *map, int i, int count);
 int sourrounding_walls(char *line, validmap_t *map, int i, int count);
 int check_map_bowels(char *line, validmap_t *map, int i, int count);
 int numsearch(char *line, validmap_t *map, int *i, int *count);
-int check_bot_map(char *line, validmap_t *map, int i, int count);
+int check_bot_map(char *line, validmap_t *map, int i);
 void save_map(char *mapfile, archparams_t *arch, validmap_t *map);
 void loop_map(archparams_t *arch, validmap_t *map, char *line, int *x);
 int loop_gnl(archparams_t *arch, validmap_t *map, char *line);
@@ -190,23 +191,24 @@ void draw_vert_line(t_raycaster *rc, int x);
 int handle_events(t_raycaster *rc);
 void drawMap(t_raycaster *rc);
 int motionless(t_raycaster *rc);
-static void motionless_2(t_raycaster *rc, int x);
-static void motionless_3(t_raycaster *rc);
-static void dda(t_raycaster *rc);
+void motionless_2(t_raycaster *rc, int x);
+void motionless_3(t_raycaster *rc);
+void motionless_4(t_raycaster *rc);
+void dda(t_raycaster *rc);
 void calcule_wall(t_raycaster *rc);
 void draw_wall(t_raycaster *rc, int x);
 void floor_and_sky_draw(t_raycaster *rc, int x);
-static void floor_directions(t_raycaster *rc);
+void floor_directions(t_raycaster *rc);
 void init(t_raycaster *rc, char *map);
 void load_textures(t_raycaster *rc);
-static void load_textures_2(t_raycaster *rc);
+void load_textures_2(t_raycaster *rc);
 
 int screenshot(t_raycaster *rc);
 int			save_bmp(t_raycaster *rc);
-static int	write_bmp_data(int file, t_raycaster *rc, int pad);
-static int	get_color(t_raycaster *rc, int x, int y);
-static int	write_bmp_header(int fd, int filesize, t_raycaster *rc);
-static void	set_int_char(unsigned char *start, int value);
+int	write_bmp_data(int file, t_raycaster *rc, int pad);
+int	get_color(t_raycaster *rc, int x, int y);
+int	write_bmp_header(int fd, int filesize, t_raycaster *rc);
+void	set_int_char(unsigned char *start, int value);
 int		close_success(t_raycaster *rc);
 int		close_failure(char *message);
 #endif
