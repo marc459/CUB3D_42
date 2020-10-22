@@ -12,6 +12,35 @@
 
 #include "includes.h"
 
+char	*ft_strjoin_b(char *s1, char *s2)
+{
+	char	*str;
+	int		cont1;
+	int		cont2;
+
+	cont1 = 0;
+	cont2 = 0;
+	if (!s1)
+		return (NULL);
+	if (!(str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char))))
+		return (NULL);
+	while (s1[cont1] != '\0')
+	{
+		str[cont1] = s1[cont1];
+		cont1++;
+	}
+	while (s2[cont2] != '\0')
+	{
+		str[cont1] = s2[cont2];
+		cont2++;
+		cont1++;
+	}
+	str[cont1] = '\0';
+	free(s1);
+	free(s2);
+	return (str);
+}
+
 int ft_puterror(char *str)
 {
 	ft_putstr("Error:\n ");

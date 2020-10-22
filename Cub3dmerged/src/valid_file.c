@@ -49,7 +49,6 @@ int		loop_gnl(archparams_t *arch, validmap_t *map, char *line)
 		return (ft_puterror("El mapa es invalido"));
 	if (!param_sorting(arch, map, line, i))
 		return (0);
-	i = 0;
 	free(line);
 	return (1);
 }

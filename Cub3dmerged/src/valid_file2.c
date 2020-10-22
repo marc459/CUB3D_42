@@ -18,7 +18,7 @@ char	*identifycolor(char *line, int i)
 	int		num;
 	char	*str;
 
-	str = "0x";
+	str = ft_strdup("0x");
 	count = 0;
 	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
@@ -28,9 +28,12 @@ char	*identifycolor(char *line, int i)
 		while (line[i] >= '0' && line[i] <= '9')
 			num = num * 10 + line[i++] - '0';
 			
-		str = ft_strjoin(str, ft_dectohex(num));
+		str = ft_strjoin_b(str, ft_dectohex(num));
 		if (line[i] != ',' && count <= 1)
-			return (ft_strdup(""));
+		{
+			free(str);
+			return ("");
+		}
 		if (line[i] != '\0')
 			i++;
 		count++;
@@ -38,11 +41,18 @@ char	*identifycolor(char *line, int i)
 	while (line[i] != '\0')
 	{
 		if (line[i] != ' ' && line[i] != '\t')
-			return (ft_strdup(""));
+		{
+			free(str);
+			return ("");
+		}
+			
 		i++;
 	}
 	if (ft_strlen(str) != 8 || count != 3)
-		return (ft_strdup(""));
+	{
+		free(str);
+		return ("");
+	}
 	return (str);
 }
 
@@ -101,7 +111,10 @@ char	*identifytexture(char *line, int i)
 	while (line[i] != '\0')
 	{
 		if (line[i] != ' ' && line[i] != '\t')
+		{
+			free(dest);
 			return (ft_strdup(""));
+		}
 		i++;
 	}
 	dest[x] = '\0';
@@ -141,6 +154,10 @@ int		texture_checker(char *line, archparams_t *arch)
 	else if (line[0] == 'C' && arch->c_color[0] == '\0')
 		arch->c_color = identifycolor(line, i);
 	else
+	{
+		free(tex);
 		return (0);
+	}
+	free(tex);
 	return (1);
 }

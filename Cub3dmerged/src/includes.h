@@ -212,4 +212,5 @@ void	set_int_char(unsigned char *start, int value);
 int		close_success(t_raycaster *rc);
 int		close_failure(char *message);
 void multi_free(archparams_t *arch,validmap_t *map);
+char	*ft_strjoin_b(char *s1, char *s2);
 #endif
