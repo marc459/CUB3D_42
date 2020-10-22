@@ -40,6 +40,7 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 		}
 		(*x)++;
 	}
+	free(line);
 }
 
 void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)

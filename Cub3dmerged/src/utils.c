@@ -35,19 +35,40 @@ int		close_failure(char *message)
 	return (1);
 }
 
-void ace_of_empires(char *str,...)
+/*void ace_of_empires(int i,...)
 {
 va_list var_args;
- va_start(var_args, str);
- int i;
+va_start(var_args, str);
 
- i = 0;
 char *str1;
-while(i < (int)var_args)
+while(i > 0)
 {
 	str1 = va_arg ((var_args), char *);
 	printf("----%s---\n",str1);
-	i++;
+	i--;
 }
+	
 va_end(var_args);
+}*/
+void multi_free(archparams_t *arch,validmap_t *map)
+{
+	int x;
+
+	x = 0;
+	free(arch->f_color);
+	free(arch->c_color);
+	free(arch->s_texture);
+	free(arch->no_texture);
+	free(arch->so_texture);
+	free(arch->we_texture);
+	free(arch->ea_texture);
+	free(map->prev_line);
+	free(map->colum_spaces);
+	free(map->colum_nums);
+	while (x < map->m_line)
+	{
+		free(arch->worldMap[x]);
+		x++;
+	}
+	free(arch->worldMap);
 }

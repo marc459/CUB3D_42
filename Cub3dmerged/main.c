@@ -74,8 +74,6 @@ int		main(int argc, char **argv)
 	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	mlx_loop(rc.mlx_ptr);*/
-	ace_of_empires("Alvaro","es","una","Guarrilla");
-	free(arch.f_color);
-	free(arch.c_color);
+	multi_free(&arch,&map);
 	return (EXIT_SUCCESS);
 }

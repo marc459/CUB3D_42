@@ -18,7 +18,6 @@ char	*identifycolor(char *line, int i)
 	int		num;
 	char	*str;
 
-	str = (char*)malloc(sizeof(char) * 8);
 	str = "0x";
 	count = 0;
 	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
@@ -106,7 +105,7 @@ char	*identifytexture(char *line, int i)
 		i++;
 	}
 	dest[x] = '\0';
-	return (ft_strdup(dest));
+	return (dest);
 }
 
 int		texture_checker(char *line, archparams_t *arch)

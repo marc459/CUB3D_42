@@ -211,5 +211,5 @@ int	write_bmp_header(int fd, int filesize, t_raycaster *rc);
 void	set_int_char(unsigned char *start, int value);
 int		close_success(t_raycaster *rc);
 int		close_failure(char *message);
-void ace_of_empires(char *str,...);
+void multi_free(archparams_t *arch,validmap_t *map);
 #endif
