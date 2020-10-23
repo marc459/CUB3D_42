@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/02 14:05:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:11:55 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	init_arch_params(archparams_t *arch)
 	arch->s_texture = "";
 	arch->f_color = "";
 	arch->c_color = "";
-	/*arch->no_texture = NULL;
-	arch->so_texture = NULL;
-	arch->we_texture = NULL;
-	arch->ea_texture = NULL;
-	arch->s_texture = NULL;
-	arch->f_color = NULL;
-	arch->c_color = NULL;*/
 }
 
 void	init_map_checking_params(validmap_t *map)

@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:21:29 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/21 12:20:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:15:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void load_textures_2(t_raycaster *rc)
+void	load_textures_2(t_raycaster *rc)
 {
 	rc->tex[6].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/barrel.xpm",
 			&rc->tex_width, &rc->tex_height);
@@ -26,8 +26,8 @@ void load_textures_2(t_raycaster *rc)
 			&rc->tex_width, &rc->tex_height);
 	rc->tex[8].data = mlx_get_data_addr(rc->tex[8].img, &rc->tex[8].bpp,
 			&rc->tex[8].size_l, &rc->tex[8].endian);
-	rc->tex[9].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/destruction.xpm",
-			&rc->tex_width, &rc->tex_height);
+	rc->tex[9].img = mlx_xpm_file_to_image(rc->mlx_ptr,
+		"sprites/destruction.xpm", &rc->tex_width, &rc->tex_height);
 	rc->tex[9].data = mlx_get_data_addr(rc->tex[9].img, &rc->tex[9].bpp,
 			&rc->tex[9].size_l, &rc->tex[9].endian);
 	rc->tex[10].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/dead.xpm",
@@ -36,7 +36,7 @@ void load_textures_2(t_raycaster *rc)
 			&rc->tex[10].size_l, &rc->tex[10].endian);
 }
 
-void load_textures(t_raycaster *rc)
+void	load_textures(t_raycaster *rc)
 {
 	rc->tex[1].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/stone.xpm",
 			&rc->tex_width, &rc->tex_height);

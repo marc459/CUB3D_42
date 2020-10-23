@@ -6,16 +6,14 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/21 14:31:40 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:17:05 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-int key_press(int key, t_raycaster *rc)
+int		key_press(int key, t_raycaster *rc)
 {
-//system("leaks a.out");
-	printf("%d\n", key);
 	if (key == UP || key == W)
 		rc->up = 1;
 	if (key == DOWN || key == S)
@@ -43,13 +41,12 @@ int key_press(int key, t_raycaster *rc)
 		else
 			rc->textured = 1;
 	}
-
 	if (key == ESC)
 		close_success(rc);
 	return (0);
 }
 
-int key_release(int key, t_raycaster *rc)
+int		key_release(int key, t_raycaster *rc)
 {
 	if (key == UP || key == W)
 		rc->up = 0;
@@ -64,7 +61,7 @@ int key_release(int key, t_raycaster *rc)
 		rc->movespeed = rc->movespeed / 2.5;
 		rc->sprint = 0;
 	}
-	if(key == CTRL)
+	if (key == CTRL)
 	{
 		rc->movespeed = rc->movespeed * 2.5;
 		rc->crouch = 0;

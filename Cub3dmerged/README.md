@@ -56,7 +56,7 @@ BIBLIOGRAFIA:
 Deepthrought - OK
 Keys - OK
 Flags - OK
-Leaks
+Leaks - OK
 Norminette
 bonus part(makefile rule and modularization)
 
