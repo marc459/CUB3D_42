@@ -6,13 +6,14 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/21 12:53:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/24 14:29:37 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
+int		init_raycast_params(t_raycaster *rc,
+		archparams_t *arch, validmap_t *map)
 {
 	rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;
@@ -33,7 +34,6 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 	rc->down = 0;
 	rc->right = 0;
 	rc->left = 0;
-
 	if (map->player_dir == 'N')
 	{
 		rc->dirx = -1;
@@ -62,36 +62,34 @@ int init_raycast_params(t_raycaster *rc, archparams_t *arch, validmap_t *map)
 		rc->dirx = 0;
 		rc->diry = -1;
 	}
-
 	if (!(rc->mlx_ptr = mlx_init()))
 		return (ft_puterror("Inicio de Minilibx fallida\n"));
-	if (!(rc->win_ptr = mlx_new_window(rc->mlx_ptr, rc->win_x, rc->win_y, "mx 42")))
+	if (!(rc->win_ptr =
+		mlx_new_window(rc->mlx_ptr, rc->win_x, rc->win_y, "mx 42")))
 		return (ft_puterror("Proceso de creacion de Ventana fallida\n"));
 	return (1);
 }
 
-void drawMap(t_raycaster *rc)
+/*void	drawMap(t_raycaster *rc)
 {
 	int y;
 	int x;
 	int printplayer_X;
 	int printplayer_Y;
-
 	int x_wall;
 	int y_wall;
+	int tmpx;
+	int tmpy;
 
 	x = 0;
 	y = 0;
-
+	tmpx = printplayer_X;
+	tmpy = printplayer_Y;
 	x_wall = 10;
 	y_wall = 10;
-
 	printplayer_X = rc->player_pos_y * 10;
 	printplayer_Y = rc->player_pos_x * 10;
-
 	mlx_string_put(rc->mlx_ptr, rc->win_ptr, rc->win_x / 2 - 20, 10, 0x33FF3C, "CUB3D");
-	int tmpx = printplayer_X;
-	int tmpy = printplayer_Y;
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy + 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy - 1, 0x33FF3C);
@@ -118,9 +116,9 @@ void drawMap(t_raycaster *rc)
 		x_wall = 10;
 		y_wall = y_wall + 10;
 	}
-}
+}*/
 
-void motionless_4(t_raycaster *rc)
+void	motionless_4(t_raycaster *rc)
 {
 	if (rc->side == 0)
 		rc->perp_wall_dist = (rc->map_x - rc->player_pos_x + (1 - rc->stepx) / 2) / rc->ray_dir_x;
@@ -135,7 +133,7 @@ void motionless_4(t_raycaster *rc)
 		rc->draw_end = rc->win_y - 1;
 }
 
-void dda(t_raycaster *rc)
+void	dda(t_raycaster *rc)
 {
 	while (rc->hit == 0)
 	{
@@ -204,18 +202,18 @@ void floor_and_sky_draw(t_raycaster *rc, int x)
 		rc->floortexx = (int)(rc->currentfloorx * rc->tex_width) % rc->tex_width;
 		rc->floortexy = (int)(rc->currentfloory * rc->tex_height) % rc->tex_height;
 		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
-				  &rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
-								  4 * rc->floortexy],
-				  sizeof(int));
+				&rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
+				4 * rc->floortexy],
+				sizeof(int));
 		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
-				  &rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
-								  4 * rc->floortexy],
-				  sizeof(int));
+				&rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
+				4 * rc->floortexy],
+				sizeof(int));
 		y++;
 	}
 }
 
-void draw_wall(t_raycaster *rc, int x)
+void	draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->side == 1)
 		rc->tex_id = 2;
@@ -236,7 +234,7 @@ void draw_wall(t_raycaster *rc, int x)
 	}
 }
 
-void          draw_vert_line(t_raycaster *rc, int x)
+void	draw_vert_line(t_raycaster *rc, int x)
 {
 	int color;
 	int y;
@@ -253,10 +251,8 @@ void          draw_vert_line(t_raycaster *rc, int x)
 		color = RED;
 	if (rc->worldMap[rc->map_x][rc->map_y] == 5)
 		color = BLACK;
-		
 	if (rc->side == 1)
 		color = color + 3000;
-
 	y = rc->draw_start;
 	if (rc->bpp != 32)
     	color = mlx_get_color_value(rc->mlx_ptr, color);
@@ -266,23 +262,23 @@ void          draw_vert_line(t_raycaster *rc, int x)
 
 		if (rc->endian == 1)
 	    {
-	        rc->img_data[pixel + 0] = (color >> 24);
-	        rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
-	        rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
-	        rc->img_data[pixel + 3] = (color) & 0xFF;
+			rc->img_data[pixel + 0] = (color >> 24);
+			rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 3] = (color) & 0xFF;
 	    }
 	    else if (rc->endian == 0)
 	    {
-	        rc->img_data[pixel + 0] = (color) & 0xFF;
-	        rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
-	        rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
-	        rc->img_data[pixel + 3] = (color >> 24);
+			rc->img_data[pixel + 0] = (color) & 0xFF;
+			rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 3] = (color >> 24);
 	    }
 		y++;
 	}
 }
 
-void calcule_wall(t_raycaster *rc)
+void	calcule_wall(t_raycaster *rc)
 {
 	rc->tex_id = rc->worldMap[rc->map_x][rc->map_y] + rc->tex_side;
 	if (rc->side == 0)
@@ -293,7 +289,7 @@ void calcule_wall(t_raycaster *rc)
 	rc->tex_x = abs((int)(rc->wallx * (double)(64)));
 }
 
-void motionless_3(t_raycaster *rc)
+void	motionless_3(t_raycaster *rc)
 {
 	if (rc->ray_dir_x < 0)
 	{
@@ -317,7 +313,7 @@ void motionless_3(t_raycaster *rc)
 	}
 }
 
-void motionless_2(t_raycaster *rc, int x)
+void	motionless_2(t_raycaster *rc, int x)
 {
 	rc->camerax = 2 * x / (double)rc->win_x - 1;
 	rc->ray_dir_x = rc->dirx + rc->player_plane_x * rc->camerax;
@@ -329,23 +325,27 @@ void motionless_2(t_raycaster *rc, int x)
 	rc->hit = 0;
 }
 
-int handle_events(t_raycaster *rc)
+int		handle_events(t_raycaster *rc)
 {
 	double oldDirX;
 	double oldPlaneX;
 
 	if (rc->up == 1)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx
+			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x += rc->dirx * rc->movespeed;
-		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
+		if (rc->worldMap[(int)(rc->player_pos_x)]
+			[(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
 	if (rc->down)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx
+			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x -= rc->dirx * rc->movespeed;
-		if (rc->worldMap[(int)(rc->player_pos_x)][(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
+		if (rc->worldMap[(int)(rc->player_pos_x)]
+			[(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y -= rc->diry * rc->movespeed;
 	}
 	if (rc->right)
@@ -369,7 +369,7 @@ int handle_events(t_raycaster *rc)
 	return (0);
 }
 
-int raycasting(t_raycaster *rc)
+int		raycasting(t_raycaster *rc)
 {
 	int x;
 
@@ -377,7 +377,6 @@ int raycasting(t_raycaster *rc)
 	handle_events(rc);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr, &rc->bpp, &rc->size_line, &rc->endian);
-
 	while (x < rc->win_x)
 	{
 		motionless_2(rc, x);

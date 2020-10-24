@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/08 12:43:31 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:08:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*identifycolor(char *line, int i)
 		num = 0;
 		while (line[i] >= '0' && line[i] <= '9')
 			num = num * 10 + line[i++] - '0';
-			
 		str = ft_strjoin_b(str, ft_dectohex(num));
 		if (line[i] != ',' && count <= 1)
 		{
@@ -45,7 +44,6 @@ char	*identifycolor(char *line, int i)
 			free(str);
 			return ("");
 		}
-			
 		i++;
 	}
 	if (ft_strlen(str) != 8 || count != 3)
@@ -71,17 +69,13 @@ int		identifyresolution(char *line, archparams_t *arch)
 	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
 	while (line[i] >= '0' && line[i] <= '9')
-	{
-		arch->win_y = arch->win_y * 10 + line[i] - '0';
-		i++;
-	}
+		arch->win_y = arch->win_y * 10 + line[i++] - '0';
 	while (line[i] != '\0')
 	{
 		if (line[i] != ' ' && line[i] != '\t')
 			return (0);
 		i++;
 	}
-		
 	arch->parameters_count++;
 	if (arch->win_y > 0 && arch->win_x > 0)
 		return (1);
@@ -97,7 +91,6 @@ char	*identifytexture(char *line, int i)
 	x = 0;
 	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		return (NULL);
-	
 	while ((line[i] != ' ' && line[i] != '\t') && line[i] != '\0')
 		i++;
 	while ((line[i] == '\t' || line[i] == ' ') && line[i] != '\0')
@@ -123,8 +116,8 @@ char	*identifytexture(char *line, int i)
 
 int		texture_checker(char *line, archparams_t *arch)
 {
-	int i;
-	char *tex;
+	int		i;
+	char	*tex;
 
 	i = 1;
 	tex = identifytexture(line, i);
