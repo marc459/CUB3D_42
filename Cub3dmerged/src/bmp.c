@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/21 12:30:25 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/25 12:59:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_int_char(unsigned char *start, int value)
 	start[3] = (unsigned char)(value >> 24);
 }
 
-int	write_bmp_header(int fd, int filesize, t_raycaster *rc)
+int		write_bmp_header(int fd, int filesize, t_raycaster *rc)
 {
 	int				i;
 	unsigned char	bmpfileheader[54];
@@ -40,7 +40,7 @@ int	write_bmp_header(int fd, int filesize, t_raycaster *rc)
 	return (!(write(fd, bmpfileheader, 54) < 0));
 }
 
-int	get_color(t_raycaster *rc, int x, int y)
+int		get_color(t_raycaster *rc, int x, int y)
 {
 	int	rgb;
 	int	color;
@@ -50,7 +50,8 @@ int	get_color(t_raycaster *rc, int x, int y)
 	rgb = (color & 0xFF0000) | (color & 0x00FF00) | (color & 0x0000FF);
 	return (rgb);
 }
-int	write_bmp_data(int file, t_raycaster *rc, int pad)
+
+int		write_bmp_data(int file, t_raycaster *rc, int pad)
 {
 	const unsigned char zero[3] = {0, 0, 0};
 	int					i;

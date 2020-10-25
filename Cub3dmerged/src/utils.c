@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/19 10:44:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/25 12:57:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ while(i > 0)
 	
 va_end(var_args);
 }*/
-void multi_free(archparams_t *arch,validmap_t *map)
+void	multi_free(archparams_t *arch, validmap_t *map)
 {
 	int x;
 
