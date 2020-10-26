@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/24 14:29:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:26:43 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,48 +69,6 @@ int		init_raycast_params(t_raycaster *rc,
 		return (ft_puterror("Proceso de creacion de Ventana fallida\n"));
 	return (1);
 }
-
-/*void	drawMap(t_raycaster *rc)
-{
-	int y;
-	int x;
-	int printplayer_X;
-	int printplayer_Y;
-	int x_wall;
-	int y_wall;
-	int tmpx;
-	int tmpy;
-
-	x = 0;
-	y = 0;
-	tmpx = printplayer_X;
-	tmpy = printplayer_Y;
-	x_wall = 10;
-	y_wall = 10;
-	printplayer_X = rc->player_pos_y * 10;
-	printplayer_Y = rc->player_pos_x * 10;
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy + 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy - 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
-	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
-
-	while (x < rc->mapHeight)
-	{
-		while (y < rc->mapWidth)
-		{
-			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2)
-				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr,
-							x_wall, y_wall, 0xFA2C00);
-			y++;
-			x_wall = x_wall + 10;
-		}
-		y = 0;
-		x++;
-		x_wall = 10;
-		y_wall = y_wall + 10;
-	}
-}*/
 
 void	motionless_4(t_raycaster *rc)
 {

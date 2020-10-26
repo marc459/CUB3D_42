@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/23 14:17:05 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:37:40 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,6 @@ int		key_press(int key, t_raycaster *rc)
 		rc->right = 1;
 	if (key == LEFT || key == A)
 		rc->left = 1;
-	if (key == SHIFT_L)
-	{
-		rc->movespeed = rc->movespeed * 2.5;
-		rc->sprint = 1;
-	}
-	if (key == CTRL)
-	{
-		rc->movespeed = rc->movespeed / 2.5;
-		rc->crouch = -30;
-		rc->win_y = rc->win_y + 30;
-		rc->win_x = rc->win_x + 30;
-	}
-	if (key == C)
-	{
-		if (rc->textured == 1)
-			rc->textured = 0;
-		else
-			rc->textured = 1;
-	}
 	if (key == ESC)
 		close_success(rc);
 	return (0);
@@ -56,17 +37,5 @@ int		key_release(int key, t_raycaster *rc)
 		rc->right = 0;
 	if (key == LEFT || key == A)
 		rc->left = 0;
-	if (key == SHIFT_L)
-	{
-		rc->movespeed = rc->movespeed / 2.5;
-		rc->sprint = 0;
-	}
-	if (key == CTRL)
-	{
-		rc->movespeed = rc->movespeed * 2.5;
-		rc->crouch = 0;
-		rc->win_y = rc->win_y - 30;
-		rc->win_x = rc->win_x - 30;
-	}
 	return (0);
 }

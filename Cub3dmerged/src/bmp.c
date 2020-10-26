@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/25 12:59:26 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:28:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		write_bmp_data(int file, t_raycaster *rc, int pad)
 	return (1);
 }
 
-int			save_bmp(t_raycaster *rc)
+int		save_bmp(t_raycaster *rc)
 {
 	int	filesize;
 	int	file;

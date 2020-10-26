@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/23 14:46:16 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:49:56 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
+void	loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 {
 	int y;
 
@@ -40,25 +40,8 @@ void		loop_map(archparams_t *arch, validmap_t *map, char *line, int *x)
 	free(line);
 }
 
-void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
+void	save_map2(archparams_t *arch, validmap_t *map, int x, int y)
 {
-	int		fd;
-	char	*line;
-	int		retorno;
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	if (map->m_line > map->mapWidth)
-		map->mapWidth = map->m_line;
-	else
-		map->m_line = map->mapWidth;
-	arch->worldMap = (int **)malloc(sizeof(int *) * map->m_line);
-	fd = open(mapfile, O_RDONLY);
-	while ((retorno = get_next_line(fd, &line)) == 1)
-		loop_map(arch, map, line, &x);
-	loop_map(arch, map, line, &x);
 	while (x < map->m_line)
 	{
 		arch->worldMap[x] = (int *)malloc(sizeof(int) * map->mapWidth);
@@ -84,4 +67,26 @@ void		save_map(char *mapfile, archparams_t *arch, validmap_t *map)
 		y = 0;
 		x++;
 	}
+}
+
+void	save_map(char *mapfile, archparams_t *arch, validmap_t *map)
+{
+	int		fd;
+	char	*line;
+	int		retorno;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	if (map->m_line > map->mapWidth)
+		map->mapWidth = map->m_line;
+	else
+		map->m_line = map->mapWidth;
+	arch->worldMap = (int **)malloc(sizeof(int *) * map->m_line);
+	fd = open(mapfile, O_RDONLY);
+	while ((retorno = get_next_line(fd, &line)) == 1)
+		loop_map(arch, map, line, &x);
+	loop_map(arch, map, line, &x);
+	save_map2(arch, map, x, y);
 }

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/25 12:35:51 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 14:36:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int		check_top_map(char *line, validmap_t *map, int i, int count)
 	map->m_top = 1;
 	return (1);
 }
+
+//int		colum_spaces(char *line, validmap_t *map, int i, int count)
+
 
 int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
 {

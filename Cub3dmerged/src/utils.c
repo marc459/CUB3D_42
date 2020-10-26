@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/25 12:57:31 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:26:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_strjoin_b(char *s1, char *s2)
 	return (str);
 }
 
-int ft_puterror(char *str)
+int		ft_puterror(char *str)
 {
 	ft_putstr("Error:\n ");
 	ft_putstr(str);
@@ -52,7 +52,7 @@ int ft_puterror(char *str)
 int		close_success(t_raycaster *rc)
 {
 	(void)rc;
-	//mlx_destroy_window(rc->mlx_ptr, rc->win_ptr);
+	mlx_destroy_window(rc->mlx_ptr, rc->win_ptr);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -64,21 +64,6 @@ int		close_failure(char *message)
 	return (1);
 }
 
-/*void ace_of_empires(int i,...)
-{
-va_list var_args;
-va_start(var_args, str);
-
-char *str1;
-while(i > 0)
-{
-	str1 = va_arg ((var_args), char *);
-	printf("----%s---\n",str1);
-	i--;
-}
-	
-va_end(var_args);
-}*/
 void	multi_free(archparams_t *arch, validmap_t *map)
 {
 	int x;

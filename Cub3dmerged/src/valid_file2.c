@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/24 13:08:03 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/26 12:53:16 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,7 @@ char	*identifytexture(char *line, int i)
 	while ((line[i] == '\t' || line[i] == ' ') && line[i] != '\0')
 		i++;
 	while ((line[i] != ' ' && line[i] != '\t') && line[i] != '\0')
-	{
-		dest[x] = line[i];
-		x++;
-		i++;
-	}
+		dest[x++] = line[i++];
 	while (line[i] != '\0')
 	{
 		if (line[i] != ' ' && line[i] != '\t')
@@ -146,11 +142,6 @@ int		texture_checker(char *line, archparams_t *arch)
 		arch->f_color = identifycolor(line, i);
 	else if (line[0] == 'C' && arch->c_color[0] == '\0')
 		arch->c_color = identifycolor(line, i);
-	else
-	{
-		free(tex);
-		return (0);
-	}
 	free(tex);
 	return (1);
 }
