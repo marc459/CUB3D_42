@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/28 13:01:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:28:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int		texture_checker(char *line, archparams_t *arch)
 
 	i = 1;
 	tex = identifytexture(line, i);
-	arch->parameters_count++;
 	if (tex[0] == '\0' && ft_strchr("NSWE", line[0]))
 		return (free_return(tex));
 	if (!(ft_strncmp(line, "NO", 2)) && arch->no_texture[0] == '\0')

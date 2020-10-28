@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/24 12:25:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:28:09 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
 		i = 0;
 	else if (ft_strchr("NSWESFC", line[i]))
 	{
+		arch->parameters_count++;
 		if (!texture_checker(line + i, arch))
 			return (ft_puterror("Error en el nombre de los parametros"));
 	}
