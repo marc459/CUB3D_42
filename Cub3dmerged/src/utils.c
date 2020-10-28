@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:26:29 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:51:11 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int		close_failure(char *message)
 	ft_putstr(message);
 	exit(EXIT_FAILURE);
 	return (1);
+}
+
+int		free_return(char *str)
+{
+	free(str);
+	return (0);
 }
 
 void	multi_free(archparams_t *arch, validmap_t *map)

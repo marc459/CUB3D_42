@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 14:07:04 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:00:47 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,4 +215,5 @@ void multi_free(archparams_t *arch,validmap_t *map);
 char	*ft_strjoin_b(char *s1, char *s2);
 void save_map2(archparams_t *arch, validmap_t *map, int x, int y);
 int colum_spaces(char *line, validmap_t *map, int i);
+int free_return(char *str);
 #endif

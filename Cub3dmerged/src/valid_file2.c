@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:53:16 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:01:38 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,7 @@ int		texture_checker(char *line, archparams_t *arch)
 	tex = identifytexture(line, i);
 	arch->parameters_count++;
 	if (tex[0] == '\0' && ft_strchr("NSWE", line[0]))
-	{
-		free(tex);
-		return (0);
-	}
+		return (free_return(tex));
 	if (!(ft_strncmp(line, "NO", 2)) && arch->no_texture[0] == '\0')
 		arch->no_texture = identifytexture(line, i);
 	else if (!(ft_strncmp(line, "SO", 2)) && arch->so_texture[0] == '\0')
@@ -134,10 +131,7 @@ int		texture_checker(char *line, archparams_t *arch)
 	else if (line[0] == 'S' && arch->s_texture[0] == '\0')
 		arch->s_texture = identifytexture(line, i);
 	else if (tex[0] == '\0' && ft_strchr("FC", line[0]))
-	{
-		free(tex);
-		return (0);
-	}
+		return (free_return(tex));
 	else if (line[0] == 'F' && arch->f_color[0] == '\0')
 		arch->f_color = identifycolor(line, i);
 	else if (line[0] == 'C' && arch->c_color[0] == '\0')
