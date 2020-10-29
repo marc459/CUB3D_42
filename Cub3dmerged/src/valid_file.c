@@ -49,7 +49,26 @@ int		loop_gnl(archparams_t *arch, validmap_t *map, char *line)
 	if (map->m_top == 1 && map->m_bot == 0 && line[0] == '\0')
 		return (ft_puterror("El mapa es invalido"));
 	if (!param_sorting(arch, map, line, i))
+	{
+		free(map->colum_nums);
+		free(map->colum_spaces);
+		free(line);
+		if(arch->no_texture[0] != '\0')
+			free(arch->no_texture);
+		if(arch->so_texture[0] != '\0')
+			free(arch->so_texture);
+		if(arch->we_texture[0] != '\0')
+			free(arch->we_texture);
+		if(arch->ea_texture[0] != '\0')
+			free(arch->ea_texture);
+		if(arch->s_texture[0] != '\0')
+			free(arch->s_texture);
+		if(arch->f_color[0] != '\0')
+			free(arch->f_color);
+		if(arch->c_color[0] != '\0')
+			free(arch->c_color);
 		return (0);
+	}
 	free(line);
 	return (1);
 }

@@ -31,7 +31,7 @@ char	*identifycolor(char *line, int i)
 		if (line[i] != ',' && count <= 1)
 		{
 			free(str);
-			return ("");
+			return (ft_strdup(""));
 		}
 		if (line[i] != '\0')
 			i++;
@@ -42,14 +42,14 @@ char	*identifycolor(char *line, int i)
 		if (line[i] != ' ' && line[i] != '\t')
 		{
 			free(str);
-			return ("");
+			return (ft_strdup(""));
 		}
 		i++;
 	}
 	if (ft_strlen(str) != 8 || count != 3)
 	{
 		free(str);
-		return ("");
+		return (ft_strdup(""));
 	}
 	return (str);
 }
@@ -129,7 +129,9 @@ int		texture_checker(char *line, archparams_t *arch)
 		arch->ea_texture = identifytexture(line, i);
 	else if (line[0] == 'S' && arch->s_texture[0] == '\0')
 		arch->s_texture = identifytexture(line, i);
-	else if (tex[0] == '\0' && ft_strchr("FC", line[0]))
+	free(tex);
+	tex = identifycolor(line, i);
+	if (tex[0] == '\0' && ft_strchr("FC", line[0]))
 		return (free_return(tex));
 	else if (line[0] == 'F' && arch->f_color[0] == '\0')
 		arch->f_color = identifycolor(line, i);

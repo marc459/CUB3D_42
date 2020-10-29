@@ -54,7 +54,7 @@ BIBLIOGRAFIA:
 
 
 valgrind
-make compile && valgrind --leak-cheak=yes ./a.out map.cub
+make compile && valgrind --leak-check=yes ./a.out map.cub
 
 Para liberar toda la memoria locada- liberar las texturas anteriores a la textura que ha generado el error
 Liberar line al mostrar error
