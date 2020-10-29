@@ -92,3 +92,24 @@ void	multi_free(archparams_t *arch, validmap_t *map)
 	}
 	free(arch->worldMap);
 }
+void	multi_free_error(archparams_t *arch, validmap_t *map)
+{
+		free(map->colum_nums);
+		free(map->colum_spaces);
+		if(map->prev_line[0] != '\0')
+			free(map->prev_line);
+		if(arch->no_texture[0] != '\0')
+			free(arch->no_texture);
+		if(arch->so_texture[0] != '\0')
+			free(arch->so_texture);
+		if(arch->we_texture[0] != '\0')
+			free(arch->we_texture);
+		if(arch->ea_texture[0] != '\0')
+			free(arch->ea_texture);
+		if(arch->s_texture[0] != '\0')
+			free(arch->s_texture);
+		if(arch->f_color[0] != '\0')
+			free(arch->f_color);
+		if(arch->c_color[0] != '\0')
+			free(arch->c_color);
+}

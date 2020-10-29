@@ -216,4 +216,5 @@ char	*ft_strjoin_b(char *s1, char *s2);
 void save_map2(archparams_t *arch, validmap_t *map, int x, int y);
 int colum_spaces(char *line, validmap_t *map, int i);
 int free_return(char *str);
+void	multi_free_error(archparams_t *arch, validmap_t *map);
 #endif
