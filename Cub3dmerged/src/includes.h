@@ -169,7 +169,7 @@ int texture_checker(char *line, archparams_t *arch);
 int param_sorting(archparams_t *arch, validmap_t *map, char *line, int i);
 int arch_checker(char *mapfile, archparams_t *arch, validmap_t *map);
 int check_top_map(char *line, validmap_t *map, int i, int count);
-int sourrounding_walls(char *line, validmap_t *map, int i, int count);
+int sourrounding_walls(char *line, validmap_t *map, int i);
 int check_map_bowels(char *line, validmap_t *map, int i, int count);
 int numsearch(char *line, validmap_t *map, int *i, int *count);
 int check_bot_map(char *line, validmap_t *map, int i);
@@ -214,7 +214,7 @@ int		close_failure(char *message);
 void multi_free(archparams_t *arch,validmap_t *map);
 char	*ft_strjoin_b(char *s1, char *s2);
 void save_map2(archparams_t *arch, validmap_t *map, int x, int y);
-int colum_spaces(char *line, validmap_t *map, int i);
+int		colum_spaces(char *line, validmap_t *map, int *i, int x);
 int free_return(char *str);
 void	multi_free_error(archparams_t *arch, validmap_t *map);
 #endif

@@ -37,47 +37,51 @@ int		check_top_map(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-//int		colum_spaces(char *line, validmap_t *map, int i, int count)
+int		colum_spaces(char *line, validmap_t *map, int *i, int x)
+{
+	int tmp;
+	int count;
 
+	tmp = *i;
+	count = *i;
+	*i = *i + map->colum_spaces[x] + 1;
+	if (count == -1)
+	{
+		while (count < *i)
+		{
+			count++;
+			if (line[count] != '1' && line[count] != ' ')
+				return (0);
+		}
+	}
+	else
+	{
+		count = tmp + 1;
+		while (count < *i + 1 && count > 0)
+		{
+			if (line[count] != '1' && line[count] != ' '
+				&& count < (int)ft_strlen(line))
+				return (0);
+			count++;
+		}
+	}
+	return (1);
+}
 
-int		sourrounding_walls(char *line, validmap_t *map, int i, int count)
+int		sourrounding_walls(char *line, validmap_t *map, int i)
 {
 	int x;
-	int tmp;
 
 	x = 0;
-	tmp = 0;
 	while (map->colum_spaces[x] != 0 || map->colum_nums[x] != 0)
 	{
 		if (map->colum_spaces[x] != 0)
 		{
-			tmp = i;
-			count = i;
-			i = i + map->colum_spaces[x] + 1;
-			if (count == -1)
-			{
-				while (count < i)
-				{
-					count++;
-					if (line[count] != '1' && line[count] != ' ')
-						return (0);
-				}
-			}
-			else
-			{
-				count = tmp + 1;
-				while (count < i + 1 && count > 0)
-				{
-					if (line[count] != '1' && line[count] != ' '
-						&& count < (int)ft_strlen(line))
-						return (0);
-					count++;
-				}
-			}
+			if (!colum_spaces(line, map, &i, x))
+				return (0);
 		}
 		if (map->colum_nums[x] != 0)
 		{
-			count = map->last_0;
 			i = i + map->colum_nums[x] - 1;
 			if ((line[i] != '1' && line[i] != ' ')
 				&& ((int)ft_strlen(line) > i))
@@ -176,7 +180,7 @@ int		valid_map(char *line, validmap_t *map)
 	{
 		if (map->colum_spaces[0] > 0)
 			i = -1;
-		if (!sourrounding_walls(line, map, i, count))
+		if (!sourrounding_walls(line, map, i))
 			return (0);
 		i = 0;
 		init_map_checking_params(map);
