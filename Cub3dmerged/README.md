@@ -52,6 +52,14 @@ BIBLIOGRAFIA:
 -Functions of Minilibx
 	https://qst0.github.io/ft_libgfx/man_mlx_new_image.html
 
+
+valgrind
+make compile && valgrind --leak-cheak=yes ./a.out map.cub
+
+Para liberar toda la memoria locada- liberar las texturas anteriores a la textura que ha generado el error
+Liberar line al mostrar error
+
+
 ----PARTE OBLIGATORIA---
 Deepthrought - OK
 Keys - OK
