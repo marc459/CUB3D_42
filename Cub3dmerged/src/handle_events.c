@@ -12,7 +12,7 @@
 
 #include "includes.h"
 
-int		handle_events2(t_raycaster *rc)
+void	handle_events2(t_raycaster *rc)
 {
 	double olddirx;
 	double oldplanex;

@@ -221,7 +221,8 @@ int		check_prev_line(char *line, validmap_t *map, int *i, int count);
 int		color_checker(char *line, archparams_t *arch);
 int		identifycolor2(char *line, int i,char *str, int count);
 char	*free_return_str(char *str);
-int		init_raycast_params2(t_raycaster *rc, validmap_t *map);
-int		init_raycast_params3(t_raycaster *rc,
+void		init_raycast_params2(t_raycaster *rc, validmap_t *map);
+void		init_raycast_params3(t_raycaster *rc,
 		validmap_t *map, archparams_t *arch);
+void	handle_events2(t_raycaster *rc);
 #endif
