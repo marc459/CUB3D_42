@@ -57,10 +57,7 @@ int		main(int argc, char **argv)
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
-	{
-		multi_free_error(&arch, &map);
-		return (0);
-	}
+		return(multi_free_error(&arch, &map));
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
 	printf("Entra al programa\n");

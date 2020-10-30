@@ -160,6 +160,49 @@ void	drawMap(t_raycaster *rc)
 	}
 }
 
+void	draw_vert_line(t_raycaster *rc, int x)
+{
+	int color;
+	int y;
+	int pixel;
+
+	color = BLUE;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
+		color = WHITE;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 2)
+		color = GREEN;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 3)
+		color = GREEN;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 4)
+		color = RED;
+	if (rc->worldMap[rc->map_x][rc->map_y] == 5)
+		color = BLACK;
+	if (rc->side == 1)
+		color = color + 3000;
+	y = rc->draw_start;
+	if (rc->bpp != 32)
+		color = mlx_get_color_value(rc->mlx_ptr, color);
+	while (y < rc->draw_end)
+	{
+		pixel = (y * rc->win_x + x) * 4;
+		if (rc->endian == 1)
+		{
+			rc->img_data[pixel + 0] = (color >> 24);
+			rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 3] = (color) & 0xFF;
+		}
+		else if (rc->endian == 0)
+		{
+			rc->img_data[pixel + 0] = (color) & 0xFF;
+			rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 3] = (color >> 24);
+		}
+		y++;
+	}
+}
+
 void	floor_and_sky_draw(t_raycaster *rc, int x)
 {
 	int y;

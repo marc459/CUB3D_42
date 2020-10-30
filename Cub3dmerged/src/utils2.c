@@ -35,7 +35,7 @@ void	multi_free(archparams_t *arch, validmap_t *map)
 	free(arch->worldMap);
 }
 
-void	multi_free_error(archparams_t *arch, validmap_t *map)
+int		multi_free_error(archparams_t *arch, validmap_t *map)
 {
 	free(map->colum_nums);
 	free(map->colum_spaces);
@@ -55,6 +55,7 @@ void	multi_free_error(archparams_t *arch, validmap_t *map)
 		free(arch->f_color);
 	if (arch->c_color[0] != '\0')
 		free(arch->c_color);
+	return (0);
 }
 
 char	*free_return_str(char *str)

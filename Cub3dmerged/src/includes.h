@@ -216,9 +216,12 @@ char	*ft_strjoin_b(char *s1, char *s2);
 void save_map2(archparams_t *arch, validmap_t *map, int x, int y);
 int		colum_spaces(char *line, validmap_t *map, int *i, int x);
 int free_return(char *str);
-void	multi_free_error(archparams_t *arch, validmap_t *map);
+int		multi_free_error(archparams_t *arch, validmap_t *map);
 int		check_prev_line(char *line, validmap_t *map, int *i, int count);
 int		color_checker(char *line, archparams_t *arch);
 int		identifycolor2(char *line, int i,char *str, int count);
 char	*free_return_str(char *str);
+int		init_raycast_params2(t_raycaster *rc, validmap_t *map);
+int		init_raycast_params3(t_raycaster *rc,
+		validmap_t *map, archparams_t *arch);
 #endif
