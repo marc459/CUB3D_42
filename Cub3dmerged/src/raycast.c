@@ -136,40 +136,10 @@ void	floor_directions(t_raycaster *rc)
 	}
 }
 
-void	floor_and_sky_draw(t_raycaster *rc, int x)
-{
-	int y;
-
-	y = rc->draw_end + 1; //0 if linux
-	floor_directions(rc);
-	if (rc->draw_end < 0)
-		rc->draw_end = rc->win_y;
-	while (y < rc->win_y)
-	{
-		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
-		rc->weight = rc->currentdist / rc->perp_wall_dist;
-		rc->currentfloorx = rc->weight * rc->floorxwall +
-							(1.0 - rc->weight) * rc->player_pos_x;
-		rc->currentfloory = rc->weight * rc->floorywall +
-							(1.0 - rc->weight) * rc->player_pos_y;
-		rc->floortexx = (int)(rc->currentfloorx
-						* rc->tex_width) % rc->tex_width;
-		rc->floortexy = (int)(rc->currentfloory
-						* rc->tex_height) % rc->tex_height;
-		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
-				&rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
-				4 * rc->floortexy],
-				sizeof(int));
-		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
-				&rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
-				4 * rc->floortexy],
-				sizeof(int));
-		y++;
-	}
-}
-
 void	draw_wall(t_raycaster *rc, int x)
 {
+	if (rc->draw_end < 0)
+		rc->draw_end = rc->win_y;
 	if (rc->side == 1)
 		rc->tex_id = 2;
 	else
@@ -346,13 +316,7 @@ int		raycasting(t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
-		if (rc->textured == 0)
-			draw_vert_line(rc, x);
-		else
-		{
-			floor_and_sky_draw(rc, x);
-			draw_wall(rc, x);
-		}
+		draw_wall(rc, x);
 		x++;
 	}
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,

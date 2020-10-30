@@ -158,4 +158,66 @@ void	drawMap(t_raycaster *rc)
 		}
 		return (0);
 	}
-}*/
+}
+
+void	floor_and_sky_draw(t_raycaster *rc, int x)
+{
+	int y;
+
+	y = rc->draw_end + 1; //0 if linux
+	floor_directions(rc);
+	while (y < rc->win_y)
+	{
+		rc->currentdist = rc->win_y / (2.0 * y - rc->win_y);
+		rc->weight = rc->currentdist / rc->perp_wall_dist;
+		rc->currentfloorx = rc->weight * rc->floorxwall +
+							(1.0 - rc->weight) * rc->player_pos_x;
+		rc->currentfloory = rc->weight * rc->floorywall +
+							(1.0 - rc->weight) * rc->player_pos_y;
+		rc->floortexx = (int)(rc->currentfloorx
+						* rc->tex_width) % rc->tex_width;
+		rc->floortexy = (int)(rc->currentfloory
+						* rc->tex_height) % rc->tex_height;
+		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
+				&rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
+				4 * rc->floortexy],	sizeof(int));
+		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
+				&rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
+				4 * rc->floortexy],
+				sizeof(int));
+		y++;
+	}
+}
+
+int		raycasting(t_raycaster *rc)
+{
+	int x;
+
+	x = 0;
+	handle_events(rc);
+	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
+	rc->img_data = mlx_get_data_addr(rc->img_ptr,
+					&rc->bpp, &rc->size_line, &rc->endian);
+	while (x < rc->win_x)
+	{
+		motionless_2(rc, x);
+		motionless_3(rc);
+		dda(rc);
+		motionless_4(rc);
+		calcule_wall(rc);
+		if (rc->textured == 0)
+			draw_vert_line(rc, x);
+		else
+		{
+			floor_and_sky_draw(rc, x);
+			draw_wall(rc, x);
+		}
+		x++;
+	}
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
+						rc->img_ptr, rc->crouch, rc->crouch);
+	return (0);
+}
+
+
+*/
