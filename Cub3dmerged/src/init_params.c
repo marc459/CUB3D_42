@@ -42,7 +42,7 @@ void	init_map_checking_params(validmap_t *map)
 	}
 }
 
-int		init_raycast_params3(t_raycaster *rc,
+void	init_raycast_params3(t_raycaster *rc,
 		validmap_t *map, archparams_t *arch)
 {
 	rc->win_x = arch->win_x;
@@ -72,7 +72,7 @@ int		init_raycast_params3(t_raycaster *rc,
 	}
 }
 
-void		init_raycast_params2(t_raycaster *rc, validmap_t *map)
+void	init_raycast_params2(t_raycaster *rc, validmap_t *map)
 {
 	rc->player_pos_x = map->init_p_pos_y;
 	rc->player_pos_y = map->init_p_pos_x;
@@ -94,7 +94,7 @@ void		init_raycast_params2(t_raycaster *rc, validmap_t *map)
 	}
 }
 
-void		init_raycast_params(t_raycaster *rc,
+int		init_raycast_params(t_raycaster *rc,
 		archparams_t *arch, validmap_t *map)
 {
 	rc->mlx_ptr = NULL;
