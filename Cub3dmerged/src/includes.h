@@ -218,4 +218,7 @@ int		colum_spaces(char *line, validmap_t *map, int *i, int x);
 int free_return(char *str);
 void	multi_free_error(archparams_t *arch, validmap_t *map);
 int		check_prev_line(char *line, validmap_t *map, int *i, int count);
+int		color_checker(char *line, archparams_t *arch);
+int		identifycolor2(char *line, int i,char *str, int count);
+char	*free_return_str(char *str);
 #endif

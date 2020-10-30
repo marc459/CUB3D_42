@@ -56,3 +56,28 @@ void	multi_free_error(archparams_t *arch, validmap_t *map)
 	if (arch->c_color[0] != '\0')
 		free(arch->c_color);
 }
+
+char	*free_return_str(char *str)
+{
+	free(str);
+	return (ft_strdup(""));
+}
+
+int		identifycolor2(char *line, int i, char *str, int count)
+{
+	while (line[i] != '\0')
+	{
+		if (line[i] != ' ' && line[i] != '\t')
+		{
+			free(str);
+			return (0);
+		}
+		i++;
+	}
+	if (ft_strlen(str) != 8 || count != 3)
+	{
+		free(str);
+		return (0);
+	}
+	return (1);
+}
