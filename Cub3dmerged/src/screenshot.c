@@ -27,7 +27,6 @@ int		screenshot(t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
-		floor_and_sky_draw(rc, x);
 		draw_wall(rc, x);
 		x++;
 	}
