@@ -159,7 +159,7 @@ typedef struct validmap_s
 } validmap_t;
 
 int ft_puterror(char *str);
-int valid_map(char *line, validmap_t *map);
+int valid_map(char *line, validmap_t *map, int i);
 void init_map_checking_params(validmap_t *map);
 void init_arch_params(archparams_t *arch);
 void init_map_checking_params(validmap_t *map);
@@ -169,7 +169,7 @@ int texture_checker(char *line, archparams_t *arch);
 int param_sorting(archparams_t *arch, validmap_t *map, char *line, int i);
 int arch_checker(char *mapfile, archparams_t *arch, validmap_t *map);
 int check_top_map(char *line, validmap_t *map, int i, int count);
-int sourrounding_walls(char *line, validmap_t *map, int i);
+int sourrounding_walls(char *line, validmap_t *map, int i, int x);
 int check_map_bowels(char *line, validmap_t *map, int i, int count);
 int numsearch(char *line, validmap_t *map, int *i, int *count);
 int check_bot_map(char *line, validmap_t *map, int i);
@@ -217,4 +217,5 @@ void save_map2(archparams_t *arch, validmap_t *map, int x, int y);
 int		colum_spaces(char *line, validmap_t *map, int *i, int x);
 int free_return(char *str);
 void	multi_free_error(archparams_t *arch, validmap_t *map);
+int		check_prev_line(char *line, validmap_t *map, int *i, int count);
 #endif

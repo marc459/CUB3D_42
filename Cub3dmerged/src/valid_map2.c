@@ -32,3 +32,50 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count)
 	}
 	return (1);
 }
+
+int		colum_spaces(char *line, validmap_t *map, int *i, int x)
+{
+	int c;
+
+	c = *i;
+	*i = *i + map->colum_spaces[x] + 1;
+	x = *i;
+	if (c == -1)
+	{
+		while (c < *i)
+		{
+			c++;
+			if (line[c] != '1' && line[c] != ' ')
+				return (0);
+		}
+	}
+	else
+	{
+		c = x + 1;
+		while (c < *i + 1 && c > 0)
+		{
+			if (line[c] != '1' && line[c] != ' ' && c < (int)ft_strlen(line))
+				return (0);
+			c++;
+		}
+	}
+	return (1);
+}
+
+int		check_prev_line(char *line, validmap_t *map, int *i, int count)
+{
+	while (line[*i] == ' ')
+	{
+		if (((map->prev_line[*i] != '1' && map->prev_line[*i] != ' ')
+			|| (map->prev_line[*i - 1] != '1'
+			&& map->prev_line[*i - 1] != ' ' && *i > 0)
+			|| (map->prev_line[*i + 1] != '1'
+			&& map->prev_line[*i + 1] != ' '
+			&& map->prev_line[*i + 1] != '\0'))
+			&& (int)ft_strlen(map->prev_line) > *i)
+			return (0);
+		map->colum_spaces[count]++;
+		*i = *i + 1;
+	}
+	return (1);
+}

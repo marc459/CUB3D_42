@@ -31,7 +31,7 @@ int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
 	{
 		if (arch->parameters_count != 8)
 			return (ft_puterror("Faltan parametros para recorrer el mapa"));
-		if (!valid_map(line, map) || (map->m_top == 1 && line[0] == '\0'))
+		if (!valid_map(line, map, i) || (map->m_top == 1 && line[0] == '\0'))
 			return (ft_puterror("El mapa es invalido"));
 	}
 	else if (!ft_strchr("NSWESFC1", line[i]))
