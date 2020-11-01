@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/23 13:56:46 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:48:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 {
 	archparams_t	arch;
 	validmap_t		map;
-	//t_raycaster		rc;
+	t_raycaster		rc;
 
 	map.m_top = 0;
 	map.m_bot = 0;
@@ -57,11 +57,11 @@ int		main(int argc, char **argv)
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
-		return(multi_free_error(&arch, &map));
+		return (multi_free_error(&arch, &map));
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
 	printf("Entra al programa\n");
-	/*if (!init_raycast_params(&rc, &arch, &map))
+	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &key_press, &rc);
@@ -72,7 +72,7 @@ int		main(int argc, char **argv)
 		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
 	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
-	mlx_loop(rc.mlx_ptr);*/
+	mlx_loop(rc.mlx_ptr);
 	multi_free(&arch, &map);
-	return (EXIT_SUCCESS);
+	close_success(&rc);
 }

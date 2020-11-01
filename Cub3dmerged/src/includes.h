@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/28 13:00:47 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:23:24 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 #define INIT_P_PLANE_X 0
 #define INIT_P_PLANE_Y 0.66
-#define MV_SPEED 0.400 //0.199
-#define ROT_SPEED 0.1745
+#define MV_SPEED 0.200 //0.199
+#define ROT_SPEED 0.1345 //0.1745
 #define AMB_LIGHT 7
 
 // Colors
@@ -204,7 +204,7 @@ void load_textures(t_raycaster *rc);
 void load_textures_2(t_raycaster *rc);
 
 int screenshot(t_raycaster *rc);
-int			save_bmp(t_raycaster *rc);
+void save_bmp(t_raycaster *rc);
 int	write_bmp_data(int file, t_raycaster *rc, int pad);
 int	get_color(t_raycaster *rc, int x, int y);
 int	write_bmp_header(int fd, int filesize, t_raycaster *rc);
@@ -225,4 +225,5 @@ void		init_raycast_params2(t_raycaster *rc, validmap_t *map);
 void		init_raycast_params3(t_raycaster *rc,
 		validmap_t *map, archparams_t *arch);
 void	handle_events2(t_raycaster *rc);
+void write_data_header(t_raycaster *rc, int size, int fd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:27:47 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:49:17 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		screenshot(t_raycaster *rc)
 	int x;
 
 	x = 0;
+	handle_events(rc);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr,
 				&rc->bpp, &rc->size_line, &rc->endian);
@@ -30,7 +31,8 @@ int		screenshot(t_raycaster *rc)
 		draw_wall(rc, x);
 		x++;
 	}
+	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
+							rc->img_ptr, 0, 0);
 	save_bmp(rc);
-	close_success(rc);
 	return (0);
 }

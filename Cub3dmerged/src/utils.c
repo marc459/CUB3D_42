@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/28 13:51:11 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/01 12:54:56 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_puterror(char *str)
 int		close_success(t_raycaster *rc)
 {
 	(void)rc;
-	//mlx_destroy_window(rc->mlx_ptr, rc->win_ptr);
+	mlx_destroy_window(rc->mlx_ptr, rc->win_ptr);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/23 14:11:55 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/10/31 12:45:04 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_raycast_params3(t_raycaster *rc,
 	rc->tex_height = 64;
 	rc->tex_width = 64;
 	rc->tex_side = 1;
-	rc->movespeed = 0.300;
+	rc->movespeed = 0.200;
 	rc->up = 0;
 	rc->down = 0;
 	rc->right = 0;

@@ -65,7 +65,9 @@ Deepthrought - OK
 Keys - OK
 Flags - OK
 Leaks - OK
-Norminette
+Norminette - OK
+Bmp
+Controlar resolucion
 bonus part(makefile rule and modularization)
 
 --------BONUS--------
