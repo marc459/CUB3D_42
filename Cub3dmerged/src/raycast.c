@@ -88,6 +88,12 @@ int		raycasting(t_raycaster *rc)
 		x++;
 	}
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
-						rc->img_ptr, 0, 0);
+					rc->img_ptr, 0, 0);
+	if(rc->buff_bmp == 1)
+	{
+		printf("Saving image...");
+		save_bmp(rc);
+		close_success(rc);
+	}
 	return (0);
 }

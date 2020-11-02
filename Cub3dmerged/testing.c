@@ -43,6 +43,48 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	printf("\n\n");
 }
 
+void	drawMap(t_raycaster *rc)
+{
+	int y;
+	int x;
+	int printplayer_X;
+	int printplayer_Y;
+	int x_wall;
+	int y_wall;
+	int tmpx;
+	int tmpy;
+
+	x = 0;
+	y = 0;
+	x_wall = 10;
+	y_wall = 10;
+	printplayer_X = rc->player_pos_y * 10;
+	printplayer_Y = rc->player_pos_x * 10;
+	tmpx = printplayer_X;
+	tmpy = printplayer_Y;
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx, tmpy, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy - 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
+	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
+
+	while (x < rc->mapHeight)
+	{
+		while (y < rc->mapWidth)
+		{
+			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2)
+				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr,
+							x_wall, y_wall, 0xFA2C00);
+			y++;
+			x_wall = x_wall + 10;
+		}
+		y = 0;
+		x++;
+		x_wall = 10;
+		y_wall = y_wall + 10;
+	}
+}
+
 /*void ace_of_empires(int i,...)
 {
 va_list var_args;
@@ -99,6 +141,7 @@ void	drawMap(t_raycaster *rc)
 		x_wall = 10;
 		y_wall = y_wall + 10;
 	}
+}
 
 	int		key_press(int key, t_raycaster *rc)
 	{
@@ -158,7 +201,6 @@ void	drawMap(t_raycaster *rc)
 		}
 		return (0);
 	}
-}
 
 void	draw_vert_line(t_raycaster *rc, int x)
 {

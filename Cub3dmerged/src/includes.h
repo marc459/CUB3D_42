@@ -124,6 +124,7 @@ typedef struct s_raycaster
 	double weight;
 	int floortexx;
 	int floortexy;
+	int buff_bmp;
 
 } t_raycaster;
 
@@ -204,7 +205,7 @@ void load_textures(t_raycaster *rc);
 void load_textures_2(t_raycaster *rc);
 
 int screenshot(t_raycaster *rc);
-void save_bmp(t_raycaster *rc);
+int save_bmp(t_raycaster *rc);
 int	write_bmp_data(int file, t_raycaster *rc, int pad);
 int	get_color(t_raycaster *rc, int x, int y);
 int	write_bmp_header(int fd, int filesize, t_raycaster *rc);

@@ -20,7 +20,7 @@ int		screenshot(t_raycaster *rc)
 	handle_events(rc);
 	rc->img_ptr = mlx_new_image(rc->mlx_ptr, rc->win_x, rc->win_y);
 	rc->img_data = mlx_get_data_addr(rc->img_ptr,
-				&rc->bpp, &rc->size_line, &rc->endian);
+					&rc->bpp, &rc->size_line, &rc->endian);
 	while (x < rc->win_x)
 	{
 		motionless_2(rc, x);
@@ -32,7 +32,13 @@ int		screenshot(t_raycaster *rc)
 		x++;
 	}
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
-							rc->img_ptr, 0, 0);
-	save_bmp(rc);
+						rc->img_ptr, 0, 0);
+	if(rc->buff_bmp == 1)
+	{
+		save_bmp(rc);
+		close_success(rc);
+	}
+
+	rc->buff_bmp = 1;
 	return (0);
 }

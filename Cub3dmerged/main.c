@@ -63,13 +63,14 @@ int		main(int argc, char **argv)
 	printf("Entra al programa\n");
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
+	rc.mlx_ptr = mlx_init();
+	rc.win_ptr = mlx_new_window(rc.mlx_ptr, rc.win_x, rc.win_y, "mx 42");
 	load_textures(&rc);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &key_press, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &key_release, &rc);
 	if (argc == 3)
-		mlx_loop_hook(rc.mlx_ptr, &screenshot, &rc);
-	else
-		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
+		rc.buff_bmp = 1;
+	mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
 	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	mlx_loop(rc.mlx_ptr);

@@ -99,12 +99,13 @@ int		init_raycast_params(t_raycaster *rc,
 {
 	rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;
+	rc->buff_bmp = 0;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
-	if (!(rc->mlx_ptr = mlx_init()))
+	/*if (!(rc->mlx_ptr = mlx_init()))
 		return (ft_puterror("Inicio de Minilibx fallida\n"));
 	if (!(rc->win_ptr =
 		mlx_new_window(rc->mlx_ptr, rc->win_x, rc->win_y, "mx 42")))
-		return (ft_puterror("Proceso de creacion de Ventana fallida\n"));
+		return (ft_puterror("Proceso de creacion de Ventana fallida\n"));*/
 	return (1);
 }

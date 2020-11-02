@@ -77,3 +77,4 @@ Sonidos(mac -> afplay sound.wav &, linux -> aplay sound,wav &)
 Skybox
 Barra de vida
 animaciones
+bloque que sube y baja, si te toca te mata
