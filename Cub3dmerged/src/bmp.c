@@ -6,92 +6,80 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/01 14:51:21 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:18:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void	set_int_char(unsigned char *start, int value)
+typedef struct s_bitmap
 {
-	start[0] = (unsigned char)(value);
-	start[1] = (unsigned char)(value >> 8);
-	start[2] = (unsigned char)(value >> 16);
-	start[3] = (unsigned char)(value >> 24);
+	unsigned int filesize;
+	unsigned short reserved1;
+	unsigned short reserved2;
+	unsigned int pixeldataoffset;
+	unsigned int headersize;
+	unsigned int imagewidth;
+	unsigned int imageheight;
+	unsigned short planes;
+	unsigned short bitsperpixel;
+	unsigned int compression;
+	unsigned int imagesize;
+	unsigned int xpixelspermeter;
+	unsigned int ypixelspermeter;
+	unsigned int totalcolors;
+	unsigned int importantcolors;
+} t_bitmap;
+
+static t_bitmap fill_header(t_raycaster *rc)
+{
+	t_bitmap header;
+
+	ft_memset(&header, 0, sizeof(header));
+	header.filesize = (rc->win_x * rc->win_y * (rc->bpp / 8)) + 54;
+	header.pixeldataoffset = 54;
+	header.headersize = 40;
+	header.imagewidth = rc->win_x;
+	header.imageheight = rc->win_y;
+	header.planes = 1;
+	header.bitsperpixel = rc->bpp;
+	header.imagesize = rc->win_x * rc->win_y * (rc->bpp / 8);
+	return (header);
 }
 
-int		write_bmp_header(int fd, int filesize, t_raycaster *rc)
+static void file_write( int fd, const void *buf, ssize_t len)
 {
-	int				i;
-	unsigned char	bmpfileheader[54];
-
-	i = 0;
-	while (i < 54)
-		bmpfileheader[i++] = (unsigned char)(0);
-	bmpfileheader[0] = (unsigned char)('B');
-	bmpfileheader[1] = (unsigned char)('M');
-	set_int_char(bmpfileheader + 2, filesize);
-	bmpfileheader[10] = (unsigned char)(54);
-	bmpfileheader[14] = (unsigned char)(40);
-	set_int_char(bmpfileheader + 18, rc->win_x);
-	set_int_char(bmpfileheader + 22, rc->win_y);
-	bmpfileheader[27] = (unsigned char)(1);
-	bmpfileheader[28] = (unsigned char)(24);
-	return (!(write(fd, bmpfileheader, 54) < 0));
-}
-
-int		get_color(t_raycaster *rc, int x, int y)
-{
-	int	rgb;
-	int	color;
-
-	color = *(int*)(rc->img_data + (4 * (int)rc->win_x *
-	((int)rc->win_y - 1 - y)) + (4 * x));
-	rgb = (color & 0xFF0000) | (color & 0x00FF00) | (color & 0x0000FF);
-	return (rgb);
-}
-
-int		write_bmp_data(int file, t_raycaster *rc, int pad)
-{
-	const unsigned char zero[3] = {0, 0, 0};
-	int					i;
-	int					j;
-	int					color;
-
-	i = 0;
-	while (i < (int)rc->win_y)
+	if (write(fd, buf, len) != len)
 	{
-		j = 0;
-		while (j < (int)rc->win_x)
-		{
-			color = get_color(rc, j, i);
-			if (write(file, &color, 3) < 0)
-				return (0);
-			if (pad > 0 && write(file, &zero, pad) < 0)
-				return (0);
-			j++;
-		}
+		perror("Error\nfile_write");
+		exit(-1);
+	}
+}
+
+int save_bmp(t_raycaster *rc)
+{
+	int fd;
+	t_bitmap bmp;
+	int i;
+	unsigned int *line;
+
+	rc->img_data = mlx_get_data_addr(rc->img_ptr,
+					&rc->bpp, &rc->size_line, &rc->endian);
+	fd = open("screenshot.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	bmp = fill_header(rc);
+	if (fd < 0)
+		return (1);
+	file_write( fd, "BM", 2);
+	file_write( fd, &bmp, sizeof(bmp));
+	i = 0;
+	while (i < rc->win_y)
+	{
+		line = (unsigned int *)&rc->img_data[(rc->win_y - i - 1) *
+												 rc->size_line];
+		file_write( fd, line, rc->size_line);
 		i++;
 	}
-	return (1);
-}
-
-int		save_bmp(t_raycaster *rc)
-{
-	int	filesize;
-	int	file;
-	int	pad;
-
-	pad = (4 - ((int)rc->win_x * 3) % 4) % 4;
-	filesize = 54 + (3 * ((int)rc->win_x + pad)
-	* (int)rc->win_y);
-	if ((file = open("screenshot.bmp", O_WRONLY | O_CREAT
-	| O_TRUNC | O_APPEND, 777)) < 0)
-		return (0);
-	if (!write_bmp_header(file, filesize, rc))
-		return (0);
-	if (!write_bmp_data(file, rc, pad))
-		return (0);
-	close(file);
-	return (1);
+	if (close(fd) == -1)
+		return (1);
+	return (0);
 }

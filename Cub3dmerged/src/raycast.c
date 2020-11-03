@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/01 14:40:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 11:50:30 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ int		raycasting(t_raycaster *rc)
 	if(rc->buff_bmp == 1)
 	{
 		printf("Saving image...");
+		system("sleep 2");
 		save_bmp(rc);
 		close_success(rc);
 	}
+	rc->buff_bmp = 1;
 	return (0);
 }
