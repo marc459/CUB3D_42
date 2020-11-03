@@ -6,32 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 12:18:07 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:42:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-typedef struct s_bitmap
-{
-	unsigned int filesize;
-	unsigned short reserved1;
-	unsigned short reserved2;
-	unsigned int pixeldataoffset;
-	unsigned int headersize;
-	unsigned int imagewidth;
-	unsigned int imageheight;
-	unsigned short planes;
-	unsigned short bitsperpixel;
-	unsigned int compression;
-	unsigned int imagesize;
-	unsigned int xpixelspermeter;
-	unsigned int ypixelspermeter;
-	unsigned int totalcolors;
-	unsigned int importantcolors;
-} t_bitmap;
-
-static t_bitmap fill_header(t_raycaster *rc)
+static t_bitmap	fill_header(t_raycaster *rc)
 {
 	t_bitmap header;
 
@@ -47,7 +28,7 @@ static t_bitmap fill_header(t_raycaster *rc)
 	return (header);
 }
 
-static void file_write( int fd, const void *buf, ssize_t len)
+static void		file_write(int fd, const void *buf, ssize_t len)
 {
 	if (write(fd, buf, len) != len)
 	{
@@ -56,12 +37,12 @@ static void file_write( int fd, const void *buf, ssize_t len)
 	}
 }
 
-int save_bmp(t_raycaster *rc)
+int				save_bmp(t_raycaster *rc)
 {
-	int fd;
-	t_bitmap bmp;
-	int i;
-	unsigned int *line;
+	int				fd;
+	t_bitmap		bmp;
+	int				i;
+	unsigned int	*line;
 
 	rc->img_data = mlx_get_data_addr(rc->img_ptr,
 					&rc->bpp, &rc->size_line, &rc->endian);
@@ -69,14 +50,14 @@ int save_bmp(t_raycaster *rc)
 	bmp = fill_header(rc);
 	if (fd < 0)
 		return (1);
-	file_write( fd, "BM", 2);
-	file_write( fd, &bmp, sizeof(bmp));
+	file_write(fd, "BM", 2);
+	file_write(fd, &bmp, sizeof(bmp));
 	i = 0;
 	while (i < rc->win_y)
 	{
 		line = (unsigned int *)&rc->img_data[(rc->win_y - i - 1) *
-												 rc->size_line];
-		file_write( fd, line, rc->size_line);
+				rc->size_line];
+		file_write(fd, line, rc->size_line);
 		i++;
 	}
 	if (close(fd) == -1)

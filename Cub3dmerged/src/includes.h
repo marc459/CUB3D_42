@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/01 14:23:24 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:40:25 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@
 #define GREEN 0x00FF00
 #define BLUE 0x0000FF
 #define BLACK 0x000000
+
+typedef struct s_bitmap
+{
+	unsigned int filesize;
+	unsigned short reserved1;
+	unsigned short reserved2;
+	unsigned int pixeldataoffset;
+	unsigned int headersize;
+	unsigned int imagewidth;
+	unsigned int imageheight;
+	unsigned short planes;
+	unsigned short bitsperpixel;
+	unsigned int compression;
+	unsigned int imagesize;
+	unsigned int xpixelspermeter;
+	unsigned int ypixelspermeter;
+	unsigned int totalcolors;
+	unsigned int importantcolors;
+} t_bitmap;
 
 typedef struct s_img
 {
@@ -124,7 +143,7 @@ typedef struct s_raycaster
 	double weight;
 	int floortexx;
 	int floortexy;
-	int buff_bmp;
+	int save_bmp;
 
 } t_raycaster;
 
