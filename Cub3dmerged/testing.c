@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:37:53 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 13:22:35 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,6 +303,6 @@ int		raycasting(t_raycaster *rc)
 						rc->img_ptr, rc->crouch, rc->crouch);
 	return (0);
 }
-
+//mlx_mouse_hook(rc.win_ptr, &key_press, &rc);
 
 */

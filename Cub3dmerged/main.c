@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 12:43:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/03 13:22:42 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		main(int argc, char **argv)
 		return (multi_free_error(&arch, &map));
 	save_map(argv[1], &arch, &map);
 	print_params(&arch, &map);
-	printf("Entra al programa\n");
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
