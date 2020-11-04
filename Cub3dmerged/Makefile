@@ -1,3 +1,4 @@
+NAME = Cub3D
 CC = gcc -g
 
 FLAGS = -Wall -Wextra -Werror
@@ -19,8 +20,6 @@ endif
 ifeq ($(detected_OS),Linux)
     MLXFLAGS = -lm -lbsd -lmlx -lXext -lX11
 endif
-
-NAME = cub3d.a
 
 CHECKLEAKS=/Applications/Xcode.app/Contents/Developer/usr/lib/libLeaksAtExit.dylib leaks -atExit -- ./a.out map.cub
 
@@ -62,31 +61,19 @@ LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
 
-all: $(NAME)
+all: run
 
-$(NAME): $(OBJ) $(OBJLIB)
-	@ar rc $(NAME) $(OBJ) $(OBJLIB)
-	@ranlib $(NAME)
-
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
-
-$(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
-	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
 compile:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
 run:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)
 
 fclean: clean
-	@rm -rf $(NAME) a.out
-	@rm -rf $(OBJ_PATH)
+	@rm -rf $(NAME)
 
 re: fclean all
 
