@@ -33,8 +33,8 @@ Texturas:
 	mlx_new_image, mlx_get_data_addr
 
 Funciones auxiliares e inecesario para probar el funcionamiento del programa:
-void	drawMap(t_raycaster *rc);
-void	print_params(archparams_t	*arch, validmap_t *map);
+void	draw_map(t_raycaster *rc);
+void	print_params(t_archparams	*arch, t_validmap *map);
 
 Compilar cub3d en ubuntu
 clang -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11

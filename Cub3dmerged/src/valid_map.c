@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 14:36:01 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:53:00 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-int		check_top_map(char *line, validmap_t *map, int i, int count)
+int		check_top_map(char *line, t_validmap *map, int i, int count)
 {
 	while (line[i] != '\0')
 	{
@@ -37,7 +37,7 @@ int		check_top_map(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-int		sourrounding_walls(char *line, validmap_t *map, int i, int x)
+int		sourrounding_walls(char *line, t_validmap *map, int i, int x)
 {
 	while (map->colum_spaces[x] != 0 || map->colum_nums[x] != 0)
 	{
@@ -64,7 +64,7 @@ int		sourrounding_walls(char *line, validmap_t *map, int i, int x)
 	return (1);
 }
 
-int		check_map_bowels(char *line, validmap_t *map, int i, int count)
+int		check_map_bowels(char *line, t_validmap *map, int i, int count)
 {
 	while (line[i] != '\0')
 	{
@@ -91,7 +91,7 @@ int		check_map_bowels(char *line, validmap_t *map, int i, int count)
 	return (1);
 }
 
-int		check_bot_map(char *line, validmap_t *map, int i)
+int		check_bot_map(char *line, t_validmap *map, int i)
 {
 	int bottom;
 
@@ -119,7 +119,7 @@ int		check_bot_map(char *line, validmap_t *map, int i)
 	return (1);
 }
 
-int		valid_map(char *line, validmap_t *map, int i)
+int		valid_map(char *line, t_validmap *map, int i)
 {
 	int c;
 
@@ -141,8 +141,8 @@ int		valid_map(char *line, validmap_t *map, int i)
 		if (!check_map_bowels(line, map, i, c) || !check_bot_map(line, map, i))
 			return (0);
 	}
-	if ((int)ft_strlen(line) > map->mapWidth)
-		map->mapWidth = ft_strlen(line);
+	if ((int)ft_strlen(line) > map->map_width)
+		map->map_width = ft_strlen(line);
 	map->m_line++;
 	map->prev_line = ft_strdup(line);
 	return (1);

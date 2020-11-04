@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/24 14:06:15 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:45:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-int		numsearch(char *line, validmap_t *map, int *i, int *count)
+int		numsearch(char *line, t_validmap *map, int *i, int *count)
 {
 	while (((line[i[0]] >= '0' && line[i[0]] <= '2')
 	|| ft_strchr("NSEW", line[i[0]])) && line[i[0]] != '\0')
@@ -33,7 +33,7 @@ int		numsearch(char *line, validmap_t *map, int *i, int *count)
 	return (1);
 }
 
-int		colum_spaces(char *line, validmap_t *map, int *i, int x)
+int		colum_spaces(char *line, t_validmap *map, int *i, int x)
 {
 	int c;
 
@@ -62,7 +62,7 @@ int		colum_spaces(char *line, validmap_t *map, int *i, int x)
 	return (1);
 }
 
-int		check_prev_line(char *line, validmap_t *map, int *i, int count)
+int		check_prev_line(char *line, t_validmap *map, int *i, int count)
 {
 	while (line[*i] == ' ')
 	{

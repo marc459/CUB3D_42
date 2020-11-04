@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 12:10:59 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:50:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	dda(t_raycaster *rc)
 			rc->map_y += rc->stepy;
 			rc->side = 1;
 		}
-		if (rc->worldMap[rc->map_x][rc->map_y] > 0)
+		if (rc->world_map[rc->map_x][rc->map_y] > 0)
 			rc->hit = 1;
 	}
 }
@@ -118,7 +118,7 @@ void	draw_wall(t_raycaster *rc, int x)
 
 void	calcule_wall(t_raycaster *rc)
 {
-	rc->tex_id = rc->worldMap[rc->map_x][rc->map_y] + rc->tex_side;
+	rc->tex_id = rc->world_map[rc->map_x][rc->map_y] + rc->tex_side;
 	if (rc->side == 0)
 		rc->wallx = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_y;
 	else

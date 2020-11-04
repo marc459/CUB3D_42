@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/28 13:51:11 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:52:15 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void	multi_free(archparams_t *arch, validmap_t *map)
+void	multi_free(t_archparams *arch, t_validmap *map)
 {
 	int x;
 
@@ -29,13 +29,13 @@ void	multi_free(archparams_t *arch, validmap_t *map)
 	free(map->colum_nums);
 	while (x < map->m_line)
 	{
-		free(arch->worldMap[x]);
+		free(arch->world_map[x]);
 		x++;
 	}
-	free(arch->worldMap);
+	free(arch->world_map);
 }
 
-int		multi_free_error(archparams_t *arch, validmap_t *map)
+int		multi_free_error(t_archparams *arch, t_validmap *map)
 {
 	free(map->colum_nums);
 	free(map->colum_spaces);

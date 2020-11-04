@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:31:44 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:54:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct		s_raycaster
 	t_img			tex[12];
 	int				win_x;
 	int				win_y;
-	int				**worldMap;
+	int				**world_map;
 	double			player_pos_x;
 	double			player_pos_y;
 	double			player_dir_x;
@@ -104,8 +104,8 @@ typedef struct		s_raycaster
 	double			player_plane_y;
 	double			ray_dir_x;
 	double			ray_dir_y;
-	int				mapWidth;
-	int				mapHeight;
+	int				map_width;
+	int				map_height;
 	int				map_x;
 	int				map_y;
 	double			side_dist_x;
@@ -147,7 +147,7 @@ typedef struct		s_raycaster
 
 }					t_raycaster;
 
-typedef struct		archparams_s
+typedef struct		s_archparams
 {
 	int				win_x;
 	int				win_y;
@@ -158,15 +158,15 @@ typedef struct		archparams_s
 	char			*s_texture;
 	char			*f_color;
 	char			*c_color;
-	int				**worldMap;
+	int				**world_map;
 	int				parameters_count;
-}					archparams_t;
+}					t_archparams;
 
-typedef struct		validmap_s
+typedef struct		s_validmap
 {
 	int				m_top;
 	int				m_bot;
-	int				mapWidth;
+	int				map_width;
 	char			**map;
 	int				*colum_spaces;
 	int				*colum_nums;
@@ -176,47 +176,47 @@ typedef struct		validmap_s
 	int				init_p_pos_y;
 	int				last_0;
 	char			*prev_line;
-}					validmap_t;
+}					t_validmap;
 
 int					ft_puterror(char *str);
-int					valid_map(char *line, validmap_t *map, int i);
-void				init_map_checking_params(validmap_t *map);
-void				init_arch_params(archparams_t *arch);
-void				init_map_checking_params(validmap_t *map);
-int					identifyresolution(char *line, archparams_t *arch);
+int					valid_map(char *line, t_validmap *map, int i);
+void				init_map_checking_params(t_validmap *map);
+void				init_arch_params(t_archparams *arch);
+void				init_map_checking_params(t_validmap *map);
+int					identifyresolution(char *line, t_archparams *arch);
 char				*identifytexture(char *line, int i);
-int					texture_checker(char *line, archparams_t *arch);
-int					param_sorting(archparams_t *arch,
-					validmap_t *map, char *line, int i);
+int					texture_checker(char *line, t_archparams *arch);
+int					param_sorting(t_archparams *arch,
+					t_validmap *map, char *line, int i);
 int					arch_checker(char *mapfile,
-					archparams_t *arch, validmap_t *map);
-int					check_top_map(char *line, validmap_t *map,
+					t_archparams *arch, t_validmap *map);
+int					check_top_map(char *line, t_validmap *map,
 					int i, int count);
 int					sourrounding_walls(char *line,
-					validmap_t *map, int i, int x);
+					t_validmap *map, int i, int x);
 int					check_map_bowels(char *line,
-					validmap_t *map, int i, int count);
-int					numsearch(char *line, validmap_t *map, int *i, int *count);
-int					check_bot_map(char *line, validmap_t *map, int i);
+					t_validmap *map, int i, int count);
+int					numsearch(char *line, t_validmap *map, int *i, int *count);
+int					check_bot_map(char *line, t_validmap *map, int i);
 void				save_map(char *mapfile,
-					archparams_t *arch, validmap_t *map);
-void				loop_map(archparams_t *arch,
-					validmap_t *map, char *line, int *x);
-int					loop_gnl(archparams_t *arch, validmap_t *map, char *line);
+					t_archparams *arch, t_validmap *map);
+void				loop_map(t_archparams *arch,
+					t_validmap *map, char *line, int *x);
+int					loop_gnl(t_archparams *arch, t_validmap *map, char *line);
 char				*identifycolor(char *line, int i);
 int					key_press(int key, t_raycaster *rc);
 int					key_release(int key, t_raycaster *rc);
 int					raycasting(t_raycaster *rc);
 int					init_raycast_params(t_raycaster *rc,
-					archparams_t *arch, validmap_t *map);
-void				print_params(archparams_t *arch, validmap_t *map);
+					t_archparams *arch, t_validmap *map);
+void				print_params(t_archparams *arch, t_validmap *map);
 void				refresh_screen(t_raycaster *rc);
 void				initial_calc(t_raycaster *rc, int x);
 void				perform_dda(t_raycaster *rc);
 void				calc_wall_height(t_raycaster *rc);
 void				draw_vert_line(t_raycaster *rc, int x);
 int					handle_events(t_raycaster *rc);
-void				drawMap(t_raycaster *rc);
+void				draw_map(t_raycaster *rc);
 int					motionless(t_raycaster *rc);
 void				motionless_2(t_raycaster *rc, int x);
 void				motionless_3(t_raycaster *rc);
@@ -237,21 +237,21 @@ int					write_bmp_header(int fd, int filesize, t_raycaster *rc);
 void				set_int_char(unsigned char *start, int value);
 int					close_success(t_raycaster *rc);
 int					close_failure(char *message);
-void				multi_free(archparams_t *arch, validmap_t *map);
+void				multi_free(t_archparams *arch, t_validmap *map);
 char				*ft_strjoin_b(char *s1, char *s2);
-void				save_map2(archparams_t *arch,
-					validmap_t *map, int x, int y);
-int					colum_spaces(char *line, validmap_t *map, int *i, int x);
+void				save_map2(t_archparams *arch,
+					t_validmap *map, int x, int y);
+int					colum_spaces(char *line, t_validmap *map, int *i, int x);
 int					free_return(char *str);
-int					multi_free_error(archparams_t *arch, validmap_t *map);
+int					multi_free_error(t_archparams *arch, t_validmap *map);
 int					check_prev_line(char *line,
-					validmap_t *map, int *i, int count);
-int					color_checker(char *line, archparams_t *arch);
+					t_validmap *map, int *i, int count);
+int					color_checker(char *line, t_archparams *arch);
 int					identifycolor2(char *line, int i, char *str, int count);
 char				*free_return_str(char *str);
-void				init_raycast_params2(t_raycaster *rc, validmap_t *map);
+void				init_raycast_params2(t_raycaster *rc, t_validmap *map);
 void				init_raycast_params3(t_raycaster *rc,
-					validmap_t *map, archparams_t *arch);
+					t_validmap *map, t_archparams *arch);
 void				handle_events2(t_raycaster *rc);
 void				write_data_header(t_raycaster *rc, int size, int fd);
 #endif

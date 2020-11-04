@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 11:33:36 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:53:00 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int		parameter_management(int count_params, char **params)
 
 int		main(int argc, char **argv)
 {
-	archparams_t	arch;
-	validmap_t		map;
+	t_archparams	arch;
+	t_validmap		map;
 	t_raycaster		rc;
 
 	map.m_top = 0;
 	map.m_bot = 0;
 	map.m_line = 0;
 	map.prev_line = "";
-	map.mapWidth = 0;
+	map.map_width = 0;
 	map.player_dir = '\0';
 	init_map_checking_params(&map);
 	init_arch_params(&arch);

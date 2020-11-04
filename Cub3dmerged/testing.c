@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 13:22:35 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:54:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "src/includes.h"
 
-void	print_params(archparams_t *arch, validmap_t *map)
+void	print_params(t_archparams *arch, t_validmap *map)
 {
 	int x;
 	int y;
@@ -21,7 +21,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	y = 0;
 	printf("%s-------YOU ARE IN %s OPERARIVE SYSTEM-------%s\n\n", Red, SO, Color_Off);
 	printf("Resolution: %d*%d\n", arch->win_x, arch->win_y);
-	printf("Dimensiones: %d,%d\n", map->mapWidth,map->m_line);
+	printf("Dimensiones: %d,%d\n", map->map_width,map->m_line);
 	printf("no_texture: %s\n", arch->no_texture);
 	printf("so_texture: %s\n", arch->so_texture);
 	printf("we_texture: %s\n", arch->we_texture);
@@ -31,9 +31,9 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	printf("f_color: %s\nMap:\n", arch->f_color);
 	while (x < map->m_line)
 	{
-		while (y < map->mapWidth)
+		while (y < map->map_width)
 		{
-			printf("%d", arch->worldMap[x][y]);
+			printf("%d", arch->world_map[x][y]);
 			y++;
 		}
 		printf("\n");
@@ -43,7 +43,7 @@ void	print_params(archparams_t *arch, validmap_t *map)
 	printf("\n\n");
 }
 
-void	drawMap(t_raycaster *rc)
+void	draw_map(t_raycaster *rc)
 {
 	int y;
 	int x;
@@ -68,11 +68,11 @@ void	drawMap(t_raycaster *rc)
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
 
-	while (x < rc->mapHeight)
+	while (x < rc->map_height)
 	{
-		while (y < rc->mapWidth)
+		while (y < rc->map_width)
 		{
-			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2)
+			if (rc->world_map[x][y] == 1 || rc->world_map[x][y] == 2)
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr,
 							x_wall, y_wall, 0xFA2C00);
 			y++;
@@ -101,7 +101,7 @@ while(i > 0)
 va_end(var_args);
 }
 
-void	drawMap(t_raycaster *rc)
+void	draw_map(t_raycaster *rc)
 {
 	int y;
 	int x;
@@ -126,11 +126,11 @@ void	drawMap(t_raycaster *rc)
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx - 1, tmpy + 1, 0x33FF3C);
 	mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, tmpx + 1, tmpy - 1, 0x33FF3C);
 
-	while (x < rc->mapHeight)
+	while (x < rc->map_height)
 	{
-		while (y < rc->mapWidth)
+		while (y < rc->map_width)
 		{
-			if (rc->worldMap[x][y] == 1 || rc->worldMap[x][y] == 2)
+			if (rc->world_map[x][y] == 1 || rc->world_map[x][y] == 2)
 				mlx_pixel_put(rc->mlx_ptr, rc->win_ptr,
 							x_wall, y_wall, 0xFA2C00);
 			y++;
@@ -209,15 +209,15 @@ void	draw_vert_line(t_raycaster *rc, int x)
 	int pixel;
 
 	color = BLUE;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 1)
+	if (rc->world_map[rc->map_x][rc->map_y] == 1)
 		color = WHITE;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 2)
+	if (rc->world_map[rc->map_x][rc->map_y] == 2)
 		color = GREEN;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 3)
+	if (rc->world_map[rc->map_x][rc->map_y] == 3)
 		color = GREEN;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 4)
+	if (rc->world_map[rc->map_x][rc->map_y] == 4)
 		color = RED;
-	if (rc->worldMap[rc->map_x][rc->map_y] == 5)
+	if (rc->world_map[rc->map_x][rc->map_y] == 5)
 		color = BLACK;
 	if (rc->side == 1)
 		color = color + 3000;

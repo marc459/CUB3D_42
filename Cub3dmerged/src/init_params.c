@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 12:38:37 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:53:20 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void	init_arch_params(archparams_t *arch)
+void	init_arch_params(t_archparams *arch)
 {
 	arch->parameters_count = 0;
 	arch->win_x = 0;
@@ -26,7 +26,7 @@ void	init_arch_params(archparams_t *arch)
 	arch->c_color = "";
 }
 
-void	init_map_checking_params(validmap_t *map)
+void	init_map_checking_params(t_validmap *map)
 {
 	int i;
 
@@ -43,11 +43,11 @@ void	init_map_checking_params(validmap_t *map)
 }
 
 void	init_raycast_params3(t_raycaster *rc,
-		validmap_t *map, archparams_t *arch)
+		t_validmap *map, t_archparams *arch)
 {
 	rc->win_x = arch->win_x;
 	rc->win_y = arch->win_y;
-	rc->worldMap = arch->worldMap;
+	rc->world_map = arch->world_map;
 	rc->tex_height = 64;
 	rc->tex_width = 64;
 	rc->tex_side = 1;
@@ -72,12 +72,12 @@ void	init_raycast_params3(t_raycaster *rc,
 	}
 }
 
-void	init_raycast_params2(t_raycaster *rc, validmap_t *map)
+void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 {
 	rc->player_pos_x = map->init_p_pos_y;
 	rc->player_pos_y = map->init_p_pos_x;
-	rc->mapWidth = map->mapWidth;
-	rc->mapHeight = map->m_line;
+	rc->map_width = map->map_width;
+	rc->map_height = map->m_line;
 	if (map->player_dir == 'N')
 	{
 		rc->dirx = -1;
@@ -95,7 +95,7 @@ void	init_raycast_params2(t_raycaster *rc, validmap_t *map)
 }
 
 int		init_raycast_params(t_raycaster *rc,
-		archparams_t *arch, validmap_t *map)
+		t_archparams *arch, t_validmap *map)
 {
 	rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;

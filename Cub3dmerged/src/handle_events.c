@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   handle_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:26:43 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:50:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ int		handle_events(t_raycaster *rc)
 {
 	if (rc->up == 1)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x + rc->dirx
+		if (rc->world_map[(int)(rc->player_pos_x + rc->dirx
 			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x += rc->dirx * rc->movespeed;
-		if (rc->worldMap[(int)(rc->player_pos_x)]
+		if (rc->world_map[(int)(rc->player_pos_x)]
 			[(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
 	if (rc->down)
 	{
-		if (rc->worldMap[(int)(rc->player_pos_x - rc->dirx
+		if (rc->world_map[(int)(rc->player_pos_x - rc->dirx
 			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x -= rc->dirx * rc->movespeed;
-		if (rc->worldMap[(int)(rc->player_pos_x)]
+		if (rc->world_map[(int)(rc->player_pos_x)]
 			[(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y -= rc->diry * rc->movespeed;
 	}

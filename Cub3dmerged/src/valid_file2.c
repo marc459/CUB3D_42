@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 12:12:22 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:43:39 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*identifycolor(char *line, int i)
 	return (str);
 }
 
-int		identifyresolution(char *line, archparams_t *arch)
+int		identifyresolution(char *line, t_archparams *arch)
 {
 	int		i;
 
@@ -95,7 +95,7 @@ char	*identifytexture(char *line, int i)
 	return (dest);
 }
 
-int		color_checker(char *line, archparams_t *arch)
+int		color_checker(char *line, t_archparams *arch)
 {
 	int		i;
 	char	*tex;
@@ -112,7 +112,7 @@ int		color_checker(char *line, archparams_t *arch)
 	return (1);
 }
 
-int		texture_checker(char *line, archparams_t *arch)
+int		texture_checker(char *line, t_archparams *arch)
 {
 	int		i;
 	char	*tex;

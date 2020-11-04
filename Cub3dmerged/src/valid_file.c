@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/28 14:28:09 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 13:45:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
+int		param_sorting(t_archparams *arch, t_validmap *map, char *line, int i)
 {
 	if (line[i] == '\0')
 		i = 0;
@@ -39,7 +39,7 @@ int		param_sorting(archparams_t *arch, validmap_t *map, char *line, int i)
 	return (1);
 }
 
-int		loop_gnl(archparams_t *arch, validmap_t *map, char *line)
+int		loop_gnl(t_archparams *arch, t_validmap *map, char *line)
 {
 	int i;
 
@@ -60,7 +60,7 @@ int		loop_gnl(archparams_t *arch, validmap_t *map, char *line)
 	return (1);
 }
 
-int		arch_checker(char *mapfile, archparams_t *arch, validmap_t *map)
+int		arch_checker(char *mapfile, t_archparams *arch, t_validmap *map)
 {
 	int		fd;
 	char	*line;
