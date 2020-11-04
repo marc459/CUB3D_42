@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2020/10/19 11:04:19 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 12:15:51 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 ** Keyboard ARROWS
 */
 
-#define LEFT 123
-#define RIGHT 124
-#define UP 126
-#define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define UP 126
+# define DOWN 125
 
 /*
 ** Keyboard NUMPAD
@@ -78,8 +78,8 @@
 # define SP 49
 # define ESC 53
 # define TAB 48
-#define SHIFT_L 257
-#define CTRL 256
+# define SHIFT_L 257
+# define CTRL 256
 
 /*
 ** Mouse

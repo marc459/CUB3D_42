@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 13:22:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 11:33:36 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		main(int argc, char **argv)
 		mlx_loop_hook(rc.mlx_ptr, &screenshot, &rc);
 	else
 		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
-	//mlx_mouse_hook(rc.win_ptr, raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	mlx_loop(rc.mlx_ptr);
 	multi_free(&arch, &map);

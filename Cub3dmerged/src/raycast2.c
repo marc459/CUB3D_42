@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/26 12:26:43 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 12:10:59 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,61 @@ void	dda(t_raycaster *rc)
 	}
 }
 
-void	floor_directions(t_raycaster *rc)
+void	sky_draw(t_raycaster *rc, int x)
 {
-	if (rc->side == 0 && rc->ray_dir_x > 0)
+	int y;
+	int pixel;
+	int color;
+
+	y = 0;
+	color = BLUESKY;
+	while (y < rc->draw_start)
 	{
-		rc->tex_side = 1;
-		rc->floorxwall = rc->map_x;
-		rc->floorywall = rc->map_y + rc->wallx;
+		pixel = (y * rc->win_x + x) * 4;
+		if (rc->endian == 1)
+		{
+			rc->img_data[pixel + 0] = (color >> 24);
+			rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 3] = (color) & 0xFF;
+		}
+		else if (rc->endian == 0)
+		{
+			rc->img_data[pixel + 0] = (color) & 0xFF;
+			rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 3] = (color >> 24);
+		}
+		y++;
 	}
-	else if (rc->side == 0 && rc->ray_dir_x < 0)
+}
+
+void	floor_draw(t_raycaster *rc, int x)
+{
+	int y;
+	int pixel;
+	int color;
+
+	color = BROWN;
+	y = rc->draw_start;
+	while (y < rc->win_y)
 	{
-		rc->tex_side = 0;
-		rc->floorxwall = rc->map_x + 1.0;
-		rc->floorywall = rc->map_y + rc->wallx;
-	}
-	else if (rc->side == 1 && rc->ray_dir_y > 0)
-	{
-		rc->tex_side = 2;
-		rc->floorxwall = rc->map_x + rc->wallx;
-		rc->floorywall = rc->map_y;
-	}
-	else
-	{
-		rc->tex_side = 3;
-		rc->floorxwall = rc->map_x + rc->wallx;
-		rc->floorywall = rc->map_y + 1.0;
+		pixel = (y * rc->win_x + x) * 4;
+		if (rc->endian == 1)
+		{
+			rc->img_data[pixel + 0] = (color >> 24);
+			rc->img_data[pixel + 1] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 3] = (color) & 0xFF;
+		}
+		else if (rc->endian == 0)
+		{
+			rc->img_data[pixel + 0] = (color) & 0xFF;
+			rc->img_data[pixel + 1] = (color >> 8) & 0xFF;
+			rc->img_data[pixel + 2] = (color >> 16) & 0xFF;
+			rc->img_data[pixel + 3] = (color >> 24);
+		}
+		y++;
 	}
 }
 
@@ -69,6 +99,8 @@ void	draw_wall(t_raycaster *rc, int x)
 		rc->tex_id = 2;
 	else
 		rc->tex_id = 1;
+	floor_draw(rc, x);
+	sky_draw(rc, x);
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +

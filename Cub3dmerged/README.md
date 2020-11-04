@@ -66,8 +66,10 @@ Keys - OK
 Flags - OK
 Leaks - OK
 Norminette - OK
-Bmp
-Controlar resolucion
+Bmp - OK
+Controlar resolucion - OK
+techo y suelo color - OK
+leaks con la minilibx
 bonus part(makefile rule and modularization)
 
 --------BONUS--------
