@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 19:38:34 by rcabezas          #+#    #+#             */
-/*   Updated: 2020/10/21 12:34:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 14:09:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
 
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s1);

@@ -2,6 +2,11 @@ CC = gcc -g
 
 FLAGS = -Wall -Wextra -Werror
 
+#NORMINETTE LINUX
+#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
+#source ~/.zshrc
+#norminette main.c
+
 ifeq ($(OS),Windows_NT) 
     detected_OS := Windows
 else
@@ -42,7 +47,7 @@ ft_putstr.c ft_dectohex.c
 
 GNL_NAME = get_next_line.c
 
-SRC_NAME = init_params.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
+SRC_NAME = init_params.c init_params2.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
 
 RAYCASTING = utils.c utils2.c load_textures.c raycast.c raycast2.c handle_events.c bmp.c screenshot.c key.c
 
@@ -74,10 +79,8 @@ compile:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS)
-normilinux:
-	echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
-	source ~/.zshrc
-	norminette main.c
+normi:
+	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)
 

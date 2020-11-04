@@ -6,19 +6,19 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 14:18:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/02/29 14:19:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 14:11:43 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putstr(char *s)
+void	ft_putstr(char *s)
 {
 	size_t i;
 
 	i = 0;
 	if (s == NULL)
-		return;
+		return ;
 	while (i < ft_strlen(s))
 	{
 		write(1, &s[i], 1);

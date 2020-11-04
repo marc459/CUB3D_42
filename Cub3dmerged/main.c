@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:53:00 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 14:03:54 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,12 @@ int		main(int argc, char **argv)
 	t_validmap		map;
 	t_raycaster		rc;
 
-	map.m_top = 0;
-	map.m_bot = 0;
-	map.m_line = 0;
-	map.prev_line = "";
-	map.map_width = 0;
-	map.player_dir = '\0';
-	init_map_checking_params(&map);
+	init_initialparams(&map);
 	init_arch_params(&arch);
 	if (!parameter_management(argc, argv)
 	|| !arch_checker(argv[1], &arch, &map))
 		return (multi_free_error(&arch, &map));
 	save_map(argv[1], &arch, &map);
-	print_params(&arch, &map);
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
