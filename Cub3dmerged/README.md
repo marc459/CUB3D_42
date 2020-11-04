@@ -70,6 +70,8 @@ Bmp - OK
 Controlar resolucion - OK
 techo y suelo color - OK
 leaks con la minilibx
+Sprites
+Desplazarme AWSD
 bonus part(makefile rule and modularization)
 
 --------BONUS--------

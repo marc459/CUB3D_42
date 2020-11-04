@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 14:02:50 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/04 14:55:16 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ typedef struct		s_raycaster
 	int				up;
 	int				down;
 	int				right;
+	int				rot_right;
+	int				rot_left;
 	int				left;
 	int				textured;
 	int				crouch;

@@ -1,5 +1,5 @@
 NAME = Cub3D
-CC = gcc -g
+CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
