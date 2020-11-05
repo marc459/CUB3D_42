@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 14:56:33 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 11:16:36 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	handle_events2(t_raycaster *rc)
 	}
 }
 
-void move_right(t_raycaster *rc)
+void	move_right(t_raycaster *rc)
 {
 	if (rc->right)
 	{
@@ -57,7 +57,8 @@ void move_right(t_raycaster *rc)
 			* rc->movespeed;
 	}
 }
-void move_left(t_raycaster *rc)
+
+void	move_left(t_raycaster *rc)
 {
 	if (rc->left)
 	{
@@ -73,6 +74,7 @@ void move_left(t_raycaster *rc)
 			* rc->movespeed;
 	}
 }
+
 int		handle_events(t_raycaster *rc)
 {
 	if (rc->up == 1)

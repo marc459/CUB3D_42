@@ -6,7 +6,7 @@
 /*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:02:32 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/05 14:01:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 13:06:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int			motionless(t_struct *t)
 		t->spr_buffer[x] = t->perpwalldist;
 		x++;
 	}
-	//sprite_casting(t);
+	sprite_casting(t);
 	//sound_damage(t);
 	game_over(t);
 	mlx_put_image_to_window(t->mlx_ptr, t->win_ptr, t->img_ptr, 0, 0);

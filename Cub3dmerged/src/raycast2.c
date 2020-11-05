@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:50:26 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 14:32:39 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,10 @@ void	draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
-	if (rc->side == 1)
-		rc->tex_id = 2;
+	if (rc->tex_id == 2)
+		rc->tex_id = 6;
 	else
-		rc->tex_id = 1;
-	floor_draw(rc, x);
-	sky_draw(rc, x);
+		rc->tex_id = rc->tex_id + rc->side;
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
@@ -118,7 +116,7 @@ void	draw_wall(t_raycaster *rc, int x)
 
 void	calcule_wall(t_raycaster *rc)
 {
-	rc->tex_id = rc->world_map[rc->map_x][rc->map_y] + rc->tex_side;
+	rc->tex_id = rc->world_map[rc->map_x][rc->map_y];
 	if (rc->side == 0)
 		rc->wallx = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_y;
 	else

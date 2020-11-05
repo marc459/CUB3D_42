@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:56:39 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 14:02:12 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int		raycasting(t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
+		floor_draw(rc, x);
+		sky_draw(rc, x);
 		draw_wall(rc, x);
 		x++;
 	}

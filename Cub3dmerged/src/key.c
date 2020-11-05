@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 14:56:27 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 11:17:56 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int		key_press(int key, t_raycaster *rc)
 {
 	if (key == UP || key == W)
 		rc->up = 1;
-	if (key == DOWN || key == S)
+	else if (key == DOWN || key == S)
 		rc->down = 1;
-	if (key == RIGHT)
+	else if (key == RIGHT)
 		rc->rot_right = 1;
-	if (key == D)
+	else if (key == D)
 		rc->right = 1;
-	if (key == LEFT)
+	else if (key == LEFT)
 		rc->rot_left = 1;
-	if (key == A)
+	else if (key == A)
 		rc->left = 1;
-	if (key == ESC)
+	else if (key == ESC)
 		close_success(rc);
 	return (0);
 }
@@ -35,15 +35,15 @@ int		key_release(int key, t_raycaster *rc)
 {
 	if (key == UP || key == W)
 		rc->up = 0;
-	if (key == DOWN || key == S)
+	else if (key == DOWN || key == S)
 		rc->down = 0;
-	if (key == RIGHT)
+	else if (key == RIGHT)
 		rc->rot_right = 0;
-	if (key == D)
+	else if (key == D)
 		rc->right = 0;
-	if (key == LEFT)
+	else if (key == LEFT)
 		rc->rot_left = 0;
-	if (key == A)
+	else if (key == A)
 		rc->left = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:27:04 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/02 11:15:32 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 13:05:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		floor_and_sky_draw(t_struct *t, int x)
 
 void		draw_wall(t_struct *t, int x)
 {
-	printf("%d,%d,%d,%d,%d,%d\n", t->drawstart, t->drawend, t->lineheight, t->win_width, t->tex_id,x);
 	while (t->drawstart <= t->drawend)
 	{
 		t->tex_y = abs((((t->drawstart * 256 - t->win_height * 128 +

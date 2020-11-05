@@ -69,9 +69,9 @@ Norminette - OK
 Bmp - OK
 Controlar resolucion - OK
 techo y suelo color - OK
+Desplazarme AWSD - OK
 leaks con la minilibx
 Sprites
-Desplazarme AWSD
 bonus part(makefile rule and modularization)
 
 --------BONUS--------

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 14:55:16 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/05 12:14:02 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,4 +257,6 @@ void				init_raycast_params3(t_raycaster *rc,
 void				handle_events2(t_raycaster *rc);
 void				write_data_header(t_raycaster *rc, int size, int fd);
 void				init_initialparams(t_validmap *map);
+void				floor_draw(t_raycaster *rc, int x);
+void				sky_draw(t_raycaster *rc, int x);
 #endif
