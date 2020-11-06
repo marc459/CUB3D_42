@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/05 14:32:45 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/06 13:31:17 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		main(int argc, char **argv)
 	if (!init_raycast_params(&rc, &arch, &map))
 		return (0);
 	load_textures(&rc);
-	print_params(&arch, &map);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &key_press, &rc);
 	mlx_hook(rc.win_ptr, 3, 1L << 1, &key_release, &rc);
 	if (argc == 3)
@@ -64,6 +63,7 @@ int		main(int argc, char **argv)
 	else
 		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
+	print_params(&arch, &map);
 	mlx_loop(rc.mlx_ptr);
 	multi_free(&arch, &map);
 	close_success(&rc);
