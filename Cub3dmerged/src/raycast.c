@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/07 14:40:02 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/07 14:49:42 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int		raycasting(t_raycaster *rc)
 		rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;
 	}
-	sprite_casting(rc);
+	//sprite_casting(rc);
+	printf("sprints in screen-> %d\n",rc->numsprites);
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
 					rc->img_ptr, 0, 0);
 	return (0);
