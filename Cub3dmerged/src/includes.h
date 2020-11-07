@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/06 14:36:26 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/07 14:35:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ typedef struct		s_img
 	int				endian;
 }					t_img;
 
+typedef struct		s_sprites
+{
+	double			x;
+	double			y;
+	t_img			tex;
+}					t_sprites;
+
 typedef struct		s_raycaster
 {
 	void			*mlx_ptr;
@@ -146,7 +153,25 @@ typedef struct		s_raycaster
 	int				floortexx;
 	int				floortexy;
 	int				save_bmp;
-
+	int				numsprites;
+	t_sprites		sprite[10];
+	double			spritex;
+	double			spritey;
+	int				sprtexx;
+	int 			sprtexy;
+	double			invdet;
+	double			transformx;
+	double			transformy;
+	int				spritescreenx;
+	int				spriteheight;
+	int				drawstarty;
+	int				drawendy;
+	int				spritewidth;
+	int				drawstartx;
+	int				drawendx;
+	int				stripe;
+	int				d;
+	double			*spr_buffer;
 }					t_raycaster;
 
 typedef struct		s_archparams
@@ -259,5 +284,5 @@ void				write_data_header(t_raycaster *rc, int size, int fd);
 void				init_initialparams(t_validmap *map);
 void				floor_draw(t_raycaster *rc, int x);
 void				sky_draw(t_raycaster *rc, int x);
-void				print_sprite(t_raycaster *rc, int x);
+void				sprite_casting(t_raycaster *rcx);
 #endif
