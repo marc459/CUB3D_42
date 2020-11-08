@@ -81,7 +81,7 @@ typedef struct		s_sprites
 {
 	double			x;
 	double			y;
-	t_img			tex;
+	t_img			tex[12];
 }					t_sprites;
 
 typedef struct		s_raycaster
@@ -284,5 +284,7 @@ void				write_data_header(t_raycaster *rc, int size, int fd);
 void				init_initialparams(t_validmap *map);
 void				floor_draw(t_raycaster *rc, int x);
 void				sky_draw(t_raycaster *rc, int x);
-void				sprite_casting(t_raycaster *rcx);
+void				sprite_casting(t_raycaster *rc);
+void				sprite_casting2(t_raycaster *rc);
+void				sprite_drawing(t_raycaster *rc, int i);
 #endif

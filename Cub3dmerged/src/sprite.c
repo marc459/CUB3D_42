@@ -12,7 +12,7 @@
 
 #include "includes.h"
 
-static void sprite_drawing(t_raycaster *rc, int i)
+void	sprite_drawing(t_raycaster *rc, int i)
 {
 	int y;
 
@@ -27,20 +27,20 @@ static void sprite_drawing(t_raycaster *rc, int i)
 			{
 				rc->d = (y)*256 - rc->win_y * 128 + rc->spriteheight * 128;
 				rc->sprtexy = ((rc->d * rc->tex_height) / rc->spriteheight) / 256;
-				if (++y < rc->win_y && rc->sprite[i].tex.data[rc->sprtexy %
-																	 rc->tex_height * rc->sprite[i].tex.size_l +
+				if (++y < rc->win_y && rc->sprite[i].tex[6].data[rc->sprtexy %
+																	 rc->tex_height * rc->sprite[i].tex[6].size_l +
 																 rc->sprtexx %
-																	 rc->tex_width * rc->sprite[i].tex.bpp / 8])
+																	 rc->tex_width * rc->sprite[i].tex[6].bpp / 8])
 					ft_memcpy(rc->img_data + 4 * rc->win_x * y + rc->stripe * 4,
-							&rc->sprite[i].tex.data[rc->sprtexy % rc->tex_height * rc->sprite[i].tex.size_l
-							+ rc->sprtexx % rc->tex_width * rc->sprite[i].tex.bpp / 8], sizeof(int));
+							&rc->sprite[i].tex[6].data[rc->sprtexy % rc->tex_height * rc->sprite[i].tex[6].size_l
+							+ rc->sprtexx % rc->tex_width * rc->sprite[i].tex[6].bpp / 8], sizeof(int));
 				y++;
 			}
 		rc->stripe++;
 	}
 }
 
-static void sprite_casting2(t_raycaster *rc)
+void	sprite_casting2(t_raycaster *rc)
 {
 	rc->invdet = 1.0 / (rc->player_plane_x * rc->diry - rc->dirx * rc->player_plane_y);
 	rc->transformx = rc->invdet * (rc->diry * rc->spritex - rc->dirx *

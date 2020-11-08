@@ -99,6 +99,11 @@ int		init_raycast_params(t_raycaster *rc,
 {
 	rc->mlx_ptr = NULL;
 	rc->win_ptr = NULL;
+	rc->rot_left = 0;
+	rc->rot_right = 0;
+	rc->sprite[0].x = 5;
+	rc->sprite[0].y = 6;
+	rc->numsprites = 1;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
 	rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);

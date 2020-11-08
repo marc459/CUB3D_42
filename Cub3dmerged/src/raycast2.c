@@ -28,8 +28,12 @@ void	dda(t_raycaster *rc)
 			rc->map_y += rc->stepy;
 			rc->side = 1;
 		}
-		if(rc->world_map[rc->map_x][rc->map_y] == 2)
+		/*if(rc->world_map[rc->map_x][rc->map_y] == 2)
+		{
+			rc->sprite[rc->numsprites].x = rc->map_x;
+			rc->sprite[rc->numsprites].y = rc->map_y
 			rc->numsprites++;
+		}*/
 		if (rc->world_map[rc->map_x][rc->map_y] > 0)
 			rc->hit = 1;
 		/*else if(rc->world_map[rc->map_x][rc->map_y] == 2)
@@ -102,7 +106,10 @@ void	draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
-	rc->tex_id = rc->tex_id + rc->side;
+	if(rc->world_map[rc->map_x][rc->map_y] == 2)
+		rc->tex_id = 6;
+	else
+		rc->tex_id = rc->tex_id + rc->side;
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +

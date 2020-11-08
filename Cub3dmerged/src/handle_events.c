@@ -28,7 +28,7 @@ void	handle_events2(t_raycaster *rc)
 		rc->player_plane_y = oldplanex * sin(-ROT_SPEED)
 							+ rc->player_plane_y * cos(-ROT_SPEED);
 	}
-	if (rc->rot_left)
+	else if (rc->rot_left)
 	{
 		olddirx = rc->dirx;
 		rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
@@ -86,7 +86,7 @@ int		handle_events(t_raycaster *rc)
 			[(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
-	if (rc->down)
+	else if (rc->down)
 	{
 		if (rc->world_map[(int)(rc->player_pos_x - rc->dirx
 			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
