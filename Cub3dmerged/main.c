@@ -64,8 +64,6 @@ int		main(int argc, char **argv)
 		mlx_loop_hook(rc.mlx_ptr, &raycasting, &rc);
 	mlx_hook(rc.win_ptr, 17, 1L << 17, close_success, &rc);
 	print_params(&arch, &map);
-	printf("px->%f\n",rc.player_pos_x);
-	printf("py->%f\n",rc.player_pos_y);
 	mlx_loop(rc.mlx_ptr);
 	multi_free(&arch, &map);
 	close_success(&rc);

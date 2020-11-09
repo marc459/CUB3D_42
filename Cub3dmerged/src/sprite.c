@@ -40,21 +40,6 @@ void	sprite_drawing(t_raycaster *rc, int i)
 	}
 }
 
-static void	enemy_movement_x(t_raycaster *rc, double x, double y)
-{
-	/*rc->enem_stepx = (rc->player_pos_x - x) / 700;
-	rc->enem_stepy = (rc->player_pos_y - y) / 700;
-	rc->sprite[1].x = rc->sprite[1].x + rc->enem_stepx;
-	rc->sprite[1].y = rc->sprite[1].y + rc->enem_stepy;*/
-	rc->sprite[0].tex = rc->tex[8];
-	/*if ((rc->player_pos_x - x) < 0.8 && (rc->player_pos_y - y) < 0.8)
-	{
-		rc->sprite[1].tex = rc->tex[9];
-	}
-	else
-		rc->sprite[1].tex = rc->tex[8];*/
-}
-
 void	sprite_casting2(t_raycaster *rc)
 {
 	rc->invdet = 1.0 / (rc->player_plane_x * rc->diry - rc->dirx * rc->player_plane_y);
@@ -84,12 +69,12 @@ void sprite_casting(t_raycaster *rc)
 	int i;
 
 	i = 0;
+	rc->sprite[0].tex = rc->tex[6];
 	while (i < rc->numsprites)
 	{
 		rc->spritex = rc->sprite[i].x - rc->player_pos_x;
 		rc->spritey = rc->sprite[i].y - rc->player_pos_y;
 		sprite_casting2(rc);
-		enemy_movement_x(rc, rc->sprite[0].x, rc->sprite[0].y);
 		sprite_drawing(rc, 0);
 		i++;
 	}
