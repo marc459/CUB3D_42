@@ -69,6 +69,8 @@ compile:
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
+	#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
+	#source ~/.zshrc
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)

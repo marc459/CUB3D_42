@@ -29,8 +29,10 @@ int		screenshot(t_raycaster *rc)
 		motionless_4(rc);
 		calcule_wall(rc);
 		draw_wall(rc, x);
+		rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;
 	}
+	sprite_casting(rc);
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
 							rc->img_ptr, 0, 0);
 	save_bmp(rc);

@@ -158,7 +158,7 @@ typedef struct		s_raycaster
 	double			spritex;
 	double			spritey;
 	int				sprtexx;
-	int 			sprtexy;
+	int				sprtexy;
 	double			invdet;
 	double			transformx;
 	double			transformy;
