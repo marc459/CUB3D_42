@@ -49,7 +49,7 @@ static void	enemy_movement_x(t_struct *t, double x, double y)
 	t->sprite[1].y = t->sprite[1].y + t->enem_stepy;
 	if ((t->posx - x) < 0.8 && (t->posy - y) < 0.8)
 	{
-		t->life_bar -= 1;
+	//	t->life_bar -= 1;
 		t->sprite[1].tex = t->tex[9];
 	}
 	else

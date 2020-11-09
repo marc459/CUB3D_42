@@ -101,12 +101,12 @@ int		init_raycast_params(t_raycaster *rc,
 	rc->win_ptr = NULL;
 	rc->rot_left = 0;
 	rc->rot_right = 0;
-	rc->sprite[0].x = 5;
-	rc->sprite[0].y = 6;
+	rc->sprite[0].x = 4;
+	rc->sprite[0].y = 4;
 	rc->numsprites = 1;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
-	rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);
+	//rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);
 	if (!(rc->mlx_ptr = mlx_init()))
 		return (ft_puterror("Inicio de Minilibx fallida\n"));
 	if (!(rc->win_ptr =

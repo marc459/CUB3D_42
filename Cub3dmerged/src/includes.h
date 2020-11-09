@@ -81,7 +81,7 @@ typedef struct		s_sprites
 {
 	double			x;
 	double			y;
-	t_img			tex[12];
+	t_img			tex;
 }					t_sprites;
 
 typedef struct		s_raycaster
@@ -171,7 +171,9 @@ typedef struct		s_raycaster
 	int				drawendx;
 	int				stripe;
 	int				d;
-	double			*spr_buffer;
+	double			spr_buffer[1000];
+	double			enem_stepx;
+	double			enem_stepy;
 }					t_raycaster;
 
 typedef struct		s_archparams
