@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/07 14:39:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:11:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		init_raycast_params(t_raycaster *rc,
 	rc->numsprites = 1;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
-	//rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);
+	rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);
 	if (!(rc->mlx_ptr = mlx_init()))
 		return (ft_puterror("Inicio de Minilibx fallida\n"));
 	if (!(rc->win_ptr =

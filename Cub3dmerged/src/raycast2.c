@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/07 14:53:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:13:59 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,8 @@ void	dda(t_raycaster *rc)
 			rc->map_y += rc->stepy;
 			rc->side = 1;
 		}
-		/*if(rc->world_map[rc->map_x][rc->map_y] == 2)
-		{
-			rc->sprite[rc->numsprites].x = rc->map_x;
-			rc->sprite[rc->numsprites].y = rc->map_y
-			rc->numsprites++;
-		}*/
 		if (rc->world_map[rc->map_x][rc->map_y] > 0)
 			rc->hit = 1;
-		/*else if(rc->world_map[rc->map_x][rc->map_y] == 2)
-		{
-			rc->numsprites++;*/
-			//rc->world_map[rc->map_x][rc->map_y] = 0;
-		//}
 	}
 }
 
@@ -106,7 +95,7 @@ void	draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
-	if(rc->world_map[rc->map_x][rc->map_y] == 2)
+	if (rc->world_map[rc->map_x][rc->map_y] == 2)
 		rc->tex_id = 6;
 	else
 		rc->tex_id = rc->tex_id + rc->side;

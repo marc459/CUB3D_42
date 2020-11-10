@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/07 14:35:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:12:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ typedef struct		s_raycaster
 	int				drawendx;
 	int				stripe;
 	int				d;
-	double			spr_buffer[1000];
+	double			*spr_buffer;
 	double			enem_stepx;
 	double			enem_stepy;
 }					t_raycaster;
@@ -288,5 +288,5 @@ void				floor_draw(t_raycaster *rc, int x);
 void				sky_draw(t_raycaster *rc, int x);
 void				sprite_casting(t_raycaster *rc);
 void				sprite_casting2(t_raycaster *rc);
-void				sprite_drawing(t_raycaster *rc, int i);
+void				sprite_drawing(t_raycaster *rc, int i, int y);
 #endif
