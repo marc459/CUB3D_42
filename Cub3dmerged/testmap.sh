@@ -1,5 +1,5 @@
 TEST_COUNT=10
-CUB3D=./a.out
+CUB3D=./Cub3D
 MAPS_FOLDER=maps/
 
 MAIN_BG="\033[46;30m"

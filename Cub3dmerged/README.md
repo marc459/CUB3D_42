@@ -71,7 +71,8 @@ Controlar resolucion - OK
 techo y suelo color - OK
 Desplazarme AWSD - OK
 leaks con la minilibx
-Sprites  donde los haya y norminette, y screenshot
+Validar todos los mapas del test - OK
+Sprites  donde los haya y norminette, y screenshot - OK
 bonus part(makefile rule and modularization)
 
 --------BONUS--------

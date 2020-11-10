@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 09:40:15 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 10:40:12 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:36:19 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	sprite_casting(t_raycaster *rc)
 
 	i = 0;
 	y = 0;
-	rc->sprite[0].tex = rc->tex[6];
 	while (i < rc->numsprites)
 	{
+		rc->sprite[i].tex = rc->tex[6];
 		rc->spritex = rc->sprite[i].x - rc->player_pos_x;
 		rc->spritey = rc->sprite[i].y - rc->player_pos_y;
 		sprite_casting2(rc);

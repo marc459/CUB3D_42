@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/06 14:36:22 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 13:42:27 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		screenshot(t_raycaster *rc)
 		dda(rc);
 		motionless_4(rc);
 		calcule_wall(rc);
+		floor_draw(rc, x);
+		sky_draw(rc, x);
 		draw_wall(rc, x);
 		rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 11:12:01 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:13:06 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ typedef struct		s_raycaster
 	int				floortexy;
 	int				save_bmp;
 	int				numsprites;
-	t_sprites		sprite[10];
+	t_sprites		sprite[255];
 	double			spritex;
 	double			spritey;
 	int				sprtexx;
@@ -205,13 +205,14 @@ typedef struct		s_validmap
 	int				init_p_pos_y;
 	int				last_0;
 	char			*prev_line;
+	t_sprites		sprite[255];
+	int				numsprites;
 }					t_validmap;
 
 int					ft_puterror(char *str);
 int					valid_map(char *line, t_validmap *map, int i);
 void				init_map_checking_params(t_validmap *map);
 void				init_arch_params(t_archparams *arch);
-void				init_map_checking_params(t_validmap *map);
 int					identifyresolution(char *line, t_archparams *arch);
 char				*identifytexture(char *line, int i);
 int					texture_checker(char *line, t_archparams *arch);

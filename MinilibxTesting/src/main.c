@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:22:49 by msantos-          #+#    #+#             */
-/*   Updated: 2020/09/30 11:42:21 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:33:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int		main(void)
 		while (count_h < t->win_height)
 		{
 			//printf("x->%d,count_h->%d\n", x, count_h);
-			if (count_h < 128 && count_w < 128)
+			if (count_h < 64 && count_w < 64)
 			{
 				t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[x];
 			}
-			if (count_h % 2)
-				x++;
+			/*if (count_h % 2)
+				x++;*/
 			//t->img_data[count_h * t->win_width + count_w] = t->tex[1].data[count_h * t->win_width + count_w];
 			count_h++;
 			

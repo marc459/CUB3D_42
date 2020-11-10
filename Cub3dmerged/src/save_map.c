@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/06 14:38:01 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:15:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	loop_map(t_archparams *arch, t_validmap *map, char *line, int *x)
 			if (line[y] == '1')
 				arch->world_map[*x][y] = 1;
 			else if (line[y] == '2')
-				arch->world_map[*x][y] = 2;
+				arch->world_map[*x][y] = 0;
 			else
 				arch->world_map[*x][y] = 0;
 			y++;

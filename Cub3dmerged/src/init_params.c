@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 11:11:32 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:13:46 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	init_raycast_params3(t_raycaster *rc,
 
 void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 {
+	int i;
+
+	i = 0;
 	rc->player_pos_x = map->init_p_pos_y;
 	rc->player_pos_y = map->init_p_pos_x;
 	rc->map_width = map->map_width;
@@ -92,6 +95,12 @@ void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 		rc->dirx = 1;
 		rc->diry = 0;
 	}
+	while (i < map->numsprites)
+	{
+		rc->sprite[i].x = map->sprite[i].x;
+		rc->sprite[i].y = map->sprite[i].x;
+		i++;
+	}
 }
 
 int		init_raycast_params(t_raycaster *rc,
@@ -101,9 +110,7 @@ int		init_raycast_params(t_raycaster *rc,
 	rc->win_ptr = NULL;
 	rc->rot_left = 0;
 	rc->rot_right = 0;
-	rc->sprite[0].x = 4;
-	rc->sprite[0].y = 4;
-	rc->numsprites = 1;
+	rc->numsprites = map->numsprites;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
 	rc->spr_buffer = (double *)malloc(sizeof(double) * rc->win_x);

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/05 14:21:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 14:49:41 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int		numsearch(char *line, t_validmap *map, int *i, int *count)
 		}
 		else if (ft_strchr("NSEW", line[i[0]]) && map->player_dir)
 			return (0);
+		if (line[i[0]] == '2')
+		{
+			map->sprite[map->numsprites].x = i[0];
+			map->sprite[map->numsprites].y = map->m_line;
+			map->numsprites++;
+		}
 		map->colum_nums[count[0]]++;
 		if (line[i[0]] == '0')
 			map->last_0 = i[0];

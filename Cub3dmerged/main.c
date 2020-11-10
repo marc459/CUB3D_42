@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/06 13:31:17 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 12:39:19 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ int		main(int argc, char **argv)
 	mlx_loop(rc.mlx_ptr);
 	multi_free(&arch, &map);
 	close_success(&rc);
+	return (0);
 }

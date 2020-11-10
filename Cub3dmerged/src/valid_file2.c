@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:43:39 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/10 13:39:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		identifyresolution(char *line, t_archparams *arch)
 		i++;
 	}
 	arch->parameters_count++;
-	if (!((arch->win_y > 300 && arch->win_x > 300)
+	if (!((arch->win_y > 100 && arch->win_x > 100)
 		&& (arch->win_y < 1440 && arch->win_x < 2560)))
 		return (0);
 	return (1);

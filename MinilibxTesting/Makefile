@@ -2,7 +2,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-NAME = cub3d.a
+NAME = a.out
 
 SRC_PATH = ./src
 LIB_PATH = ./libft
@@ -38,20 +38,9 @@ INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
 
-all: $(NAME)
-
-$(NAME): $(OBJ) $(OBJLIB)
-	@ar rc $(NAME) $(OBJ) $(OBJLIB)
-	@ranlib $(NAME)
-
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
-
-$(OBJ_PATH)/%.o: $(LIB_PATH)/%.c
-	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
-compile:
+all: run
+	./$(NAME)
+run:
 	@cc -I /usr/local/include src/main.c $(LIB) $(SRC) -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 runlinux:
