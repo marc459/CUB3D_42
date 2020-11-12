@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 09:40:15 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/12 13:26:32 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:29:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sprite_drawing(t_raycaster *rc, int i, int y)
 
 void	sprite_casting2(t_raycaster *rc)
 {
-	rc->invdet = 1.0 / (rc->player_plane_x *
+	rc->invdet = 2.0 / (rc->player_plane_x *
 				rc->diry - rc->dirx * rc->player_plane_y);
 	rc->transformx = rc->invdet * (rc->diry * rc->spritex - rc->dirx *
 																rc->spritey);
