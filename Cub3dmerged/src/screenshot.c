@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 13:42:27 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:18:04 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int		screenshot(t_raycaster *rc)
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
 							rc->img_ptr, 0, 0);
 	save_bmp(rc);
-	close_success(rc);
 	return (0);
 }

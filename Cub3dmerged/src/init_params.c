@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 14:13:46 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/12 13:26:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 	}
 	while (i < map->numsprites)
 	{
-		rc->sprite[i].x = map->sprite[i].x;
-		rc->sprite[i].y = map->sprite[i].x;
+		rc->sprite[i].x = map->sprite[i].y + 1;
+		rc->sprite[i].y = map->sprite[i].x + 1;
 		i++;
 	}
 }

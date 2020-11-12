@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/03 12:42:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:18:18 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int				save_bmp(t_raycaster *rc)
 		file_write(fd, line, rc->size_line);
 		i++;
 	}
+	close_success(rc);
 	if (close(fd) == -1)
 		return (1);
 	return (0);

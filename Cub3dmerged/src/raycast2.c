@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 11:13:59 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/12 13:25:34 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	dda(t_raycaster *rc)
 			rc->map_y += rc->stepy;
 			rc->side = 1;
 		}
-		if (rc->world_map[rc->map_x][rc->map_y] > 0)
+		if (rc->world_map[rc->map_x][rc->map_y] == 1)
 			rc->hit = 1;
 	}
 }
