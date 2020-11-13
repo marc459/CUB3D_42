@@ -24,6 +24,7 @@ endif
 CHECKLEAKS=/Applications/Xcode.app/Contents/Developer/usr/lib/libLeaksAtExit.dylib leaks -atExit -- ./a.out map.cub
 
 SRC_PATH = ./src
+SRC_BONUS_PATH = ./src_bonus
 GNL_PATH = ./get_next_line
 LIB_PATH = ./libft
 OBJ_PATH = ./objs
@@ -57,6 +58,8 @@ SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 RAY_C = $(addprefix $(SRC_PATH)/, $(RAYCASTING))
 GNL = $(addprefix $(GNL_PATH)/, $(GNL_NAME))
 LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
+SRC_BONUS = $(addprefix $(SRC_BONUS_PATH)/, $(SRC_NAME))
+RAY_C_BONUS = $(addprefix $(SRC_BONUS_PATH)/, $(RAYCASTING))
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
@@ -68,6 +71,8 @@ compile:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
+runbonus:
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
 	#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
 	#source ~/.zshrc
