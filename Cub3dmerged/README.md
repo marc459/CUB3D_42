@@ -78,7 +78,7 @@ bonus part(makefile rule and modularization)
 --------BONUS--------
 Crouch,Sprint,Jump
 Sombras
-Sonidos(mac -> afplay sound.wav &, linux -> aplay sound,wav &)
+Sonidos(mac -> afplay sound.wav &, linux -> aplay sound,wav &) & para que esten en segundo plano
 Skybox
 Barra de vida
 animaciones
