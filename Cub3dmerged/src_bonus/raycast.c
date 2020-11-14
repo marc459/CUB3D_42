@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 11:11:21 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:53:12 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		raycasting(t_raycaster *rc)
 	}
 	sprite_casting(rc);
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
-					rc->img_ptr, 0, 0);
+				rc->img_ptr, rc->crouch, rc->crouch);
+	draw_map(rc);
 	return (0);
 }

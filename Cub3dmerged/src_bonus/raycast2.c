@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/12 13:25:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:46:02 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	floor_and_sky_draw(t_raycaster *rc, int x)
 {
 	int y;
 
-	y = rc->draw_end + 1; //0 if linux
+	y = rc->draw_end + 1;
 	floor_directions(rc);
 	while (y < rc->win_y)
 	{
@@ -81,7 +81,7 @@ void	floor_and_sky_draw(t_raycaster *rc, int x)
 						* rc->tex_height) % rc->tex_height;
 		ft_memcpy(rc->img_data + 4 * rc->win_x * y + x * 4,
 				&rc->tex[4].data[4 * rc->floortexx * rc->tex_width +
-				4 * rc->floortexy],	sizeof(int));
+				4 * rc->floortexy], sizeof(int));
 		ft_memcpy(rc->img_data + 4 * rc->win_x * (rc->win_y - y) + x * 4,
 				&rc->tex[7].data[4 * rc->floortexx * rc->tex_width +
 				4 * rc->floortexy],

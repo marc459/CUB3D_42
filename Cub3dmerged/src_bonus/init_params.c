@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/12 14:28:52 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:50:06 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init_raycast_params3(t_raycaster *rc,
 
 void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 {
+	rc->crouch = 0;
 	rc->player_pos_x = map->init_p_pos_y;
 	rc->player_pos_y = map->init_p_pos_x;
 	rc->map_width = map->map_width;
@@ -105,6 +106,8 @@ int		init_raycast_params(t_raycaster *rc,
 	rc->rot_left = 0;
 	rc->rot_right = 0;
 	rc->numsprites = map->numsprites;
+	rc->tmpx = arch->win_x;
+	rc->tmpy = arch->win_y;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
 	while (i < map->numsprites)

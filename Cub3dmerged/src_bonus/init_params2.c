@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 14:00:16 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 14:03:32 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:40:34 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ void	init_initialparams(t_validmap *map)
 		map->colum_nums[i] = 0;
 		i++;
 	}
+}
+
+void	reset_raycasting_params(t_raycaster *rc)
+{
+	rc->movespeed = 0.200;
+	rc->win_x = rc->tmpx;
+	rc->win_y = rc->tmpy;
 }

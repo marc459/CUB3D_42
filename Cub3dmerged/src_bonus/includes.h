@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 14:13:06 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:41:14 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ typedef struct		s_raycaster
 	double			*spr_buffer;
 	double			enem_stepx;
 	double			enem_stepy;
+	int				tmpx;
+	int				tmpy;
 }					t_raycaster;
 
 typedef struct		s_archparams
@@ -290,4 +292,7 @@ void				sky_draw(t_raycaster *rc, int x);
 void				sprite_casting(t_raycaster *rc);
 void				sprite_casting2(t_raycaster *rc);
 void				sprite_drawing(t_raycaster *rc, int i, int y);
+void				run_crouch_on(int key, t_raycaster *rc);
+void				run_crouch_off(int key, t_raycaster *rc);
+void				reset_raycasting_params(t_raycaster *rc);
 #endif

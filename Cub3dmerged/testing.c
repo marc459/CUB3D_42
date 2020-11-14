@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:54:07 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/14 14:54:15 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_params(t_archparams *arch, t_validmap *map)
 	printf("\n\n");
 }
 
-void	draw_map(t_raycaster *rc)
+/*void	draw_map(t_raycaster *rc)
 {
 	int y;
 	int x;
@@ -83,7 +83,7 @@ void	draw_map(t_raycaster *rc)
 		x_wall = 10;
 		y_wall = y_wall + 10;
 	}
-}
+}*/
 
 /*void ace_of_empires(int i,...)
 {
