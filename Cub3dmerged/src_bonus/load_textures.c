@@ -11,6 +11,10 @@
 /* ************************************************************************** */
 
 #include "includes.h"
+void	load_sounds()
+{
+	system(ft_strjoin(play," src_bonus/cstrike_sounds/sound/radio/bombpl.wav &"));
+}
 
 void	load_textures_2(t_raycaster *rc)
 {
@@ -58,5 +62,6 @@ void	load_textures(t_raycaster *rc)
 			&rc->tex_width, &rc->tex_height);
 	rc->tex[5].data = mlx_get_data_addr(rc->tex[5].img, &rc->tex[5].bpp,
 			&rc->tex[5].size_l, &rc->tex[5].endian);
+	load_sounds();
 	load_textures_2(rc);
 }

@@ -81,4 +81,7 @@
 # define M_SCR_U 4
 # define M_SCR_D 5
 
+/*SOUNDS*/
+# define play "aplay"
+
 #endif
