@@ -61,4 +61,17 @@ void draw_map(t_raycaster *rc)
 		x_wall = num;
 		y_wall = y_wall + num;
 	}
+	/*y = 20;
+	x = rc->win_x / 2;
+	while (y < 30)
+	{
+		while (x < rc->win_x - 50)
+		{
+			mlx_pixel_put(rc->mlx_ptr, rc->win_ptr, x, y, 0x33FF3C);
+			x++;
+
+		}
+		x = rc->win_x / 2;
+		y++;
+	}*/
 }
