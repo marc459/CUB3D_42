@@ -49,7 +49,7 @@ GNL_NAME = get_next_line.c
 
 SRC_NAME = init_params.c init_params2.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
 
-RAYCASTING = utils.c utils2.c load_textures.c raycast.c raycast2.c handle_events.c bmp.c screenshot.c key.c sprite.c hud_bonus.c
+RAYCASTING = utils.c utils2.c load_textures.c raycast.c raycast2.c handle_events.c bmp.c screenshot.c key.c sprite.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
@@ -72,7 +72,7 @@ compile:
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
 runbonus:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) $(GNL) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
 	#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
 	#source ~/.zshrc

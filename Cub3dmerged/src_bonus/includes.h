@@ -295,4 +295,5 @@ void				sprite_drawing(t_raycaster *rc, int i, int y);
 void				run_crouch_on(int key, t_raycaster *rc);
 void				run_crouch_off(int key, t_raycaster *rc);
 void				reset_raycasting_params(t_raycaster *rc);
+void				draw_player(t_raycaster *rc, int num);
 #endif
