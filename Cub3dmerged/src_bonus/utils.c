@@ -53,6 +53,7 @@ int		close_success(t_raycaster *rc)
 {
 	(void)rc;
 	mlx_destroy_window(rc->mlx_ptr, rc->win_ptr);
+	system("pkill play");
 	exit(EXIT_SUCCESS);
 	return (0);
 }

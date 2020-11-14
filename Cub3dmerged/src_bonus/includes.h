@@ -176,6 +176,7 @@ typedef struct		s_raycaster
 	double			enem_stepy;
 	int				tmpx;
 	int				tmpy;
+	int				steps;
 }					t_raycaster;
 
 typedef struct		s_archparams

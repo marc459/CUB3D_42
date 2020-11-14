@@ -79,6 +79,12 @@ int		handle_events(t_raycaster *rc)
 {
 	if (rc->up == 1)
 	{
+		printf("steps -> %d\n",rc->steps);
+		if(rc->steps == 1)
+			system(ft_strjoin(play," -q src_bonus/sounds/cstrike_sounds/sound/player/pl_step1.wav &"));
+		if(rc->steps == 30)
+			rc->steps = 0;
+		rc->steps++;
 		if (rc->world_map[(int)(rc->player_pos_x + rc->dirx
 			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x += rc->dirx * rc->movespeed;

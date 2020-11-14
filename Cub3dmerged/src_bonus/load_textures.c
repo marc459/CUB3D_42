@@ -13,7 +13,7 @@
 #include "includes.h"
 void	load_sounds()
 {
-	system(ft_strjoin(play," src_bonus/cstrike_sounds/sound/radio/bombpl.wav &"));
+		system(ft_strjoin(play," src_bonus/sounds/cs1.6_sounds/sound/ambience/Opera.wav &"));
 }
 
 void	load_textures_2(t_raycaster *rc)

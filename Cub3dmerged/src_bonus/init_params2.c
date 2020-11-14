@@ -36,6 +36,7 @@ void	init_initialparams(t_validmap *map)
 
 void	reset_raycasting_params(t_raycaster *rc)
 {
+	rc->steps = 0;
 	rc->movespeed = 0.200;
 	rc->win_x = rc->tmpx;
 	rc->win_y = rc->tmpy;
