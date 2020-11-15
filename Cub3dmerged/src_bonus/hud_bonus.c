@@ -61,7 +61,7 @@ void draw_map(t_raycaster *rc)
 		x_wall = num;
 		y_wall = y_wall + num;
 	}
-	/*y = 20;
+	y = 20;
 	x = rc->win_x / 2;
 	while (y < 30)
 	{
@@ -73,5 +73,5 @@ void draw_map(t_raycaster *rc)
 		}
 		x = rc->win_x / 2;
 		y++;
-	}*/
+	}
 }
