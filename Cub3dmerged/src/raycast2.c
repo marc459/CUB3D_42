@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/12 13:25:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 13:39:34 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sky_draw(t_raycaster *rc, int x)
 	int color;
 
 	y = 0;
-	color = BLUESKY;
+	color = rc->c_color;
 	while (y < rc->draw_start)
 	{
 		pixel = (y * rc->win_x + x) * 4;
@@ -68,7 +68,7 @@ void	floor_draw(t_raycaster *rc, int x)
 	int pixel;
 	int color;
 
-	color = BROWN;
+	color = rc->f_color;
 	y = rc->draw_start;
 	while (y < rc->win_y)
 	{

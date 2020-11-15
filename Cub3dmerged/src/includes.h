@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/14 13:59:42 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 13:20:55 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@ typedef struct		s_raycaster
 	void			*win_ptr;
 	void			*img_ptr;
 	char			*img_data;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
+	char			*s_texture;
+	int				f_color;
+	int				c_color;
 	int				line_height;
 	int				bpp;
 	int				size_line;
@@ -290,4 +297,5 @@ void				sky_draw(t_raycaster *rc, int x);
 void				sprite_casting(t_raycaster *rc);
 void				sprite_casting2(t_raycaster *rc);
 void				sprite_drawing(t_raycaster *rc, int i, int y);
+void				init_textures(t_raycaster *rc, t_archparams *arch);
 #endif

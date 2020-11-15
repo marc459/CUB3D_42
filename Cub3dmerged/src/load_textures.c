@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:21:29 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/10/23 14:15:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 13:02:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ void	load_textures_2(t_raycaster *rc)
 			&rc->tex_width, &rc->tex_height);
 	rc->tex[7].data = mlx_get_data_addr(rc->tex[7].img, &rc->tex[7].bpp,
 			&rc->tex[7].size_l, &rc->tex[7].endian);
-	rc->tex[8].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/ghostred.xpm",
-			&rc->tex_width, &rc->tex_height);
-	rc->tex[8].data = mlx_get_data_addr(rc->tex[8].img, &rc->tex[8].bpp,
-			&rc->tex[8].size_l, &rc->tex[8].endian);
-	rc->tex[9].img = mlx_xpm_file_to_image(rc->mlx_ptr,
-		"sprites/destruction.xpm", &rc->tex_width, &rc->tex_height);
-	rc->tex[9].data = mlx_get_data_addr(rc->tex[9].img, &rc->tex[9].bpp,
-			&rc->tex[9].size_l, &rc->tex[9].endian);
-	rc->tex[10].img = mlx_xpm_file_to_image(rc->mlx_ptr, "sprites/dead.xpm",
-			&rc->tex_width, &rc->tex_height);
-	rc->tex[10].data = mlx_get_data_addr(rc->tex[10].img, &rc->tex[10].bpp,
-			&rc->tex[10].size_l, &rc->tex[10].endian);
 }
 
 void	load_textures(t_raycaster *rc)

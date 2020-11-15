@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/14 13:59:45 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 13:03:04 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int		init_raycast_params(t_raycaster *rc,
 	rc->numsprites = map->numsprites;
 	init_raycast_params2(rc, map);
 	init_raycast_params3(rc, map, arch);
+	init_textures(rc, arch);
 	while (i < map->numsprites)
 	{
 		rc->sprite[i].x = map->sprite[i].y;

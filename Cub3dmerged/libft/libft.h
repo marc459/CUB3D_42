@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:49:52 by msantos-          #+#    #+#             */
-/*   Updated: 2020/10/21 12:35:12 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 13:38:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ char			*ft_itoa_without_minus(long int n);
 char			*ft_strrev(char *str);
 void			ft_putstr(char *s);
 char			*ft_dectohex(long long num);
+int				ft_hextodec(char *hexVal);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:21:29 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/11/15 12:48:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:55:17 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_sounds(void)
 void	load_textures_2(t_raycaster *rc)
 {
 	rc->tex[6].img = mlx_xpm_file_to_image(rc->mlx_ptr,
-	"textures/cs/sprite.xpm", &rc->tex_width, &rc->tex_height);
+	"sprites/barrel.xpm", &rc->tex_width, &rc->tex_height);
 	rc->tex[6].data = mlx_get_data_addr(rc->tex[6].img, &rc->tex[6].bpp,
 			&rc->tex[6].size_l, &rc->tex[6].endian);
 	rc->tex[7].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/cs/cielo.xpm",
