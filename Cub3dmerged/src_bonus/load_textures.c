@@ -46,7 +46,7 @@ void	load_textures(t_raycaster *rc)
 			&rc->tex_width, &rc->tex_height);
 	rc->tex[1].data = mlx_get_data_addr(rc->tex[1].img, &rc->tex[1].bpp,
 			&rc->tex[1].size_l, &rc->tex[1].endian);
-	rc->tex[2].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/inferno/pared1.xpm",
+	rc->tex[2].img = mlx_xpm_file_to_image(rc->mlx_ptr, "textures/inferno/pared3.xpm",
 			&rc->tex_width, &rc->tex_height);
 	rc->tex[2].data = mlx_get_data_addr(rc->tex[2].img, &rc->tex[2].bpp,
 			&rc->tex[2].size_l, &rc->tex[2].endian);
