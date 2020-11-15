@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2020/11/14 14:20:26 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:41:23 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,11 @@
 # define M_CK_LM 2
 # define M_SCR_U 4
 # define M_SCR_D 5
+
+/*
+** SOUNDS
+*/
+
+# define PLAY "afplay"
 
 #endif

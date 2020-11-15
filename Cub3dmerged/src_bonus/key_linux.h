@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:40:13 by oouklich          #+#    #+#             */
-/*   Updated: 2020/11/04 12:16:27 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:41:18 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@
 # define M_SCR_U 4
 # define M_SCR_D 5
 
-/*SOUNDS*/
-# define play "aplay"
+/*
+** SOUNDS
+*/
+
+# define PLAY "aplay"
 
 #endif

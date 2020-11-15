@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/14 14:41:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:50:13 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,5 +296,8 @@ void				sprite_drawing(t_raycaster *rc, int i, int y);
 void				run_crouch_on(int key, t_raycaster *rc);
 void				run_crouch_off(int key, t_raycaster *rc);
 void				reset_raycasting_params(t_raycaster *rc);
+void				draw_player(t_raycaster *rc, int num);
+void				load_sounds(void);
+void				draw_life_bar(t_raycaster *rc);
 void				draw_player(t_raycaster *rc, int num);
 #endif

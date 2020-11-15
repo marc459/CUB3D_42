@@ -76,7 +76,7 @@ runbonus:
 normi:
 	#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
 	#source ~/.zshrc
-	norminette src/*.c src/*.h src_bonus/*.c src_bonus/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
+	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)
 
