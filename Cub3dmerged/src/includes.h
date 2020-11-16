@@ -298,4 +298,5 @@ void				sprite_casting(t_raycaster *rc);
 void				sprite_casting2(t_raycaster *rc);
 void				sprite_drawing(t_raycaster *rc, int i, int y);
 void				init_textures(t_raycaster *rc, t_archparams *arch);
+int					min_max_resolution(t_archparams *arch);
 #endif

@@ -62,8 +62,7 @@ int		identifyresolution(char *line, t_archparams *arch)
 		i++;
 	}
 	arch->parameters_count++;
-	if (!((arch->win_y > 100 && arch->win_x > 100)
-		&& (arch->win_y < 1440 && arch->win_x < 2560)))
+	if (!min_max_resolution(arch))
 		return (0);
 	return (1);
 }

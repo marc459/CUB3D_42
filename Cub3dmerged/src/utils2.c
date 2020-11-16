@@ -82,3 +82,15 @@ int		identifycolor2(char *line, int i, char *str, int count)
 	}
 	return (1);
 }
+
+int		min_max_resolution(t_archparams *arch)
+{
+	if (arch->win_y < 100 || arch->win_x < 100)
+		return (0);
+	if (arch->win_y > 1440 || arch->win_x > 2560)
+	{
+		arch->win_x = 2560;
+		arch->win_y = 1440;
+	}
+	return (1);
+}
