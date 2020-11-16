@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 13:39:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/16 12:05:11 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ void	draw_wall(t_raycaster *rc, int x)
 {
 	if (rc->draw_end < 0)
 		rc->draw_end = rc->win_y;
-	if (rc->world_map[rc->map_x][rc->map_y] == 2)
-		rc->tex_id = 6;
-	else
-		rc->tex_id = rc->tex_id + rc->side;
+
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
@@ -116,7 +113,15 @@ void	draw_wall(t_raycaster *rc, int x)
 
 void	calcule_wall(t_raycaster *rc)
 {
-	rc->tex_id = rc->world_map[rc->map_x][rc->map_y];
+	if (rc->side == 0 && rc->ray_dir_x > 0)
+		rc->tex_side = 1;
+	else if (rc->side == 0 && rc->ray_dir_x < 0)
+		rc->tex_side = 0;
+	else if (rc->side == 1 && rc->ray_dir_y > 0)
+		rc->tex_side = 2;
+	else
+		rc->tex_side = 3;
+	rc->tex_id = rc->world_map[rc->map_x][rc->map_y] + rc->tex_side;
 	if (rc->side == 0)
 		rc->wallx = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_y;
 	else

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 13:20:55 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/16 10:47:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,8 +264,8 @@ void				draw_wall(t_raycaster *rc, int x);
 void				floor_and_sky_draw(t_raycaster *rc, int x);
 void				floor_directions(t_raycaster *rc);
 void				init(t_raycaster *rc, char *map);
-void				load_textures(t_raycaster *rc);
-void				load_textures_2(t_raycaster *rc);
+int					load_textures(t_raycaster *rc);
+int					load_textures_2(t_raycaster *rc);
 int					screenshot(t_raycaster *rc);
 int					save_bmp(t_raycaster *rc);
 int					write_bmp_data(int file, t_raycaster *rc, int pad);
