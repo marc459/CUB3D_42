@@ -6,13 +6,13 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 14:00:16 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 13:40:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/17 11:25:25 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void init_textures(t_raycaster *rc,
+void	init_textures(t_raycaster *rc,
 		t_archparams *arch)
 {
 	rc->no_texture = arch->no_texture;
