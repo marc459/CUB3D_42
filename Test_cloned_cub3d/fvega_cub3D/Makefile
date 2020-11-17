@@ -6,7 +6,7 @@
 #    By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 13:34:09 by amaza-va          #+#    #+#              #
-#    Updated: 2020/01/13 20:34:26 by fvega-tr         ###   ########.fr        #
+#    Updated: 2020/11/17 12:29:45 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS	=	main.c\
 			bmp.c
 
 all		:	$(SRCS)
-		@gcc $(SRCS) -lmlx -framework OpenGL -framework AppKit && ./a.out "map2iiiiiiiiii.cub"
+		@gcc $(SRCS) -lmlx -framework OpenGL -framework AppKit && ./a.out "map2.cub"
 
 runlinux:
 	gcc $(SRCS) -lm -lbsd -lmlx -lXext -lX11

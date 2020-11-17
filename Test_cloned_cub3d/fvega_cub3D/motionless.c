@@ -6,7 +6,7 @@
 /*   By: fvega-tr <fvega-tr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:02:32 by fvega-tr          #+#    #+#             */
-/*   Updated: 2020/11/05 13:06:32 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:16:17 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ static void	motionless_2(t_struct *t, int x)
 
 int			motionless(t_struct *t)
 {
+	printf("%f\n",t->posx);
+	printf("%f\n", t->posy);
 	int x;
 
 	x = 0;

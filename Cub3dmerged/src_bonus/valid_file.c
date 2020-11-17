@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/04 13:45:29 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:38:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		arch_checker(char *mapfile, t_archparams *arch, t_validmap *map)
 	char	*line;
 	int		retorno;
 
-	if (!(fd = open(mapfile, O_RDONLY)))
+	if ((fd = open(mapfile, O_RDONLY)) == -1)
 		return (ft_puterror("Error al abrir el archivo"));
 	while ((retorno = get_next_line(fd, &line)) == 1)
 	{

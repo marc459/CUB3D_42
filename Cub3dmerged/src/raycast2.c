@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/17 11:24:14 by msantos-         ###   ########.fr       */
+/*   Created: 2020/09/15 07:11:34 by msantos-          #+#    #+#             */
+/*   Updated: 2020/11/17 12:33:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	dda(t_raycaster *rc)
 			rc->map_y += rc->stepy;
 			rc->side = 1;
 		}
-		if (rc->world_map[rc->map_x][rc->map_y] == 1)
+		if (rc->world_map[rc->map_x][rc->map_y] > 0)
 			rc->hit = 1;
 	}
 }
@@ -93,8 +93,6 @@ void	floor_draw(t_raycaster *rc, int x)
 
 void	draw_wall(t_raycaster *rc, int x)
 {
-	if (rc->draw_end < 0)
-		rc->draw_end = rc->win_y;
 	while (rc->draw_start <= rc->draw_end)
 	{
 		rc->tex_y = abs((((rc->draw_start * 256 - rc->win_y * 128 +
@@ -112,6 +110,13 @@ void	draw_wall(t_raycaster *rc, int x)
 
 void	calcule_wall(t_raycaster *rc)
 {
+	rc->tex_id = rc->world_map[rc->map_x][rc->map_y] + rc->tex_side;
+	if (rc->side == 0)
+		rc->wallx = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_y;
+	else
+		rc->wallx = rc->player_pos_x + rc->perp_wall_dist * rc->ray_dir_x;
+	rc->wallx -= floor(rc->wallx);
+	rc->tex_x = abs((int)(rc->wallx * (double)(64)));
 	if (rc->side == 0 && rc->ray_dir_x > 0)
 		rc->tex_side = 1;
 	else if (rc->side == 0 && rc->ray_dir_x < 0)
@@ -120,11 +125,6 @@ void	calcule_wall(t_raycaster *rc)
 		rc->tex_side = 2;
 	else
 		rc->tex_side = 3;
-	rc->tex_id = rc->world_map[rc->map_x][rc->map_y] + rc->tex_side;
-	if (rc->side == 0)
-		rc->wallx = rc->player_pos_y + rc->perp_wall_dist * rc->ray_dir_y;
-	else
-		rc->wallx = rc->player_pos_x + rc->perp_wall_dist * rc->ray_dir_x;
-	rc->wallx -= floor(rc->wallx);
-	rc->tex_x = abs((int)(rc->wallx * (double)(64)));
+	if (rc->draw_end < 0)
+		rc->draw_end = rc->win_y;
 }

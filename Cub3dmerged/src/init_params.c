@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 13:03:04 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:31:37 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	init_raycast_params3(t_raycaster *rc,
 
 void	init_raycast_params2(t_raycaster *rc, t_validmap *map)
 {
-	rc->player_pos_x = map->init_p_pos_y;
-	rc->player_pos_y = map->init_p_pos_x;
+	rc->player_pos_x = (double)map->init_p_pos_y + 0.5;
+	rc->player_pos_y = (double)map->init_p_pos_x + 0.5;
 	rc->map_width = map->map_width;
 	rc->map_height = map->m_line;
 	if (map->player_dir == 'N')
