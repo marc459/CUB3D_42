@@ -1,16 +1,16 @@
-R 1080 720
-NO tests/textures/grass.xpm
-SO tests/textures/grass.xpm
-WE tests/textures/brownstone.xpm
-EA tests/textures/whitestone.xpm
+R 1000 540
+NO ./textures/stone.xpm
+SO ./textures/mossy.xpm
+WE ./textures/redbrick.xpm
+EA ./textures/wood.xpm
+S ./sprites/barrel.xpm
+C 156,248,237
+F 202,139,63
 
-S tests/textures/sprite/barrel.xpm
-F 0,0,0
-C 255,255,255
 
 11111111111111 1111111111
-1000000000000111000000001
-101100000111000000W002001
+1N00000000000111000000001
+1011000001110000000002001
 100100000000000000000000111111111
 111111111011000001110000000000001
 100000000011000001110111111111111
