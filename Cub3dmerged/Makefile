@@ -66,7 +66,7 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
 
 all: run
-	./$(NAME) maps/map.cub
+	./$(NAME) map.cub
 
 compile:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c

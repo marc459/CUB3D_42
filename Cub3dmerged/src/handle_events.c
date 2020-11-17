@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 11:20:17 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/17 12:40:41 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/17 13:07:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ void	move_left(t_raycaster *rc)
 	if (rc->left)
 	{
 		if (rc->world_map[(int)rc->player_pos_y]
-			[(int)(rc->player_pos_x + rc->player_plane_x
+			[(int)(rc->player_pos_x - rc->player_plane_x
 			* rc->movespeed)] == 0)
 			rc->player_pos_x -= rc->player_plane_x
 			* rc->movespeed;
 		if (rc->world_map[(int)(rc->player_pos_y
-			+ rc->player_plane_y * rc->movespeed)]
+			- rc->player_plane_y * rc->movespeed)]
 			[(int)rc->player_pos_x] == 0)
 			rc->player_pos_y -= rc->player_plane_y
 			* rc->movespeed;
