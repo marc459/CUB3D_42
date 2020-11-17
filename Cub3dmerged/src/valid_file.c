@@ -66,7 +66,7 @@ int		arch_checker(char *mapfile, t_archparams *arch, t_validmap *map)
 	char	*line;
 	int		retorno;
 
-	if (!(fd = open(mapfile, O_RDONLY)))
+	if ((fd = open(mapfile, O_RDONLY)) == -1)
 		return (ft_puterror("Error al abrir el archivo"));
 	while ((retorno = get_next_line(fd, &line)) == 1)
 	{
