@@ -79,10 +79,10 @@ normi:
 	#source ~/.zshrc
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
-	@rm -rf $(OBJ) $(OBJLIB)
+    @rm -rf $(NAME)
 
 fclean: clean
-	@rm -rf $(NAME)
+    @rm -rf $(NAME) screenshot.bmp
 
 re: fclean all
 
