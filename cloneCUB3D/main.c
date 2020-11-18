@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/16 10:49:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/18 14:28:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		main(int argc, char **argv)
 	|| !arch_checker(argv[1], &arch, &map))
 		return (multi_free_error(&arch, &map));
 	save_map(argv[1], &arch, &map);
+	print_params(&arch, &map);
 	if (!init_raycast_params(&rc, &arch, &map) || !load_textures(&rc))
 		return (0);
 	mlx_hook(rc.win_ptr, 2, 1L << 0, &key_press, &rc);
