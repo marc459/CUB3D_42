@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/16 10:47:33 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/24 13:59:20 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,4 +299,5 @@ void				sprite_casting2(t_raycaster *rc);
 void				sprite_drawing(t_raycaster *rc, int i, int y);
 void				init_textures(t_raycaster *rc, t_archparams *arch);
 int					min_max_resolution(t_archparams *arch);
+int					no_0_afterline(char *line, t_validmap *map);
 #endif

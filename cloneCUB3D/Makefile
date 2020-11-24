@@ -1,7 +1,7 @@
 NAME = Cub3D
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 #NORMINETTE LINUX
 #echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc
@@ -65,6 +65,10 @@ RAY_C_BONUS = $(addprefix $(SRC_BONUS_PATH)/, $(RAYCASTING))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
 
+#norrmilinux:
+#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
+#source ~/.zshrc
+
 all: run
 	./$(NAME) map.cub
 
@@ -75,8 +79,6 @@ run:
 runbonus:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
-	#echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.zshrc 
-	#source ~/.zshrc
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:
 	@rm -rf $(NAME)
