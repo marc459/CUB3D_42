@@ -6,7 +6,7 @@
 #    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/06 06:44:53 by dkrecisz          #+#    #+#              #
-#    Updated: 2020/11/25 14:30:34 by msantos-         ###   ########.fr        #
+#    Updated: 2020/11/25 14:48:12 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,7 @@ if [ $OK -gt 0 ]; then
 		wait $! &>/dev/null
 		RET=$?
 		grep -q "Error$" $out
-		if [[ $? -ne 0 ]]; then
+		if [[ $RET -ne 0 ]]; then
 			FAIL=$((FAIL+1))
 			#TERMINAL OUTPUT
 			printf "${REDB}${BHYEL}CMD:${RESET}${BHYEL} %-53s${BRED}[DESTROYED]\n${RESET}" "../cub3D $ARG_TEST_MAP \"$line\""
