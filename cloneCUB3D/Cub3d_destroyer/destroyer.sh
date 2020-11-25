@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    destroyer.sh                                       :+:    :+:             #
-#                                                      +:+                     #
-#    By: dkrecisz <dkrecisz@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2020/07/06 06:44:53 by dkrecisz      #+#    #+#                  #
-#    Updated: 2020/11/25 13:19:39 by msantos-         ###   ########.fr        #
+#                                                         :::      ::::::::    #
+#    destroyer.sh                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/07/06 06:44:53 by dkrecisz          #+#    #+#              #
+#    Updated: 2020/11/25 14:30:34 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ do
 	wait $! &>/dev/null
 	RET=$?
 	grep -q "Error$" $out
-	if [[ $? -ne 0 || $RET -eq 139 ]]; then
+	if [[ $RET -ne 0 || $RET -eq 139 ]]; then
 		FAIL=$((FAIL+1))
 		#TERMINAL OUTPUT
 		printf "${REDB}${BHYEL}MAP: %-42s${RESET}%s${BRED}[DESTROYED]\n${RESET}" $file
