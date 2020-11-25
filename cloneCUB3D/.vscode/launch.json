@@ -9,7 +9,7 @@
 			"name": "Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/msantos-/Desktop/sgoinfre/CUB3D/cloneCUB3D/Cub3D",
+			"program": "/Users/msantos-/Desktop/sgoinfre/CUB3D/cloneCUB3D/cub3D",
 			"args": ["map.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

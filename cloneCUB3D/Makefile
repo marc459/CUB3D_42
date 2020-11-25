@@ -1,4 +1,4 @@
-NAME = Cub3D
+NAME = cub3D
 CC = gcc
 
 FLAGS = -g -Wall -Wextra -Werror
@@ -70,7 +70,7 @@ OBJLIB = $(addprefix $(OBJ_PATH)/,$(OBJLIB_NAME))
 #source ~/.zshrc
 
 all: run
-	./$(NAME) map.cub
+	#./$(NAME) map.cub
 
 compile:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
