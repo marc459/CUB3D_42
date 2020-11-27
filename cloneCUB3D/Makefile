@@ -1,4 +1,4 @@
-NAME = cub3D
+NAME = Cub3D
 CC = gcc
 
 FLAGS = -g -Wall -Wextra -Werror
@@ -50,7 +50,7 @@ GNL_NAME = get_next_line.c
 
 SRC_NAME = init_params.c init_params2.c valid_file.c valid_file2.c valid_map.c valid_map2.c save_map.c
 
-RAYCASTING = utils.c utils2.c load_textures.c raycast.c raycast2.c handle_events.c bmp.c screenshot.c key.c spritesramis.c
+RAYCASTING = utils.c utils2.c load_textures.c raycast.c raycast2.c handle_events.c bmp.c screenshot.c key.c sprite.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)

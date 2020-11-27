@@ -1,4 +1,4 @@
-R 2000000 1000000
+R 1000 700
 NO ./textures/stone.xpm
 SO ./textures/mossy.xpm
 WE ./textures/redbrick.xpm

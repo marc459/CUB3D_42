@@ -28,9 +28,7 @@ void	sprite_drawing(t_raycaster *rc, int i, int y)
 				rc->d = (y) * 256 - rc->win_y * 128 + rc->spriteheight * 128;
 				rc->sprtexy = ((rc->d *
 				rc->tex_height) / rc->spriteheight) / 256;
-				if (++y < rc->win_y && rc->sprite[i].tex.data[rc->sprtexy %
-				rc->tex_height * rc->sprite[i].tex.size_l +
-				rc->sprtexx % rc->tex_width * rc->sprite[i].tex.bpp / 8])
+				if (rc->sprite[i].tex.data[4 * (rc->sprtexx + 64 * rc->sprtexy)] != (char)0)
 					ft_memcpy(rc->img_data + 4 * rc->win_x * y + rc->stripe * 4,
 						&rc->sprite[i].tex.data[rc->sprtexy % rc->tex_height *
 						rc->sprite[i].tex.size_l + rc->sprtexx % rc->tex_width
