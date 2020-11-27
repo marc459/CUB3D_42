@@ -90,7 +90,7 @@ int		raycasting(t_raycaster *rc)
 		rc->spr_buffer[x] = rc->perp_wall_dist;
 		x++;
 	}
-	sprite_casting(rc);
+	set_sprites(rc);
 	mlx_put_image_to_window(rc->mlx_ptr, rc->win_ptr,
 					rc->img_ptr, 0, 0);
 	return (0);
