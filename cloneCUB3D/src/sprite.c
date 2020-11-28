@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 09:40:15 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/26 12:41:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/28 11:52:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	sprite_drawing(t_raycaster *rc, int i, int y)
 				rc->d = (y) * 256 - rc->win_y * 128 + rc->spriteheight * 128;
 				rc->sprtexy = ((rc->d *
 				rc->tex_height) / rc->spriteheight) / 256;
-				if (rc->sprite[i].tex.data[4 * (rc->sprtexx + 64 * rc->sprtexy)] != (char)0)
+				if (rc->sprite[i].tex.data[4 * (rc->sprtexx + 64 * rc->sprtexy)]
+				!= (char)0)
 					ft_memcpy(rc->img_data + 4 * rc->win_x * y + rc->stripe * 4,
 						&rc->sprite[i].tex.data[rc->sprtexy % rc->tex_height *
 						rc->sprite[i].tex.size_l + rc->sprtexx % rc->tex_width
