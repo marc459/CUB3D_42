@@ -6,11 +6,23 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 14:00:16 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/14 14:40:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/28 12:47:49 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
+
+void	init_textures(t_raycaster *rc,
+		t_archparams *arch)
+{
+	rc->no_texture = arch->no_texture;
+	rc->so_texture = arch->so_texture;
+	rc->we_texture = arch->we_texture;
+	rc->ea_texture = arch->ea_texture;
+	rc->s_texture = arch->s_texture;
+	rc->f_color = ft_hextodec(arch->f_color);
+	rc->c_color = ft_hextodec(arch->c_color);
+}
 
 void	init_initialparams(t_validmap *map)
 {

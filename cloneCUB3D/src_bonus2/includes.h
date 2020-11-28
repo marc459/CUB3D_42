@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:32 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 12:50:13 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/28 13:05:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,20 @@ typedef struct		s_sprites
 {
 	double			x;
 	double			y;
+	double			distance;
+	double			sprite_x;
+	double			sprite_y;
+	double			invdet;
+	double			transform_x;
+	double			transform_y;
+	int				screen;
+	int				height;
+	int				width;
+	int				drawstart_x;
+	int				drawstart_y;
+	int				drawend_x;
+	int				drawend_y;
+	int				stripe;
 	t_img			tex;
 }					t_sprites;
 
@@ -90,6 +104,13 @@ typedef struct		s_raycaster
 	void			*win_ptr;
 	void			*img_ptr;
 	char			*img_data;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
+	char			*s_texture;
+	int				f_color;
+	int				c_color;
 	int				line_height;
 	int				bpp;
 	int				size_line;
@@ -174,9 +195,10 @@ typedef struct		s_raycaster
 	double			*spr_buffer;
 	double			enem_stepx;
 	double			enem_stepy;
+	int				i;
+	int				steps;
 	int				tmpx;
 	int				tmpy;
-	int				steps;
 }					t_raycaster;
 
 typedef struct		s_archparams
@@ -260,8 +282,8 @@ void				draw_wall(t_raycaster *rc, int x);
 void				floor_and_sky_draw(t_raycaster *rc, int x);
 void				floor_directions(t_raycaster *rc);
 void				init(t_raycaster *rc, char *map);
-void				load_textures(t_raycaster *rc);
-void				load_textures_2(t_raycaster *rc);
+int					load_textures(t_raycaster *rc);
+int					load_textures_2(t_raycaster *rc);
 int					screenshot(t_raycaster *rc);
 int					save_bmp(t_raycaster *rc);
 int					write_bmp_data(int file, t_raycaster *rc, int pad);
@@ -288,16 +310,11 @@ void				init_raycast_params3(t_raycaster *rc,
 void				handle_events2(t_raycaster *rc);
 void				write_data_header(t_raycaster *rc, int size, int fd);
 void				init_initialparams(t_validmap *map);
-void				floor_draw(t_raycaster *rc, int x);
-void				sky_draw(t_raycaster *rc, int x);
 void				sprite_casting(t_raycaster *rc);
 void				sprite_casting2(t_raycaster *rc);
 void				sprite_drawing(t_raycaster *rc, int i, int y);
-void				run_crouch_on(int key, t_raycaster *rc);
-void				run_crouch_off(int key, t_raycaster *rc);
+void				init_textures(t_raycaster *rc, t_archparams *arch);
+int					min_max_resolution(t_archparams *arch);
+int					no_0_afterline(char *line, t_validmap *map);
 void				reset_raycasting_params(t_raycaster *rc);
-void				draw_player(t_raycaster *rc, int num);
-void				load_sounds(void);
-void				draw_life_bar(t_raycaster *rc);
-void				draw_player(t_raycaster *rc, int num);
 #endif

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 13:27:48 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:39:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,22 @@ int		identifycolor2(char *line, int i, char *str, int count)
 		free(str);
 		return (0);
 	}
+	return (1);
+}
+
+int		min_max_resolution(t_archparams *arch)
+{
+	if (arch->win_y > 1440 || arch->win_x > 2560)
+	{
+		arch->win_x = 2560;
+		arch->win_y = 1440;
+	}
+	else if (arch->win_y < 0 || arch->win_x < 0)
+	{
+		arch->win_x = 2560;
+		arch->win_y = 1440;
+	}
+	else if (arch->win_y < 100 || arch->win_x < 100)
+		return (0);
 	return (1);
 }

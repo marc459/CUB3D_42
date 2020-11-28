@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 09:40:15 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/28 11:52:50 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/28 11:52:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	sprite_drawing(t_raycaster *rc, int i, int y)
 	{
 		rc->sprtexx = (int)(256 * (rc->stripe - (-rc->spritewidth / 2
 			+ rc->spritescreenx)) * rc->tex_width / rc->spritewidth) / 256;
+		rc->tex_x = abs((int)(rc->wallx * (double)(64)));
 		y = rc->drawstarty;
 		if (rc->transformy > 0 && rc->stripe > 0 && rc->stripe < rc->win_x &&
 			rc->transformy < rc->spr_buffer[rc->stripe])
@@ -74,7 +75,7 @@ void	sprite_casting(t_raycaster *rc)
 	y = 0;
 	while (i < rc->numsprites)
 	{
-		rc->sprite[i].tex = rc->tex[6];
+		rc->sprite[i].tex = rc->tex[5];
 		rc->spritex = rc->sprite[i].x + 0.5 - rc->player_pos_x;
 		rc->spritey = rc->sprite[i].y + 0.5 - rc->player_pos_y;
 		sprite_casting2(rc);

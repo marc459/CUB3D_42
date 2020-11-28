@@ -1,4 +1,4 @@
-NAME = Cub3D
+NAME = cub3D
 CC = gcc
 
 FLAGS = -g -Wall -Wextra -Werror
@@ -24,7 +24,7 @@ endif
 CHECKLEAKS=/Applications/Xcode.app/Contents/Developer/usr/lib/libLeaksAtExit.dylib leaks -atExit -- ./a.out map.cub
 
 SRC_PATH = ./src
-SRC_BONUS_PATH = ./src_bonus
+SRC_BONUS_PATH = ./src_bonus2
 GNL_PATH = ./get_next_line
 LIB_PATH = ./libft
 OBJ_PATH = ./objs
@@ -77,7 +77,7 @@ compile:
 run:
 	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
 runbonus:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus2/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:

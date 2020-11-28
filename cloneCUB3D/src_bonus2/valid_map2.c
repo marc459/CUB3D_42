@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/10 14:49:41 by msantos-         ###   ########.fr       */
+/*   Updated: 2020/11/25 14:39:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,23 @@ int		check_prev_line(char *line, t_validmap *map, int *i, int count)
 		map->colum_spaces[count]++;
 		*i = *i + 1;
 	}
+	return (1);
+}
+
+int		no_0_afterline(char *line, t_validmap *map)
+{
+	int i;
+	int last0;
+
+	i = 0;
+	last0 = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '0')
+			last0 = i;
+		i++;
+	}
+	if ((int)ft_strlen(map->prev_line) <= last0)
+		return (0);
 	return (1);
 }

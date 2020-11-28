@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 07:11:34 by msantos-          #+#    #+#             */
-/*   Updated: 2020/11/15 12:42:41 by msantos-         ###   ########.fr       */
+/*   Created: 2020/09/15 11:20:17 by msantos-          #+#    #+#             */
+/*   Updated: 2020/11/28 13:13:06 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
-void	handle_events2(t_raycaster *rc)
+void handle_events2(t_raycaster *rc)
 {
 	double olddirx;
 	double oldplanex;
@@ -23,10 +23,8 @@ void	handle_events2(t_raycaster *rc)
 		rc->dirx = rc->dirx * cos(-ROT_SPEED) - rc->diry * sin(-ROT_SPEED);
 		rc->diry = olddirx * sin(-ROT_SPEED) + rc->diry * cos(-ROT_SPEED);
 		oldplanex = rc->player_plane_x;
-		rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED)
-							- rc->player_plane_y * sin(-ROT_SPEED);
-		rc->player_plane_y = oldplanex * sin(-ROT_SPEED)
-							+ rc->player_plane_y * cos(-ROT_SPEED);
+		rc->player_plane_x = rc->player_plane_x * cos(-ROT_SPEED) - rc->player_plane_y * sin(-ROT_SPEED);
+		rc->player_plane_y = oldplanex * sin(-ROT_SPEED) + rc->player_plane_y * cos(-ROT_SPEED);
 	}
 	else if (rc->rot_left)
 	{
@@ -34,74 +32,62 @@ void	handle_events2(t_raycaster *rc)
 		rc->dirx = rc->dirx * cos(ROT_SPEED) - rc->diry * sin(ROT_SPEED);
 		rc->diry = olddirx * sin(ROT_SPEED) + rc->diry * cos(ROT_SPEED);
 		oldplanex = rc->player_plane_x;
-		rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED)
-							- rc->player_plane_y * sin(ROT_SPEED);
-		rc->player_plane_y = oldplanex * sin(ROT_SPEED)
-							+ rc->player_plane_y * cos(ROT_SPEED);
+		rc->player_plane_x = rc->player_plane_x * cos(ROT_SPEED) - rc->player_plane_y * sin(ROT_SPEED);
+		rc->player_plane_y = oldplanex * sin(ROT_SPEED) + rc->player_plane_y * cos(ROT_SPEED);
 	}
 }
 
-void	move_right(t_raycaster *rc)
+void move_right(t_raycaster *rc)
 {
 	if (rc->right)
 	{
 		if (rc->world_map[(int)rc->player_pos_y]
-			[(int)(rc->player_pos_x + rc->player_plane_x
-			* rc->movespeed)] == 0)
-			rc->player_pos_x += rc->player_plane_x
-			* rc->movespeed;
-		if (rc->world_map[(int)(rc->player_pos_y
-			+ rc->player_plane_y * rc->movespeed)]
-			[(int)rc->player_pos_x] == 0)
-			rc->player_pos_y += rc->player_plane_y
-			* rc->movespeed;
+						 [(int)(rc->player_pos_x + rc->player_plane_x * rc->movespeed)] == 0)
+			rc->player_pos_x += rc->player_plane_x * rc->movespeed;
+		if (rc->world_map[(int)(rc->player_pos_y + rc->player_plane_y * rc->movespeed)]
+						 [(int)rc->player_pos_x] == 0)
+			rc->player_pos_y += rc->player_plane_y * rc->movespeed;
 	}
 }
 
-void	move_left(t_raycaster *rc)
+void move_left(t_raycaster *rc)
 {
 	if (rc->left)
 	{
 		if (rc->world_map[(int)rc->player_pos_y]
-			[(int)(rc->player_pos_x + rc->player_plane_x
-			* rc->movespeed)] == 0)
-			rc->player_pos_x -= rc->player_plane_x
-			* rc->movespeed;
-		if (rc->world_map[(int)(rc->player_pos_y
-			+ rc->player_plane_y * rc->movespeed)]
-			[(int)rc->player_pos_x] == 0)
-			rc->player_pos_y -= rc->player_plane_y
-			* rc->movespeed;
+						 [(int)(rc->player_pos_x + rc->player_plane_x * rc->movespeed)] == 0)
+			rc->player_pos_x -= rc->player_plane_x * rc->movespeed;
+		if (rc->world_map[(int)(rc->player_pos_y + rc->player_plane_y * rc->movespeed)]
+						 [(int)rc->player_pos_x] == 0)
+			rc->player_pos_y -= rc->player_plane_y * rc->movespeed;
 	}
 }
 
-int		handle_events(t_raycaster *rc)
+int handle_events(t_raycaster *rc)
 {
 	if (rc->up == 1)
 	{
 		if (rc->steps == 4 && rc->movespeed >= 0.200)
 			system(ft_strjoin(PLAY,
-			" src_bonus/sounds/cstrike_sounds/sound/player/pl_step1.wav &"));
+							  " src_bonus/sounds/cstrike_sounds/sound/player/pl_step1.wav &"));
 		if (rc->steps == 7 && rc->movespeed >= 0.200)
 			system(ft_strjoin(PLAY,
-			" src_bonus/sounds/cstrike_sounds/sound/player/pl_step2.wav &"));
+							  " src_bonus/sounds/cstrike_sounds/sound/player/pl_step2.wav &"));
 		if (rc->steps == 12)
 			rc->steps = 0;
 		rc->steps++;
-		if (rc->world_map[(int)(rc->player_pos_x + rc->dirx
-			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+		if (rc->world_map[(int)(rc->player_pos_x + rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x += rc->dirx * rc->movespeed;
 		if (rc->world_map[(int)(rc->player_pos_x)]
-			[(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
+						 [(int)(rc->player_pos_y + rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y += rc->diry * rc->movespeed;
 	}
 	else if (rc->down)
 	{
-		if (rc->world_map[(int)(rc->player_pos_x - rc->dirx
-			* rc->movespeed)][(int)(rc->player_pos_y)] == 0)
+		if (rc->world_map[(int)(rc->player_pos_x - rc->dirx * rc->movespeed)][(int)(rc->player_pos_y)] == 0)
 			rc->player_pos_x -= rc->dirx * rc->movespeed;
 		if (rc->world_map[(int)(rc->player_pos_x)]
-			[(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
+						 [(int)(rc->player_pos_y - rc->diry * rc->movespeed)] == 0)
 			rc->player_pos_y -= rc->diry * rc->movespeed;
 	}
 	handle_events2(rc);
