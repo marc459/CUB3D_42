@@ -44,7 +44,7 @@ run:
 	@cc -I /usr/local/include src/main.c $(LIB) $(SRC) -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 runlinux:
-	gcc src/main.c $(LIB) -lm -lbsd -lmlx -lXext -lX11
+	gcc src/window_davyd11.c $(LIB) -lm -lbsd -lmlx -lXext -lX11
 
 clean:
 	@rm -rf $(OBJ) $(OBJLIB)
