@@ -29,7 +29,7 @@ int		main(void)
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, wh, ww, "Cub3D");
 
-	img_ptr = mlx_new_image(mlx_ptr, ww, >wh);
+	img_ptr = mlx_new_image(mlx_ptr, ww, wh);
 	img_data = (char *)mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian);
 
 	//g.tex_img = mlx_xpm_file_to_image(g.mlx_ptr, "/Users/davyd11/42folder/cub3d/textures/bluestone.xpm", &tex_w, &tex_h);
@@ -42,7 +42,8 @@ int		main(void)
 	int x = 0;
 	while (x < ww)
 	{
-	printf("%d\n", x);
+	if(x == 300)
+		break;
 	while (y < wh)
 	{
 		pixel = (y * ww + x) * 4;
