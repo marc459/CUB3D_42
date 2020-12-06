@@ -15,7 +15,7 @@
 void load_sounds(void)
 {
 	system(ft_strjoin(PLAY,
-	" -v 0.6 src_bonus/sounds/cs1.6_sounds/sound/ambience/Opera.wav &"));
+	" -v 0.6 src_bonus/sounds/Opera.wav &"));
 }
 
 int		load_textures_2(t_raycaster *rc)

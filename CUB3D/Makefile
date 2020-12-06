@@ -73,11 +73,11 @@ all: run
 	./$(NAME) map.cub
 
 compile:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
+	@$(CC) $(FLAGS) main.c   $(LIB) $(SRC) $(GNL) src/utils.c src/utils2.c
 run:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(FLAGS) main.c   $(LIB) $(SRC) $(RAY_C) $(GNL) $(MLXFLAGS) -o $(NAME)
 runbonus:
-	@$(CC) $(FLAGS) main.c  testing.c $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus2/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(FLAGS) main.c   $(LIB) $(SRC_BONUS) $(RAY_C_BONUS) src_bonus2/hud_bonus.c $(GNL) $(MLXFLAGS) -o $(NAME)
 normi:
 	norminette src/*.c src/*.h libft/*.c libft/*.h get_next_line/*.c get_next_line/*.h main.c
 clean:

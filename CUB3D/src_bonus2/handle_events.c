@@ -69,10 +69,10 @@ int handle_events(t_raycaster *rc)
 	{
 		if (rc->steps == 4 && rc->movespeed >= 0.200)
 			system(ft_strjoin(PLAY,
-							  " src_bonus/sounds/cstrike_sounds/sound/player/pl_step1.wav &"));
+							  " src_bonus/sounds/pl_step1.wav &"));
 		if (rc->steps == 7 && rc->movespeed >= 0.200)
 			system(ft_strjoin(PLAY,
-							  " src_bonus/sounds/cstrike_sounds/sound/player/pl_step2.wav &"));
+							  " src_bonus/sounds/pl_step2.wav &"));
 		if (rc->steps == 12)
 			rc->steps = 0;
 		rc->steps++;
